@@ -4,16 +4,32 @@ const postcss = require('gulp-postcss');
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const concat = require('gulp-concat');
+const cleanCSS = require('gulp-clean-css');
 const autoprefixer = require('autoprefixer');
 const sourcemaps = require('gulp-sourcemaps');
-
-const uglify = require('gulp-uglify');
 
 const spritesmith = require('gulp.spritesmith');
 const buffer = require('vinyl-buffer');
 const imagemin = require('gulp-imagemin');
-const cleanCSS = require('gulp-clean-css');
 const merge = require('merge-stream');
+
+const uglify = require('gulp-uglify');
+
+sass.compiler = require('node-sass');
+
+gulp.task('sass', function() {
+  const plugin = [
+    autoprefixer({overrideBrowserslist: ['last 2 version'], cascade: false})
+  ];
+  return gulp.src('./src/sass/**/*.scss', { sourcemaps: true })
+    .pipe(concat('main.css'))
+    .pipe(sourcemaps.init())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(sourcemaps.write())
+    .pipe(cleanCSS({compatibility: 'ie11', format: 'beautify'}))
+    .pipe(postcss(plugin))
+    .pipe(gulp.dest('./build/css', { sourcemaps: true }));
+});
 
 gulp.task('sprite', function () {
   const spriteData = gulp.src('./src/icons/*').pipe(spritesmith({
@@ -32,22 +48,6 @@ gulp.task('sprite', function () {
     .pipe(gulp.dest('./build/sprite'));
  
   return merge(imgStream, cssStream);
-});
-
-sass.compiler = require('node-sass');
-
-gulp.task('sass', function() {
-  const plugin = [
-    autoprefixer({overrideBrowserslist: ['last 2 version'], cascade: false})
-  ];
-  return gulp.src('./src/sass/**/*.scss', { sourcemaps: true })
-    .pipe(concat('main.css'))
-    .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
-    .pipe(sourcemaps.write())
-    .pipe(cleanCSS({compatibility: 'ie11', format: 'beautify'}))
-    .pipe(postcss(plugin))
-    .pipe(gulp.dest('./build/css', { sourcemaps: true }));
 });
 
 gulp.task('script', function () {
