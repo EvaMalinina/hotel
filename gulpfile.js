@@ -21,7 +21,7 @@ gulp.task('sass', function() {
   const plugin = [
     autoprefixer({overrideBrowserslist: ['last 2 version'], cascade: false})
   ];
-  return gulp.src('./src/sass/**/*.scss', { sourcemaps: true })
+  return gulp.src('./src/sass/main.scss', { sourcemaps: true })
     .pipe(concat('main.css'))
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))

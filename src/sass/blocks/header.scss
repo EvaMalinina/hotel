@@ -1,0 +1,97 @@
+.header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  z-index: 2;
+}
+
+.nav {
+
+  &__list {
+  display: flex;
+  }
+
+  &__item {
+    padding: 25px;
+    background-color: $white;
+    cursor: pointer;
+
+    &_bg-blue {
+      background-color: $darkblue;
+
+      .nav__link {
+        color: $white;
+      }  
+    }
+  }
+
+  &__link {
+    text-transform: uppercase;
+    color: $darkblue;
+    display: flex;
+    align-items: center;
+    letter-spacing: 2px;
+  }
+
+  &__icon {
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+    margin-right: 6%;
+  }
+
+  &__icon-menu {
+    background-image: url(/build/sprite/sprite.png);
+    background-size: cover;
+    width: 300%;
+    height: 300%;
+    background-position: -55px 0px;
+  }
+}
+
+.header__contact {
+  display: flex;
+  align-items: center;
+}
+
+.contact {
+  display: flex;
+
+  &__item {
+    margin-right: 40%;
+    cursor: pointer;
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+  }
+
+  &__icon-phone {
+    background-image: url(/build/sprite/sprite.png);
+    background-size: cover;
+    width: 300%;
+    height: 300%;
+    background-position: -120px -100px;
+  }
+
+  &__icon-mail {
+    background-image: url(/build/sprite/sprite.png);
+    background-size: cover;
+    width: 300%;
+    height: 300%;
+    background-position: -20px -20px;
+  }
+
+  &__icon-map {
+    background-image: url(/build/sprite/sprite.png);
+    background-size: cover;
+    width: 300%;
+    height: 300%;
+    background-position: 0px 0px;
+  }
+}
+
+

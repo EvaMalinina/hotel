@@ -1,18 +1,66 @@
-.icon-facebook {
-  background-image: url(sprite.png);
-  background-position: 0 0;
-  width: 512px;
-  height: 512px
-}
-.icon-instagram {
+.icon-arrow {
   background-image: url(sprite.png);
   background-position: -532px 0;
   width: 512px;
   height: 512px
 }
-.icon-whatsapp {
+.icon-facebook {
+  background-image: url(sprite.png);
+  background-position: -1064px -532px;
+  width: 512px;
+  height: 512px
+}
+.icon-instagram {
   background-image: url(sprite.png);
   background-position: 0 -532px;
+  width: 512px;
+  height: 512px
+}
+.icon-mail {
+  background-image: url(sprite.png);
+  background-position: -532px -532px;
+  width: 512px;
+  height: 512px
+}
+.icon-menu {
+  background-image: url(sprite.png);
+  background-position: -1064px 0;
+  width: 512px;
+  height: 512px
+}
+.icon-pin {
+  background-image: url(sprite.png);
+  background-position: 0 0;
+  width: 512px;
+  height: 512px
+}
+.icon-royal-palace {
+  background-image: url(sprite.png);
+  background-position: 0 -1064px;
+  width: 512px;
+  height: 512px
+}
+.icon-supermarket {
+  background-image: url(sprite.png);
+  background-position: -532px -1064px;
+  width: 512px;
+  height: 512px
+}
+.icon-telephone {
+  background-image: url(sprite.png);
+  background-position: -1064px -1064px;
+  width: 512px;
+  height: 512px
+}
+.icon-user {
+  background-image: url(sprite.png);
+  background-position: -1596px 0;
+  width: 512px;
+  height: 512px
+}
+.icon-whatsapp {
+  background-image: url(sprite.png);
+  background-position: -1596px -532px;
   width: 512px;
   height: 512px
 }
