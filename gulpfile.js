@@ -31,10 +31,10 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('./build/css', { sourcemaps: true }));
 });
 
-gulp.task('sprite', function () {
+gulp.task('sprite-icon', function () {
   const spriteData = gulp.src('./src/icons/*').pipe(spritesmith({
-    imgName: 'sprite.png',
-    cssName: 'sprite.css',
+    imgName: 'sprite-icon.png',
+    cssName: 'sprite-icon.css',
     padding: 20
   }));
  
@@ -50,6 +50,26 @@ gulp.task('sprite', function () {
   return merge(imgStream, cssStream);
 });
 
+gulp.task('sprite-img', function () {
+  const spriteData2 = gulp.src('./src/images/*').pipe(spritesmith({
+    imgName: 'sprite-img.jpg',
+    cssName: 'sprite-img.css',
+    padding: 20,
+    algorithm: 'top-down'
+  }));
+ 
+  const imgStream2 = spriteData2.img
+    // .pipe(buffer())
+    // .pipe(imagemin())
+    .pipe(gulp.dest('./build/sprite'));
+ 
+  const cssStream2 = spriteData2.css
+    .pipe(cleanCSS({compatibility: 'ie11', format: 'beautify'}))
+    .pipe(gulp.dest('./build/sprite'));
+ 
+  return merge(imgStream2, cssStream2);
+});
+
 gulp.task('script', function () {
   return gulp.src('./src/scripts/**/*.js')
     .pipe(concat('main.js'))
@@ -61,7 +81,8 @@ gulp.task('script', function () {
  
 gulp.task('watch', function () {
   gulp.watch('./src/sass/**/*.scss', gulp.series('sass'));
-  gulp.watch('./src/icons/**/*.svg', gulp.series('sprite'));
+  gulp.watch('./src/icons/**/*.png', gulp.series('sprite-icon'));
+  gulp.watch('./src/images/**/*.jpg', gulp.series('sprite-img'));
   gulp.watch('./src/scripts/**/*.js', gulp.series('script'));
 });
 

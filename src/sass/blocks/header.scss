@@ -35,14 +35,14 @@
   }
 
   &__icon {
-    width: 25px;
+    width: 20px;
     height: 25px;
     overflow: hidden;
-    margin-right: 6%;
+    margin-right: 12px;
   }
 
   &__icon-menu {
-    background-image: url(/build/sprite/sprite.png);
+    background-image: url(/build/sprite/sprite-icon.png);
     background-size: cover;
     width: 300%;
     height: 300%;
@@ -70,7 +70,7 @@
   }
 
   &__icon-phone {
-    background-image: url(/build/sprite/sprite.png);
+    background-image: url(/build/sprite/sprite-icon.png);
     background-size: cover;
     width: 300%;
     height: 300%;
@@ -78,7 +78,7 @@
   }
 
   &__icon-mail {
-    background-image: url(/build/sprite/sprite.png);
+    background-image: url(/build/sprite/sprite-icon.png);
     background-size: cover;
     width: 300%;
     height: 300%;
@@ -86,7 +86,7 @@
   }
 
   &__icon-map {
-    background-image: url(/build/sprite/sprite.png);
+    background-image: url(/build/sprite/sprite-icon.png);
     background-size: cover;
     width: 300%;
     height: 300%;

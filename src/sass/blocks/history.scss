@@ -1,3 +1,46 @@
 .history {
-  display: block;
+  display: flex;
+  position: relative;
+  padding-top: rem(100px);
+  margin-bottom: rem(100px);
+
+  &__info {
+    width: 100%;
+    padding: rem(50px);
+    background-color: $lightyellow;
+  }
+
+  &__info-text {
+    width: 50%;
+    font-family: 'El Messiri', sans-serif;
+    color: $darkblue;
+  }
+
+  &__small-title {
+    text-transform: uppercase;
+  }
+
+  &__title {
+    font-size: rem(35px);
+    text-transform: uppercase;
+    margin-bottom: rem(30px);
+  }
+
+  &__pic-wrap {
+    display: flex;
+    width: rem(400px);
+    height: rem(400px);
+    overflow: hidden;
+    position: absolute;
+    top: 70px;
+    right: 22px;
+  }
+
+  &__pic {
+    background-image: url(/build/sprite/sprite-img.jpg);
+    background-size: cover;
+    width: 300%;
+    height: 300%;
+    background-position: rem(0px) rem(0px);
+  }
 }

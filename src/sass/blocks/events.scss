@@ -1,0 +1,51 @@
+.events {
+  display: flex;
+  margin: 140px 0;
+  position: relative;
+
+  &__pic-wrap {
+    position: absolute;
+    top: rem(-35px);
+    left: rem(20px);
+    width: rem(188px);
+    height: rem(300px);
+    overflow: hidden;
+  }
+
+  &__pic {
+    background-image: url(/build/sprite/sprite-img.jpg);
+    background-size: cover;
+    width: 120%;
+    height: 120%;
+    background-position: rem(0px) rem(-207px);
+  }
+
+  &__info {
+    background-color: $lightyellow;
+    padding: rem(30px);
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__info-text {
+    font-family: 'El Messiri', sans-serif;
+    color: $darkblue;
+    width: 70%;
+  }
+
+  &__title {
+    margin-bottom: rem(25px);
+  }
+
+  &__text {
+    margin-bottom: rem(20px);
+  }
+
+  &__link {
+    color: $darkblue;
+    font-style: italic;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}

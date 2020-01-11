@@ -1,6 +1,7 @@
 .welcome {
   display: flex;
   justify-content: center;
+  position: relative;
 
   &__video {
     margin: 0;
@@ -17,23 +18,24 @@
     position: absolute;
     text-align: center;
     color: white;
-    margin-top: 100px;
+    margin-top: rem(100px);
     font-family: 'El Messiri', sans-serif;
   }
 
   &__logo {
-    width: 50px;
-    height: 50px;
+    width: rem(50px);
+    height: rem(50px);
     overflow: hidden;
     align-self: center;
+    cursor: pointer;
   }
 
   &__logo-icon {
-    background-image: url(/build/sprite/sprite.png);
+    background-image: url(/build/sprite/sprite-icon.png);
     background-size: cover;
     width: 300%;
     height: 300%;
-    background-position: 0px -100px;
+    background-position: rem(0px) rem(-100px);
   }
 
   &__title {
@@ -41,7 +43,6 @@
   }
 
   &__small-title {
-    font-size: rem(20px);
     margin-bottom: rem(120px);
   }
 
@@ -56,19 +57,36 @@
 
   &__btn {
     position: absolute;
-    bottom: -100px;
-    width: 30px;
-    height: 30px;
+    bottom: rem(10px);
+    width: rem(30px);
+    height: rem(30px);
     overflow: hidden;
     align-self: center;
+    display: flex;
+    z-index: 2;
     cursor: pointer;
+    animation: 2s ease-in-out infinite pulse;
   }
 
   &__btn-arrow {
-    background-image: url(/build/sprite/sprite.png);
+    background-image: url(/build/sprite/sprite-icon.png);
     background-size: cover;
     width: 300%;
     height: 300%;
-    background-position: -30px 0px;
+    background-position: rem(-30px) rem(0px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: translateY(rem(0px));
+  }
+  
+  25% {
+    transform: translateY(rem(10px));
+  }
+  
+  50% {
+    transform: translateY(rem(0px));
   }
 }
