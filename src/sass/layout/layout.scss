@@ -3,6 +3,7 @@ $gray: #ccc;
 $black: #0f0f0f;
 $white: #fff;
 $lightyellow: #f1f1ee;
+$transp: #ffffff00;
 
 // resolutions
 $desktop: 1200px;
@@ -50,6 +51,10 @@ a:hover {
   outline: 0;
 }
 
+input {
+  outline: none;
+}
+
 .section {
   // height: 100vh;
   height: 100%;
@@ -60,7 +65,7 @@ a:hover {
 .container {
   margin: 0 auto;
   width: 95%;
-  max-width: rem(940px);
+  max-width: rem(1100px);
   height: 100%;
   position: relative;
   display: flex;

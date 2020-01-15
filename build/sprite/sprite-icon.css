@@ -1,66 +1,96 @@
 .icon-arrow {
   background-image: url(sprite-icon.png);
-  background-position: -532px 0;
-  width: 512px;
-  height: 512px
-}
-.icon-facebook {
-  background-image: url(sprite-icon.png);
-  background-position: -1064px -532px;
-  width: 512px;
-  height: 512px
-}
-.icon-instagram {
-  background-image: url(sprite-icon.png);
   background-position: 0 -532px;
   width: 512px;
   height: 512px
 }
-.icon-mail {
+.icon-award-2 {
   background-image: url(sprite-icon.png);
-  background-position: -532px -532px;
+  background-position: 0 -4256px;
   width: 512px;
   height: 512px
 }
-.icon-menu {
-  background-image: url(sprite-icon.png);
-  background-position: -1064px 0;
-  width: 512px;
-  height: 512px
-}
-.icon-pin {
-  background-image: url(sprite-icon.png);
-  background-position: 0 0;
-  width: 512px;
-  height: 512px
-}
-.icon-royal-palace {
+.icon-award-3 {
   background-image: url(sprite-icon.png);
   background-position: 0 -1064px;
   width: 512px;
   height: 512px
 }
+.icon-award-4 {
+  background-image: url(sprite-icon.png);
+  background-position: 0 -1596px;
+  width: 512px;
+  height: 512px
+}
+.icon-award {
+  background-image: url(sprite-icon.png);
+  background-position: 0 -2128px;
+  width: 512px;
+  height: 512px
+}
+.icon-facebook {
+  background-image: url(sprite-icon.png);
+  background-position: 0 -2660px;
+  width: 512px;
+  height: 512px
+}
+.icon-instagram {
+  background-image: url(sprite-icon.png);
+  background-position: 0 -3192px;
+  width: 512px;
+  height: 512px
+}
+.icon-mail {
+  background-image: url(sprite-icon.png);
+  background-position: 0 -3724px;
+  width: 512px;
+  height: 512px
+}
+.icon-menu {
+  background-image: url(sprite-icon.png);
+  background-position: 0 0;
+  width: 512px;
+  height: 512px
+}
+.icon-pin {
+  background-image: url(sprite-icon.png);
+  background-position: 0 -4788px;
+  width: 512px;
+  height: 512px
+}
+.icon-royal-palace-2 {
+  background-image: url(sprite-icon.png);
+  background-position: 0 -5320px;
+  width: 512px;
+  height: 512px
+}
+.icon-royal-palace {
+  background-image: url(sprite-icon.png);
+  background-position: 0 -5852px;
+  width: 512px;
+  height: 512px
+}
 .icon-supermarket {
   background-image: url(sprite-icon.png);
-  background-position: -532px -1064px;
+  background-position: 0 -6384px;
   width: 512px;
   height: 512px
 }
 .icon-telephone {
   background-image: url(sprite-icon.png);
-  background-position: -1064px -1064px;
+  background-position: 0 -6916px;
   width: 512px;
   height: 512px
 }
 .icon-user {
   background-image: url(sprite-icon.png);
-  background-position: -1596px 0;
+  background-position: 0 -7448px;
   width: 512px;
   height: 512px
 }
 .icon-whatsapp {
   background-image: url(sprite-icon.png);
-  background-position: -1596px -532px;
+  background-position: 0 -7980px;
   width: 512px;
   height: 512px
 }

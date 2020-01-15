@@ -13,7 +13,9 @@ const buffer = require('vinyl-buffer');
 const imagemin = require('gulp-imagemin');
 const merge = require('merge-stream');
 
-const uglify = require('gulp-uglify');
+// const uglify = require('gulp-uglify');
+// const pipeline = require('readable-stream').pipeline;
+const minify = require("gulp-babel-minify");
 
 sass.compiler = require('node-sass');
 
@@ -35,7 +37,8 @@ gulp.task('sprite-icon', function () {
   const spriteData = gulp.src('./src/icons/*').pipe(spritesmith({
     imgName: 'sprite-icon.png',
     cssName: 'sprite-icon.css',
-    padding: 20
+    padding: 20,
+    algorithm: 'top-down'
   }));
  
   const imgStream = spriteData.img
@@ -59,8 +62,8 @@ gulp.task('sprite-img', function () {
   }));
  
   const imgStream2 = spriteData2.img
-    // .pipe(buffer())
-    // .pipe(imagemin())
+    .pipe(buffer())
+    .pipe(imagemin())
     .pipe(gulp.dest('./build/sprite'));
  
   const cssStream2 = spriteData2.css
@@ -71,12 +74,14 @@ gulp.task('sprite-img', function () {
 });
 
 gulp.task('script', function () {
-  return gulp.src('./src/scripts/**/*.js')
+  gulp.src('./src/scripts/**/*.js')
     .pipe(concat('main.js'))
-    .pipe(uglify({
-      toplevel: true
+    .pipe(minify({
+      mangle: {
+        keepClassName: true
+      }
     }))
-    .pipe(gulp.dest('./build/scripts'))
+    .pipe(gulp.dest('./build/scripts')) 
 });
  
 gulp.task('watch', function () {

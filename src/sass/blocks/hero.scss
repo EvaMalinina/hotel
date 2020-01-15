@@ -1,0 +1,128 @@
+.hero {
+  transition: 0.7s;
+  background: $white;
+  overflow: hidden;
+
+  &__header, &__welcome {
+    transition: 0.8s ease-in-out;
+  }
+
+  &__welcome {
+    transform: perspective(rem(0px)) translateZ(rem(0px)) translateX(0%) rotateY(0deg);
+  }
+
+  &__menu, &__book {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: rem(80px) rem(40px) 0;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+    display: none;
+  }
+
+  .menu {
+
+    border-bottom: 3px solid $darkblue;
+
+    &__list {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    &__item {
+      margin-bottom: rem(25px);
+    }
+  
+    &__link {
+      color: $darkblue;
+      text-transform: uppercase;
+      font-family: 'El Messiri', sans-serif;
+      font-size: rem(25px);
+      display: flex;
+      cursor: pointer;
+    }
+  }
+
+  .form {
+
+    &__row {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: rem(10px);
+      font-size: rem(14px);
+
+      label {
+        margin-bottom: rem(5px);
+      }
+
+      input {
+        background-color: $transp;
+        color: $white;
+        font-family: 'Gelasio', serif;
+        font-size: rem(25px);
+        border: none;
+        letter-spacing: 1.5px;
+      }
+
+      input.form__btn {
+        font-size: rem(14px);
+        padding: rem(5px);
+        border: 1px solid $white;
+        text-transform: uppercase;
+
+        &:hover {
+          background-color: $white;
+          color: $darkblue;
+        }
+      }
+    }
+  }
+}
+
+.hero_fullmenu {
+
+  .hero {
+
+    &__welcome {
+      cursor: pointer;
+      filter: opacity(0.8);
+      transform: perspective(rem(500px)) translateZ(rem(0px)) translateX(12%) rotateY(-17deg);
+      transition: 0.8s ease-in-out;
+    }
+
+    &__menu {
+      display: flex;
+      opacity: 1; 
+      transition: opacity 1.5s ease;
+    }
+  }
+}
+
+.hero_fullbook {
+  background-color: $darkblue;
+  color: $gray;
+  height: 100%;
+  overflow: hidden;
+
+  .hero {
+
+    &__welcome {
+      cursor: pointer;
+      filter: opacity(0.8);
+      transform: perspective(500px) translateZ(0px) translateX(12%) rotateY(-17deg);
+      transition: 0.8s ease-in-out;
+    }
+
+    &__book {
+      display: flex;
+      opacity: 1; 
+      transition: opacity 1.5s ease;
+    }
+  }
+}
+
+    
