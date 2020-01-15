@@ -1,12 +1,24 @@
+.icon-dj {
+  background-image: url(sprite-img.jpg);
+  background-position: 0 0;
+  width: 640px;
+  height: 426px
+}
 .icon-events-cocktail-party {
   background-image: url(sprite-img.jpg);
-  background-position: 0 -3660px;
-  width: 4008px;
-  height: 6000px
+  background-position: 0 -1302px;
+  width: 800px;
+  height: 1198px
 }
 .icon-history-hotel {
   background-image: url(sprite-img.jpg);
-  background-position: 0 0;
-  width: 3482px;
-  height: 3640px
+  background-position: 0 -446px;
+  width: 800px;
+  height: 836px
+}
+.icon-rooms {
+  background-image: url(sprite-img.jpg);
+  background-position: 0 -2520px;
+  width: 1920px;
+  height: 1279px
 }

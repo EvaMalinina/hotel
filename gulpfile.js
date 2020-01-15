@@ -13,8 +13,6 @@ const buffer = require('vinyl-buffer');
 const imagemin = require('gulp-imagemin');
 const merge = require('merge-stream');
 
-// const uglify = require('gulp-uglify');
-// const pipeline = require('readable-stream').pipeline;
 const minify = require("gulp-babel-minify");
 
 sass.compiler = require('node-sass');
@@ -62,8 +60,8 @@ gulp.task('sprite-img', function () {
   }));
  
   const imgStream2 = spriteData2.img
-    .pipe(buffer())
-    .pipe(imagemin())
+    // .pipe(buffer())
+    // .pipe(imagemin())
     .pipe(gulp.dest('./build/sprite'));
  
   const cssStream2 = spriteData2.css

@@ -38,6 +38,7 @@
     width: 100%;
     height: 100%;
     background-position: rem(0px) rem(-570px);
+    display: flex;
   }
 
   &__title {
@@ -92,4 +93,15 @@
   50% {
     transform: translateY(rem(0px));
   }
+}
+
+.welcome_rooms {
+  height: 100%;
+  width: 100%;
+  background-image: url('../../../build/sprite/sprite-img.jpg');
+  background-size: cover;
+  background-position: 100px 100px;
+  position: absolute;
+  top: 0;
+  display: flex;
 }

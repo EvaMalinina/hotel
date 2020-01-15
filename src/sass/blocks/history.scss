@@ -1,5 +1,6 @@
 .history {
   display: flex;
+  flex-direction: column;
   position: relative;
   padding-top: rem(100px);
   margin: 0 auto rem(100px);
@@ -9,6 +10,7 @@
     width: 100%;
     padding: rem(50px);
     background-color: $lightyellow;
+    margin-bottom: rem(150px);
   }
 
   &__info-text {
@@ -33,11 +35,66 @@
     height: rem(400px);
     overflow: hidden;
     position: absolute;
-    top: rem(70px);
+    top: rem(20px);
     right: rem(22px);
   }
 
   &__pic {
+    background-image: url(/build/sprite/sprite-img.jpg);
+    background-size: cover;
+    width: 300%;
+    height: 300%;
+    background-position: rem(0px) rem(0px);
+  }
+
+  &__pagination {
+    border-bottom: 1px solid $gray;
+    padding-bottom: rem(20px);
+    margin-bottom: rem(40px);
+    cursor: pointer;
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+
+      &__item {
+        margin-right: 5%;
+      }
+
+      &__item::last-child {
+        margin-right: 0;
+      }
+
+      &__link {
+        text-transform: uppercase;
+        letter-spacing: rem(1.5px);
+        color: $gray;
+      }
+    }
+  }
+
+  &__celebrity {
+    background-color: $lightyellow;
+    padding: rem(60px);
+    position: relative;
+    margin-bottom: rem(50px);
+
+    .history__info-text {
+      margin: 0 0 0 auto;
+    }
+  }
+
+  &__photo-wrap {
+    position: absolute;
+    top: rem(20px);
+    left: rem(20px);
+    display: flex;
+    width: rem(400px);
+    height: rem(400px);
+    overflow: hidden;
+  }
+
+  &__photo {
     background-image: url(/build/sprite/sprite-img.jpg);
     background-size: cover;
     width: 300%;
