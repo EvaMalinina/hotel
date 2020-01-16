@@ -12,7 +12,7 @@ document.getElementById('menu-open').addEventListener('click', function() {
     hero.classList.add('hero_fullmenu');
     window.addEventListener('scroll', noScroll);
     
-  } else if ( hero.className == 'hero hero_fullmenu') {
+  } else if ( hero.className == 'hero hero_fullmenu' ) {
 
     hero.classList.remove('hero_fullmenu');
     window.removeEventListener('scroll', noScroll); 
@@ -26,14 +26,10 @@ document.getElementById('booking-open').addEventListener('click', function() {
     hero.classList.add('hero_fullbook');
     window.addEventListener('scroll', noScroll);
     
-  } else if ( hero.className == 'hero hero_fullbook') {
+  } else if ( hero.className == 'hero hero_fullbook' ) {
 
     hero.classList.remove('hero_fullbook');
     window.removeEventListener('scroll', noScroll); 
   } 
 });
-
-
-
-
 

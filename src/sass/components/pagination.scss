@@ -1,0 +1,19 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+
+  &__item {
+    margin-right: 5%;
+  }
+
+  &__item:last-child {
+    margin-right: 0;
+  }
+
+  &__link {
+    text-transform: uppercase;
+    letter-spacing: rem(1.5px);
+    color: $gray;
+    white-space: nowrap;
+  }
+}

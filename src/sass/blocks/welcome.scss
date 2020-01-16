@@ -105,3 +105,10 @@
   top: 0;
   display: flex;
 }
+
+.welcome_overview {
+  background-color: $darkblue;
+  min-height: rem(500px);
+  width: 100%;
+  border: 1px solid $white;
+}  

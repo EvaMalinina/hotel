@@ -72,7 +72,7 @@ gulp.task('sprite-img', function () {
 });
 
 gulp.task('script', function () {
-  gulp.src('./src/scripts/**/*.js')
+  return gulp.src('./src/scripts/**/*.js')
     .pipe(concat('main.js'))
     .pipe(minify({
       mangle: {

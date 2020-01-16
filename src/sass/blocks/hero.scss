@@ -2,6 +2,9 @@
   transition: 0.7s;
   background: $white;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  margin-bottom: rem(80px);
 
   &__header, &__welcome {
     transition: 0.8s ease-in-out;
@@ -105,7 +108,6 @@
 .hero_fullbook {
   background-color: $darkblue;
   color: $gray;
-  height: 100%;
   overflow: hidden;
 
   .hero {
@@ -124,5 +126,3 @@
     }
   }
 }
-
-    
