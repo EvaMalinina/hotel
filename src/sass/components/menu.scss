@@ -1,0 +1,22 @@
+.menu {
+
+  border-bottom: 3px solid $darkblue;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    margin-bottom: rem(25px);
+  }
+
+  &__link {
+    color: $darkblue;
+    text-transform: uppercase;
+    font-family: 'El Messiri', sans-serif;
+    font-size: rem(25px);
+    display: flex;
+    cursor: pointer;
+  }
+}

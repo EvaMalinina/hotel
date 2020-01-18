@@ -1,0 +1,80 @@
+[
+  {
+    "pic": "url(../../build/sprite/sprite-standart-room.jpg)",
+    "name": "Junior room",
+    "features": {
+      "msq": "35-40",
+      "msq-desc": "size m2",
+      "guest-number": "2",
+      "guest-number-desc": "max guests",
+      "bedroom": "1",
+      "bedroom-desc": "bedroom"
+    },
+    "link": "url(#)"
+  },
+  {
+    "pic": "url(../../build/sprite/sprite-standart-room.jpg)",
+    "name": "Comfort room",
+    "features": {
+      "msq": "45-55",
+      "msq-desc": "size m2",
+      "guest-number": "2",
+      "guest-number-desc": "max guests",
+      "bedroom": "1",
+      "bedroom-desc": "bedroom"
+    },
+    "link": "url(#)"
+  },
+  {
+    "pic": "url(../../build/sprite/sprite-standart-room.jpg)",
+    "name": "Specious room",
+    "features": {
+      "msq": "55-75",
+      "msq-desc": "size m2",
+      "guest-number": "3",
+      "guest-number-desc": "max guests",
+      "bedroom": "2",
+      "bedroom-desc": "bedroom"
+    },
+    "link": "url(#)"
+  },
+  {
+    "pic": "url(../../build/sprite/sprite-standart-room.jpg)",
+    "name": "Junior suite",
+    "features": {
+      "msq": "45-55",
+      "msq-desc": "size m2",
+      "guest-number": "2",
+      "guest-number-desc": "max guests",
+      "bedroom": "1",
+      "bedroom-desc": "bedroom"
+    },
+    "link": "url(#)"
+  },
+  {
+    "pic": "url(../../build/sprite/sprite-standart-room.jpg)",
+    "name": "Premier suite",
+    "features": {
+      "msq": "65-85",
+      "msq-desc": "size m2",
+      "guest-number": "4",
+      "guest-number-desc": "max guests",
+      "bedroom": "1",
+      "bedroom-desc": "bedroom"
+    },
+    "link": "url(#)"
+  },
+  {
+    "pic": "url(../../build/sprite/sprite-standart-room.jpg)",
+    "name": "President suite",
+    "features": {
+      "msq": "100-125",
+      "msq-desc": "size m2",
+      "guest-number": "5",
+      "guest-number-desc": "max guests",
+      "bedroom": "2",
+      "bedroom-desc": "bedroom"
+    },
+    "link": "url(#)"
+  }
+]

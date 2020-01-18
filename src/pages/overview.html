@@ -119,19 +119,19 @@
 
   <section class="overview" id="overview">
     <div class="container container_column">
-      <div class="overview__pagination">
-        <ul class="pagination">
-          <li class="pagination__item">
-            <a href="./overview.html" class="pagination__link">rooms&suited overview</a>
+      <div class="overview__navigation">
+        <ul class="navigation">
+          <li class="navigation__item">
+            <a href="./overview.html" class="navigation__link">rooms&suited overview</a>
           </li>
-          <li class="pagination__item">
-            <a href="#" class="pagination__link">packages</a>
+          <li class="navigation__item">
+            <a href="#" class="navigation__link">packages</a>
           </li>
-          <li class="pagination__item">
-            <a href="#" class="pagination__link">gtc</a>
+          <li class="navigation__item">
+            <a href="#" class="navigation__link">gtc</a>
           </li>
-          <li class="pagination__item">
-            <a href="#" class="pagination__link">information</a>
+          <li class="navigation__item">
+            <a href="#" class="navigation__link">information</a>
           </li>
         </ul>
       </div>
@@ -139,133 +139,17 @@
       <div class="overview__rooms">
         <div class="overview__filter">
           <h5 class="overview__filter-title">Filter rooms & suites</h5>
-          <select name="overview-select">
+          <select name="overview-select" id="type" class="overview-select">
             <option value="all" selected>all suites&rooms</option> 
-            <option value="rooms">rooms</option>
-            <option value="suites">suites</option>
+            <option value="room">rooms</option>
+            <option value="suite">suites</option>
           </select>
         </div>
         <div class="overview__variants">
           <h3 class="overview__variants-title">Rooms&suites</h3>
           
-          <ul class="overview__examples">
-            <li class="overview__example">
-              <div class="example">
-                <div class="example__pic-wrap">
-                  <div class="example__pic"></div>
-                </div>
-                <h4 class="example__title">standart room</h4>
-                <div class="example__features">
-                  <ul class="features">
-                    <li class="features__item">
-                      <p class="features__number">45-55</p>
-                      <p class="features__text">size m2</p>
-                    </li>
-                    <li class="features__item">
-                      <p class="features__number">485-590</p>
-                      <p class="features__text">size sqf</p>
-                    </li>
-                    <li class="features__item">
-                      <p class="features__number">3</p>
-                      <p class="features__text">max guests</p>
-                    </li>
-                    <li class="features__item">
-                      <p class="features__number">1</p>
-                      <p class="features__text">bedroom</p>
-                    </li>
-                  </ul>
-                </div>
-                <a href="#" class="example__link">Book now</a>
-              </div>
-            </li>
-            <li class="overview__example">
-              <div class="example">
-                <div class="example__pic-wrap">
-                  <div class="example__pic"></div>
-                </div>
-                <h4 class="example__title">Comfort room</h4>
-                <div class="example__features">
-                  <ul class="features">
-                    <li class="features__item">
-                      <p class="features__number">45-55</p>
-                      <p class="features__text">size m2</p>
-                    </li>
-                    <li class="features__item">
-                      <p class="features__number">485-590</p>
-                      <p class="features__text">size sqf</p>
-                    </li>
-                    <li class="features__item">
-                      <p class="features__number">3</p>
-                      <p class="features__text">max guests</p>
-                    </li>
-                    <li class="features__item">
-                      <p class="features__number">1</p>
-                      <p class="features__text">bedroom</p>
-                    </li>
-                  </ul>
-                </div>
-                <a href="#" class="example__link">Book now</a>
-              </div>
-            </li>
-            <li class="overview__example">
-              <div class="example">
-                <div class="example__pic-wrap">
-                  <div class="example__pic"></div>
-                </div>
-                <h4 class="example__title">Junior Suite</h4>
-                <div class="example__features">
-                  <ul class="features">
-                    <li class="features__item">
-                      <p class="features__number">45-55</p>
-                      <p class="features__text">size m2</p>
-                    </li>
-                    <li class="features__item">
-                      <p class="features__number">485-590</p>
-                      <p class="features__text">size sqf</p>
-                    </li>
-                    <li class="features__item">
-                      <p class="features__number">3</p>
-                      <p class="features__text">max guests</p>
-                    </li>
-                    <li class="features__item">
-                      <p class="features__number">1</p>
-                      <p class="features__text">bedroom</p>
-                    </li>
-                  </ul>
-                </div>
-                <a href="#" class="example__link">Book now</a>
-              </div>
-            </li>
-            <li class="overview__example">
-              <div class="example">
-                <div class="example__pic-wrap">
-                  <div class="example__pic"></div>
-                </div>
-                <h4 class="example__title">Grand Suite</h4>
-                <div class="example__features">
-                  <ul class="features">
-                    <li class="features__item">
-                      <p class="features__number">45-55</p>
-                      <p class="features__text">size m2</p>
-                    </li>
-                    <li class="features__item">
-                      <p class="features__number">485-590</p>
-                      <p class="features__text">size sqf</p>
-                    </li>
-                    <li class="features__item">
-                      <p class="features__number">3</p>
-                      <p class="features__text">max guests</p>
-                    </li>
-                    <li class="features__item">
-                      <p class="features__number">1</p>
-                      <p class="features__text">bedroom</p>
-                    </li>
-                  </ul>
-                </div>
-                <a href="#" class="example__link">Book now</a>
-              </div>
-            </li>
-          </ul>
+          <ul class="overview__examples"></ul>
+          <ul class="pagination"></ul>
         </div>
       </div>
     </div>

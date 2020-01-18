@@ -52,11 +52,31 @@ gulp.task('sprite-icon', function () {
 });
 
 gulp.task('sprite-img', function () {
-  const spriteData2 = gulp.src('./src/images/*').pipe(spritesmith({
+  const spriteData2 = gulp.src('./src/images/general/*').pipe(spritesmith({
     imgName: 'sprite-img.jpg',
     cssName: 'sprite-img.css',
     padding: 20,
     algorithm: 'top-down'
+  }));
+ 
+  const imgStream2 = spriteData2.img
+    // .pipe(buffer())
+    // .pipe(imagemin())
+    .pipe(gulp.dest('./build/sprite'));
+ 
+  const cssStream2 = spriteData2.css
+    .pipe(cleanCSS({compatibility: 'ie11', format: 'beautify'}))
+    .pipe(gulp.dest('./build/sprite'));
+ 
+  return merge(imgStream2, cssStream2);
+});
+
+gulp.task('sprite-standart-room', function () {
+  const spriteData2 = gulp.src('./src/images/standart-room/*').pipe(spritesmith({
+    imgName: 'sprite-standart-room.jpg',
+    cssName: 'sprite-standart-room.css',
+    padding: 20,
+    algorithm: 'left-right'
   }));
  
   const imgStream2 = spriteData2.img
@@ -85,7 +105,8 @@ gulp.task('script', function () {
 gulp.task('watch', function () {
   gulp.watch('./src/sass/**/*.scss', gulp.series('sass'));
   gulp.watch('./src/icons/**/*.png', gulp.series('sprite-icon'));
-  gulp.watch('./src/images/**/*.jpg', gulp.series('sprite-img'));
+  gulp.watch('./src/images/general/**/*.jpg', gulp.series('sprite-img'));
+  gulp.watch('./src/images/standart-room/**/*.jpg', gulp.series('sprite-standart-room'));
   gulp.watch('./src/scripts/**/*.js', gulp.series('script'));
 });
 
