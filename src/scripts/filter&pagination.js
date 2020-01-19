@@ -10,7 +10,7 @@ const data = [
       "bedroom": "1",
       "bedroomDesc": "bedroom"
     },
-    "link": "url(#)",
+    "link": "book now",
     "type": "room"
   },
   {
@@ -24,7 +24,7 @@ const data = [
       "bedroom": "1",
       "bedroomDesc": "bedroom"
     },
-    "link": "url(#)",
+    "link": "book now",
     "type": "room"
   },
   {
@@ -38,7 +38,7 @@ const data = [
       "bedroom": "2",
       "bedroomDesc": "bedroom"
     },
-    "link": "url(#)",
+    "link": "book now",
     "type": "room"
   },
   {
@@ -52,7 +52,7 @@ const data = [
       "bedroom": "1",
       "bedroomDesc": "bedroom"
     },
-    "link": "url(#)",
+    "link": "book now",
     "type": "suite"
   },
   {
@@ -66,7 +66,7 @@ const data = [
       "bedroom": "1",
       "bedroomDesc": "bedroom"
     },
-    "link": "url(#)",
+    "link": "book now",
     "type": "suite"
   },
   {
@@ -80,17 +80,91 @@ const data = [
       "bedroom": "2",
       "bedroomDesc": "bedroom"
     },
-    "link": "url(#)",
+    "link": "book now",
     "type": "suite"
   }
 ]
 
 window.addEventListener('load', () => {
-  //create basic list
-});
 
-const select = document.querySelector('.overview-select');
-let flatList = document.querySelector('.overview__examples');
+  // const url = new URL(location);
+
+  // onload generate all list of items
+  let flatList = document.querySelector('.overview__examples');
+
+  for (let flat of data) {
+    let li = document.createElement('li');
+    li.className = 'overview__example';
+    flatList.appendChild(li);
+
+    createFlat(flat, li);
+  }
+
+  // filter on change event
+  let select = document.getElementById('type');
+  select.addEventListener('change', () => {
+    
+    customeFilter.type = select.value;
+    let filteredArr = filterRooms();
+    console.log(filteredArr, 'filteredArr');
+
+    //pagination - items per page
+    let pagination = document.querySelector('.pagination');
+    pagination.innerHTML = '';
+   
+    let notesOnPage = 2;
+    let countOfItems = Math.ceil(filteredArr.length / notesOnPage);
+    console.log(countOfItems, "countOfItems");
+
+    let showPage = (function() {
+    let active;
+    
+      return function(item) {
+        if( active ) {
+          active.classList.remove('active');
+        }
+        active = item;
+        
+        item.classList.add('active');
+
+        let pageNum = +item.innerHTML;
+
+        let start = (pageNum - 1) * notesOnPage;
+        let end = start + notesOnPage;
+
+        let flats = data.slice(start, end);
+        console.log(flats);
+
+       
+        flatList.innerHTML = '';
+        for (let flat of flats) {
+          let li = document.createElement('li');
+          li.className = 'overview__example';
+          flatList.appendChild(li);
+
+          createFlat(flat, li);
+        }
+      };
+    }()); 
+
+    // pagination links
+    let items = [];
+    for (let i = 1; i <= countOfItems; i++) {
+      let liPagination = document.createElement('li');
+      liPagination.innerHTML = i;
+      pagination.appendChild(liPagination);
+      items.push(liPagination);
+    }
+    
+    showPage(items[0]);
+
+    for (let item of items) {
+      item.addEventListener('click', function() {
+        showPage(this);
+      })
+    };
+  });
+});
 
 // Object filter
 let customeFilter = {
@@ -106,68 +180,8 @@ function filterRooms(){
   .every( ([ field, value ]) => item[ field ] === value ));
 }
 
-// filter by select option
-select.addEventListener('change', () => {
-  customeFilter.type = select.value;
-  let filteredArr = filterRooms();
-
-  // console.log(filteredArr, 'filteredArr');
-
-  //pagination items per page
-  let notesOnPage = 2;
-  let countOfItems = Math.ceil(filteredArr.length / notesOnPage);
-  console.log(countOfItems, "countOfItems");
-
-  let showPage = (function() {
-  let active;
-
-   return function(item) {
-     if( active ) {
-       active.classList.remove('active');
-     }
-     active = item;
-
-     item.classList.add('active');
-
-     let pageNum = +item.innerHTML;
-
-     let start = (pageNum - 1) * notesOnPage;
-     let end = start + notesOnPage;
-
-     let notes = data.slice(start, end);
-
-     flatList.innerHTML = '';
-     for (let note of notes) {
-       let li = document.createElement('li');
-       li.className = 'overview__example';
-       flatList.appendChild(li);
-
-       createFlat(note, li);
-     }
-   };
- }());
-
-  let pagination = document.querySelector('.pagination');
-
-  // pagination links
-  let items = [];
-  for (let i = 1; i <= countOfItems; i++) {
-    let liPagination = document.createElement('li');
-    liPagination.innerHTML = i;
-    pagination.appendChild(liPagination);
-    items.push(liPagination);
-  }
-
-  showPage(items[0]);
-
-  for (let item of items) {
-    item.addEventListener('click', function() {
-      showPage(this);
-    })
-  };
-});
-
-const createFlat = (note, li) => {
+// create list item
+const createFlat = (flat, li) => {
 
   let example = document.createElement('div');
       wrapperPic = document.createElement('div');
@@ -199,10 +213,10 @@ const createFlat = (note, li) => {
   wrapperPic.className = 'example__pic-wrap';
   pic.className = 'example__pic';
   wrapperPic.appendChild( pic );
-  pic.innerHTML = note.pic;
+  pic.innerHTML = flat.pic;
   
   title.className = 'example__title';
-  title.innerHTML= note.name;
+  title.innerHTML= flat.name;
   
   exampleFeatures.className = 'example__features';
   exampleFeatures.appendChild( features );
@@ -222,19 +236,20 @@ const createFlat = (note, li) => {
   featuresGuest.className = 'features__number'; 
   featuresNumBed.className = 'features__number';
 
-  featuresNumber.innerHTML= note.features.msq;
-  featuresGuest.innerHTML= note.features.guestNumber;
-  featuresNumBed.innerHTML = note.features.bedroom;
+  featuresNumber.innerHTML= flat.features.msq;
+  featuresGuest.innerHTML= flat.features.guestNumber;
+  featuresNumBed.innerHTML = flat.features.bedroom;
 
   featuresText.className = 'features__text'; 
   featuresGuestDesc.className = 'features__text'; 
-  featuresNumBed.className = 'features__text';
+  featuresBedDesc.className = 'features__text';
 
-  featuresText.innerHTML = note.features.msqDesc;
-  featuresGuestDesc.innerHTML = note.features.guestNumberDesc;
-  featuresNumBed.innerHTML = note.features.bedroomDesc;
+  featuresText.innerHTML = flat.features.msqDesc;
+  featuresGuestDesc.innerHTML = flat.features.guestNumberDesc;
+  featuresBedDesc.innerHTML = flat.features.bedroomDesc;
   
   exampleLink.className = 'example__link';
+  exampleLink.innerHTML = flat.link;
   
   example.append(wrapperPic, title, exampleFeatures, exampleLink);
 };
