@@ -74,6 +74,7 @@
     height: rem(300px);
     min-width: 100%;
     margin-bottom: rem(20px);
+    position: relative;
   }
 
   &__pic {
@@ -81,6 +82,36 @@
     background-size: cover;
     height: 100%;
     width: 100%;
+    background-position: 0 0;
+  }
+
+  &__left,
+  &__right {
+    display: flex;
+    width: rem(30px);
+    height: rem(30px);
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: $lightyellow;
+    color: $gray;
+    opacity: 0.8;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  &__left {
+    left: 5%;
+    transform: translateY(-5%);
+  }
+
+  &__right {
+    right: 5%;
+    transform: translateY(-5%);
   }
 
   &__title {

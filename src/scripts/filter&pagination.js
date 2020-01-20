@@ -86,13 +86,13 @@ const data = [
 ]
 
 window.addEventListener('load', () => {
-
   // const url = new URL(location);
 
-  // onload generate all list of items
+  // onload generate all list of items type "all"
   let flatList = document.querySelector('.overview__examples');
 
-  for (let flat of data) {
+  for (let flat of filterRooms()) {
+    
     let li = document.createElement('li');
     li.className = 'overview__example';
     flatList.appendChild(li);
@@ -106,16 +106,15 @@ window.addEventListener('load', () => {
     
     customeFilter.type = select.value;
     let filteredArr = filterRooms();
-    console.log(filteredArr, 'filteredArr');
 
-    //pagination - items per page
+    //pagination 
     let pagination = document.querySelector('.pagination');
     pagination.innerHTML = '';
    
     let notesOnPage = 2;
     let countOfItems = Math.ceil(filteredArr.length / notesOnPage);
-    console.log(countOfItems, "countOfItems");
 
+    // generate paginated page
     let showPage = (function() {
     let active;
     
@@ -131,10 +130,7 @@ window.addEventListener('load', () => {
 
         let start = (pageNum - 1) * notesOnPage;
         let end = start + notesOnPage;
-
-        let flats = data.slice(start, end);
-        console.log(flats);
-
+        let flats = filteredArr.slice(start, end);
        
         flatList.innerHTML = '';
         for (let flat of flats) {
@@ -150,14 +146,16 @@ window.addEventListener('load', () => {
     // pagination links
     let items = [];
     for (let i = 1; i <= countOfItems; i++) {
-      let liPagination = document.createElement('li');
-      liPagination.innerHTML = i;
-      pagination.appendChild(liPagination);
-      items.push(liPagination);
+      let paginationLink = document.createElement('li');
+      paginationLink.innerHTML = i;
+      pagination.appendChild(paginationLink);
+      items.push(paginationLink);
     }
     
+    // first generated page
     showPage(items[0]);
 
+    // change generated page on clink on pagination link
     for (let item of items) {
       item.addEventListener('click', function() {
         showPage(this);
@@ -174,18 +172,20 @@ let customeFilter = {
 };
 
 // filtration by rooms
-function filterRooms(){
-  return data.filter( item => Object.entries(customeFilter)
-  .filter( ([ field, value ]) => value !== 'all' )
-  .every( ([ field, value ]) => item[ field ] === value ));
+function filterRooms() {
+  const type = document.getElementById('type').value;
+  const result = type === 'all' ? data : data.filter( item => item.type === type );
+  return result;
 }
 
 // create list item
-const createFlat = (flat, li) => {
+let createFlat = (flat, li) => {
 
   let example = document.createElement('div');
       wrapperPic = document.createElement('div');
       pic = document.createElement('div');
+      btnLeft = document.createElement('a');
+      btnRight = document.createElement('a');
   
       title = document.createElement('h4');
   
@@ -212,8 +212,12 @@ const createFlat = (flat, li) => {
   
   wrapperPic.className = 'example__pic-wrap';
   pic.className = 'example__pic';
-  wrapperPic.appendChild( pic );
+  btnLeft.className = 'example__left';
+  btnRight.className = 'example__right';
+  wrapperPic.append( pic, btnLeft, btnRight );
   pic.innerHTML = flat.pic;
+  btnLeft.innerHTML = '<';
+  btnRight.innerHTML = '>';
   
   title.className = 'example__title';
   title.innerHTML= flat.name;
