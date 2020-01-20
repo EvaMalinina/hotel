@@ -8,152 +8,200 @@
   <title>Rooms&Suites Overview</title>
 </head>
 <body>
-  <div class="hero">
-    <header class="hero__header header">
-      <div class="container container_header">
-        <div class="header__nav">
-          <nav class="nav">
-            <ul class="nav__list">
-              <li class="nav__item">
-                <a href="#" class="nav__link" id="menu-open">
-                  <div class="nav__icon">
-                    <div class="nav__icon-menu"></div>
+  <div class="wrapper">
+    <div class="hero">
+      <header class="hero__header header">
+        <div class="container container_header">
+          <div class="header__nav">
+            <nav class="nav">
+              <ul class="nav__list">
+                <li class="nav__item">
+                  <a href="#" class="nav__link" id="menu-open">
+                    <div class="nav__icon">
+                      <div class="nav__icon-menu"></div>
+                    </div>
+                    <div>menu</div> 
+                  </a>
+                </li>
+                <li class="nav__item nav__item_bg-blue">
+                  <a href="#" class="nav__link" id="booking-open">book & shop</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        
+          <div class="header__contact">
+            <ul class="contact">
+              <li class="contact__item">
+                <a href="tel:+380664027050" class="contact__link">
+                  <div class="contact__icon">
+                    <div class="contact__icon-phone"></div>
                   </div>
-                  <div>menu</div> 
                 </a>
               </li>
-              <li class="nav__item nav__item_bg-blue">
-                <a href="#" class="nav__link" id="booking-open">book & shop</a>
+              <li class="contact__item">
+                <a href="#" class="contact__link">
+                  <div class="contact__icon">
+                    <div class="contact__icon-mail"></div>
+                  </div>
+                </a>
+              </li>
+              <li class="contact__item">
+                <a href="#" class="contact__link">
+                  <div class="contact__icon">
+                    <div class="contact__icon-map"></div>
+                  </div>
+                </a>
               </li>
             </ul>
-          </nav>
+          </div>
         </div>
+      </header>
+    
+      <div class="hero__menu">
+        <nav class="menu">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="./rooms&suites.html" class="menu__link">rooms&suits</a>
+            </li>
+            <li class="menu__item">
+              <a href="./restaurant.html" class="menu__link">restaurant&bar</a>
+            </li>
+            <li class="menu__item">
+              <a href="./celebrate.html" class="menu__link">meet&celebrate</a>
+            </li>
+            <li class="menu__item">
+              <a href="./contact.html" class="menu__link">contact</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    
+      <div class="hero__book">
+        <form class="form">
+          <div class="form__row">
+            <label for="start-trip">arrival</label>
+            <input type="date" id="start-trip" name="start-date" max="2021-01-30">
+          </div>
+    
+          <div class="form__row">
+            <label for="end-trip">departure</label>
+            <input type="date" id="end-trip" name="end-date" max="2021-01-31">
+          </div>
+    
+          <div class="form__row">
+            <label for="adults-quantity">adults</label>
+            <input type="number" id="adults-quantity" name="adults-number" min="1" max="4" value="2">
+            
+            <label for="kids-quantity">kids</label>
+            <input type="number" id="kids-quantity" name="kids-number" min="0" max="2" value="0">
+          </div>
+    
+          <div class="form__row">
+            <input class="form__btn" id="send" type="submit" value="check availability">
+          </div>
+        </form>
+      </div>
       
-        <div class="header__contact">
-          <ul class="contact">
-            <li class="contact__item">
-              <a href="tel:+380664027050" class="contact__link">
-                <div class="contact__icon">
-                  <div class="contact__icon-phone"></div>
+      <section class="hero__welcome welcome welcome_overview">
+        <div class="welcome__content">
+          <div class="welcome__logo">
+            <a href="../../index.html" class="welcome__logo-icon"></a>
+          </div>
+          <h3 class="welcome__title">Audrey's Palace</h3>
+          <p class="welcome__small-title small-title">St.Maria England</p>
+          <h2 class="welcome__text">Rooms&suites overview</h2>
+        </div>
+        <div class="welcome__btn">
+          <a href="#overview" class="welcome__btn-arrow"></a>
+        </div>
+      </section>
+    </div>
+    
+    <section class="overview" id="overview">
+      <div class="container container_column">
+        <div class="overview__navigation">
+          <ul class="navigation">
+            <li class="navigation__item">
+              <a href="./overview.html" class="navigation__link">rooms&suited overview</a>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">packages</a>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">gtc</a>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">information</a>
+            </li>
+          </ul>
+        </div>
+    
+        <div class="overview__rooms">
+          <div class="overview__filter">
+            <h5 class="overview__filter-title">Filter rooms & suites</h5>
+            <select id="type" class="overview-select" name="overview-select">
+              <option value="all" selected>all suites&rooms</option> 
+              <option value="room">rooms</option>
+              <option value="suite">suites</option>
+            </select>
+          </div>
+          <div class="overview__variants">
+            <h3 class="overview__variants-title">Rooms&suites</h3>
+            
+            <ul class="overview__examples"></ul>
+            <ul class="pagination"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__info">
+          <p>Audrey's Palace Hotel st. Nanda 389, 01300 St. Maria, England</p>
+          <p><a href="tel:+ 44 (0)845 88 99 10">Phone: + 44 (0)845 88 99 10</a></p>
+          <p><a href="mailto:reservations@audreyspalace.com">reservations@audreyspalace.com</a></p>
+        </div>
+        <div class="footer__awards">
+          <ul class="awards">
+            <li class="awards__item">
+              <a href="#" class="awards__link">
+                <div class="awards__icon-box">
+                  <div class="awards__icon awards__icon-one"></div>
                 </div>
+                <p>BS 2019</p>
               </a>
             </li>
-            <li class="contact__item">
-              <a href="#" class="contact__link">
-                <div class="contact__icon">
-                  <div class="contact__icon-mail"></div>
+            <li class="awards__item">
+              <a href="#" class="awards__link">
+                <div class="awards__icon-box">
+                  <div class="awards__icon awards__icon-two"></div>
                 </div>
+                <p>hospitality award 2018</p>
               </a>
             </li>
-            <li class="contact__item">
-              <a href="#" class="contact__link">
-                <div class="contact__icon">
-                  <div class="contact__icon-map"></div>
+            <li class="awards__item">
+              <a href="#" class="awards__link">
+                <div class="awards__icon-box">
+                  <div class="awards__icon awards__icon-three"></div>
                 </div>
+                <p>Top 20 hotels</p>
+              </a>
+            </li>
+            <li class="awards__item">
+              <a href="#" class="awards__link">
+                <div class="awards__icon-box">
+                  <div class="awards__icon awards__icon-four"></div>
+                </div>
+                <p>professional award 2018</p>
               </a>
             </li>
           </ul>
         </div>
       </div>
-    </header>
-
-    <div class="hero__menu">
-      <nav class="menu">
-        <ul class="menu__list">
-          <li class="menu__item">
-            <a href="./rooms&suites.html" class="menu__link">rooms&suits</a>
-          </li>
-          <li class="menu__item">
-            <a href="#" class="menu__link">restaurant&bar</a>
-          </li>
-          <li class="menu__item">
-            <a href="#" class="menu__link">meet&celebrate</a>
-          </li>
-          <li class="menu__item">
-            <a href="#" class="menu__link">contact</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-
-    <div class="hero__book">
-      <form class="form">
-        <div class="form__row">
-          <label for="start-trip">arrival</label>
-          <input type="date" id="start-trip" name="start-date" max="2021-01-30">
-        </div>
-
-        <div class="form__row">
-          <label for="end-trip">departure</label>
-          <input type="date" id="end-trip" name="end-date" max="2021-01-31">
-        </div>
-
-        <div class="form__row">
-          <label for="adults-quantity">adults</label>
-          <input type="number" id="adults-quantity" name="adults-number" min="1" max="4" value="2">
-          
-          <label for="kids-quantity">kids</label>
-          <input type="number" id="kids-quantity" name="kids-number" min="0" max="2" value="0">
-        </div>
-
-        <div class="form__row">
-          <input class="form__btn" id="send" type="submit" value="check availability">
-        </div>
-      </form>
-    </div>
-    
-    <section class="hero__welcome welcome welcome_overview">
-      <div class="welcome__content">
-        <div class="welcome__logo">
-          <a href="./index.html" class="welcome__logo-icon"></a>
-        </div>
-        <h3 class="welcome__title">Audrey's Palace</h3>
-        <p class="welcome__small-title small-title">St.Maria England</p>
-        <h2 class="welcome__text">Rooms&suites overview</h2>
-      </div>
-      <div class="welcome__btn">
-        <a href="#overview" class="welcome__btn-arrow"></a>
-      </div>
-    </section>
+    </footer>
   </div>
-
-  <section class="overview" id="overview">
-    <div class="container container_column">
-      <div class="overview__navigation">
-        <ul class="navigation">
-          <li class="navigation__item">
-            <a href="./overview.html" class="navigation__link">rooms&suited overview</a>
-          </li>
-          <li class="navigation__item">
-            <a href="#" class="navigation__link">packages</a>
-          </li>
-          <li class="navigation__item">
-            <a href="#" class="navigation__link">gtc</a>
-          </li>
-          <li class="navigation__item">
-            <a href="#" class="navigation__link">information</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="overview__rooms">
-        <div class="overview__filter">
-          <h5 class="overview__filter-title">Filter rooms & suites</h5>
-          <select id="type" class="overview-select" name="overview-select">
-            <option value="all" selected>all suites&rooms</option> 
-            <option value="room">rooms</option>
-            <option value="suite">suites</option>
-          </select>
-        </div>
-        <div class="overview__variants">
-          <h3 class="overview__variants-title">Rooms&suites</h3>
-          
-          <ul class="overview__examples"></ul>
-          <ul class="pagination"></ul>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <script src="../../build/scripts/main.js"></script>
 </body>

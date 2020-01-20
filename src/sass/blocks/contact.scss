@@ -1,0 +1,65 @@
+.contactus {
+  padding-top: 55px;
+  padding-bottom: 50px;
+
+  &__title {
+    align-self: center;
+    margin-bottom: rem(30px);
+  }
+
+  &__form-warp {
+    display: flex;
+    flex-direction: row;
+    min-height: rem(500px);
+    background-color: $lightyellow;
+    text-transform: uppercase;
+  }
+
+  &__form, 
+  &__map {
+    width: 50%;
+    display: flex;
+    align-items: center;
+  }
+
+  label, input, button {
+    min-width: 450px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__title,
+    &__input,
+    &__btn,
+    textarea {
+      font-size: rem(25px);
+      cursor: pointer;
+    }
+
+    label input {
+      border: 1px solid $darkblue;
+      background-color: $transp;
+    }
+
+    label textarea {
+      background-color: $transp;
+      width: 100%;
+      margin-bottom: rem(20px);
+      border: 1px solid $darkblue;
+    }
+  
+    &__btn {
+      padding: rem(20px);
+      border: 1px solid $darkblue;
+    }
+  }
+}
+
+
+
+
+
+

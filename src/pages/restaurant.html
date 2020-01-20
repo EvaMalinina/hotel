@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../../build/css/main.css">
+  <title>Restaurant&bar</title>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="hero">
+      <header class="hero__header header">
+        <div class="container container_header">
+          <div class="header__nav">
+            <nav class="nav">
+              <ul class="nav__list">
+                <li class="nav__item">
+                  <a href="#" class="nav__link" id="menu-open">
+                    <div class="nav__icon">
+                      <div class="nav__icon-menu"></div>
+                    </div>
+                    <div>menu</div> 
+                  </a>
+                </li>
+                <li class="nav__item nav__item_bg-blue">
+                  <a href="#" class="nav__link" id="booking-open">book & shop</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        
+          <div class="header__contact">
+            <ul class="contact">
+              <li class="contact__item">
+                <a href="#" class="contact__link">
+                  <div class="contact__icon">
+                    <div class="contact__icon-phone"></div>
+                  </div>
+                </a>
+              </li>
+              <li class="contact__item">
+                <a href="#" class="contact__link">
+                  <div class="contact__icon">
+                    <div class="contact__icon-mail"></div>
+                  </div>
+                </a>
+              </li>
+              <li class="contact__item">
+                <a href="#" class="contact__link">
+                  <div class="contact__icon">
+                    <div class="contact__icon-map"></div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <div class="hero__menu">
+        <nav class="menu">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="./rooms&suites.html" class="menu__link">rooms&suits</a>
+            </li>
+            <li class="menu__item">
+              <a href="./restaurant.html" class="menu__link">restaurant&bar</a>
+            </li>
+            <li class="menu__item">
+              <a href="./celebrate.html" class="menu__link">meet&celebrate</a>
+            </li>
+            <li class="menu__item">
+              <a href="./contact.html" class="menu__link">contact</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="hero__book">
+        <form class="form">
+          <div class="form__row">
+            <label for="start-trip">arrival</label>
+            <input type="date" id="start-trip" name="start-date" max="2021-01-30">
+          </div>
+
+          <div class="form__row">
+            <label for="end-trip">departure</label>
+            <input type="date" id="end-trip" name="end-date" max="2021-01-31">
+          </div>
+
+          <div class="form__row">
+            <label for="adults-quantity">adults</label>
+            <input type="number" id="adults-quantity" name="adults-number" min="1" max="4" value="2">
+            
+            <label for="kids-quantity">kids</label>
+            <input type="number" id="kids-quantity" name="kids-number" min="0" max="2" value="0">
+          </div>
+
+          <div class="form__row">
+            <input class="form__btn" id="send" type="submit" value="check availability">
+          </div>
+        </form>
+      </div>
+      
+      <section class="hero__welcome welcome">
+        <video autoplay loop muted class="welcome__video">
+          <source src="/src/video/restaurant.mp4" type="video/mp4">
+        </video>
+        <div class="welcome__content">
+          <div class="welcome__logo">
+            <a href="../../index.html" class="welcome__logo-icon"></a>
+          </div>
+          <h3 class="welcome__title">Audrey's Palace</h3>
+          <p class="welcome__small-title small-title">St.Maria England</p>
+          <h2 class="welcome__text">resraurant & bar</h2>
+          <p class="welcome__small-text">relax and enjoy</p>
+        </div>
+        <div class="welcome__btn">
+          <a href="#history" class="welcome__btn-arrow"></a>
+        </div>
+      </section>
+    </div>
+
+    <section class="history" id="history">
+
+      <div class="container container_column">
+         <div class="history__info">
+           <div class="history__info-text">
+             <h4 class="history__small-title small-title">#Audreysrestaurant</h4>
+             <h2 class="history__title">CULINARY »FULL HOUSE«</h2>
+             <p>»It is not all about caviar«: Our culinary offers are as diverse as the interior and the dresscode. Everything but not boring. »Full house« with eight Palace-Restaurants, three bars and the King’s Social House.</p>
+          </div>
+          <div class="history__pic-wrap">
+            <div class="history__pic"></div>
+          </div>
+         </div>
+        
+         <div class="history__celebrity">
+          <div class="history__info-text">
+            <h4 class="history__small-title small-title">#Audreyceremonies</h4>
+            <h2 class="history__title">Tea up. Audrey's Afternoon Tea</h2>
+            <p>An old British tradition lives on in Badrutt’s Palace Hotel: our afternoon tea is as legendary as the delicious pastries that come with it…</p> 
+          </div>
+          <div class="history__photo-wrap">
+            <div class="history__photo"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__info">
+          <p>Audrey's Palace Hotel st. Nanda 389, 01300 St. Maria, England</p>
+          <p><a href="tel:+ 44 (0)845 88 99 10">Phone: + 44 (0)845 88 99 10</a></p>
+          <p><a href="mailto:reservations@audreyspalace.com">reservations@audreyspalace.com</a></p>
+        </div>
+        <div class="footer__awards">
+          <ul class="awards">
+            <li class="awards__item">
+              <a href="#" class="awards__link">
+                <div class="awards__icon-box">
+                  <div class="awards__icon awards__icon-one"></div>
+                </div>
+                <p>BS 2019</p>
+              </a>
+            </li>
+            <li class="awards__item">
+              <a href="#" class="awards__link">
+                <div class="awards__icon-box">
+                  <div class="awards__icon awards__icon-two"></div>
+                </div>
+                <p>hospitality award 2018</p>
+              </a>
+            </li>
+            <li class="awards__item">
+              <a href="#" class="awards__link">
+                <div class="awards__icon-box">
+                  <div class="awards__icon awards__icon-three"></div>
+                </div>
+                <p>Top 20 hotels</p>
+              </a>
+            </li>
+            <li class="awards__item">
+              <a href="#" class="awards__link">
+                <div class="awards__icon-box">
+                  <div class="awards__icon awards__icon-four"></div>
+                </div>
+                <p>professional award 2018</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../../build/scripts/main.js"></script>
+</body>
+</html>

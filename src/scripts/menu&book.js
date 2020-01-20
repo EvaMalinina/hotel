@@ -1,35 +1,47 @@
-const hero = document.querySelector('.hero');
+window.addEventListener('load', () => {
+  const hero = document.querySelector('.hero');
 
-//to disable scroll
-const noScroll = () => {
-  window.scrollTo(0, 0);
-}
-
-document.getElementById('menu-open').addEventListener('click', function() {
- 
-  if( hero.className == 'hero' ) {
-
-    hero.classList.add('hero_fullmenu');
-    window.addEventListener('scroll', noScroll);
-    
-  } else if ( hero.className == 'hero hero_fullmenu' ) {
-
-    hero.classList.remove('hero_fullmenu');
-    window.removeEventListener('scroll', noScroll); 
+  //to disable scroll
+  let noScroll = () => {
+    window.scrollTo(0, 0);
   }
-});
 
-document.getElementById('booking-open').addEventListener('click', function() {
- 
-  if( hero.className == 'hero' ) {
-
-    hero.classList.add('hero_fullbook');
-    window.addEventListener('scroll', noScroll);
+  let openMenu = () => {
+    document.getElementById('menu-open').addEventListener('click', function() {
     
-  } else if ( hero.className == 'hero hero_fullbook' ) {
+      if( hero.className == 'hero' ) {
 
-    hero.classList.remove('hero_fullbook');
-    window.removeEventListener('scroll', noScroll); 
-  } 
-});
+        hero.classList.add('hero_fullmenu');
+        window.addEventListener('scroll', noScroll);
+        
+      } else if ( hero.className == 'hero hero_fullmenu' ) {
+
+        hero.classList.remove('hero_fullmenu');
+        window.removeEventListener('scroll', noScroll); 
+      }
+    });
+  }
+
+
+  let openBooking = () => {
+    document.getElementById('booking-open').addEventListener('click', function() {
+    
+      if( hero.className == 'hero' ) {
+
+        hero.classList.add('hero_fullbook');
+        window.addEventListener('scroll', noScroll);
+        
+      } else if ( hero.className == 'hero hero_fullbook' ) {
+
+        hero.classList.remove('hero_fullbook');
+        window.removeEventListener('scroll', noScroll); 
+      } 
+    });
+  }
+
+  openMenu();
+  openBooking();
+})
+
+
 
