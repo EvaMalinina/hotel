@@ -1,36 +1,50 @@
-window.addEventListener('load', () => {
+// slider
+const slide = () => {
+  const rightBtn = document.querySelector('.example__right');  
+  const leftBtn = document.querySelector('.example__left');  
+  const pic = document.querySelector('.example__pic');
 
-  //zoom item
-  // const zoomIn = () => {
-  //   const wrap = document.querySelector('.example__pic-wrap');
-  //   const pic = document.querySelector('.example__pic');
+  // slide right
+  rightBtn.addEventListener('click', () => {
 
-  //   pic.addEventListener('click', () => {
-  //     wrap.style.transform = "scale(1.5, 1.5)";
-  //   });
-  // }
+    let currentPosX = pic.style.backgroundPositionX; 
+    currentPosX = /-?\d+/.exec( currentPosX );
+  
+    let stepRight = 90;
+    pic.style.backgroundPositionX = `${ currentPosX - stepRight }` + "%";
+    pic.style.transition = 1 +"s";
+  }); 
 
-  // const items = document.querySelectorAll('.example__pic-wrap');
-  // console.log(items.length);
-  // for (item of items) {
-  //   zoomIn();
-  // }
+  // slide left
+  leftBtn.addEventListener('click', () => {
+    
+    let currentPosX = pic.style.backgroundPositionX; 
+    currentPosX = /-?\d+/.exec( currentPosX );
+  
+    let stepLeft = -90;
+    pic.style.backgroundPositionX = `${ currentPosX - stepLeft }` + "%";
+    pic.style.transition = 0.8 +"s";
+  }) 
+};
 
-  // slider
-  const slide = () => {
-    const leftBtn = document.querySelector('.example__left');
-    const rightBtn = document.querySelector('.example__right');
-    const pic = document.querySelector('.example__pic');
-   
-    let x = pic.style.backgroundPositionX; 
-    rightBtn.addEventListener('click', () => {
-      pic.style.backgroundPosition = (`0`, `${x}+50%`)
-    })
+//zoom item
+const zoomIn = () => {
+  const wrap = document.querySelector('.example__pic-wrap');
+  const pic = document.querySelector('.example__pic');
 
-    leftBtn.addEventListener('click', () => {
-      pic.style.backgroundPosition = (`0`, `${x}-50%`)
-    })
-  }
- 
- slide();
-}); 
+  pic.addEventListener('click', () => {
+    
+    wrap.style.transition = 1.5 + "s";
+    wrap.style.position = "absolute";
+    wrap.style.top = "20%";
+    wrap.style.transform = "translate(-20%, -10%)";
+    wrap.style.right = "10%";
+    wrap.style.display = "flex";
+    wrap.style.zIndex = "100";
+    wrap.style.minWidth = "600px";
+    wrap.style.minHeight = "400px";
+    wrap.style.overflow = "hidden";
+    wrap.style.boxShadow = "0px 50px 300px black";
+  });
+};
+

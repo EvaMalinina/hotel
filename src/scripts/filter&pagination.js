@@ -98,6 +98,8 @@ window.addEventListener('load', () => {
     flatList.appendChild(li);
 
     createFlat(flat, li);
+    slide();
+    zoomIn();
   }
 
   // filter on change event
@@ -139,6 +141,8 @@ window.addEventListener('load', () => {
           flatList.appendChild(li);
 
           createFlat(flat, li);
+          slide();
+          zoomIn();
         }
       };
     }()); 
@@ -179,7 +183,7 @@ function filterRooms() {
 }
 
 // create list item
-let createFlat = (flat, li) => {
+let createFlat = (flat, li) => { 
 
   let example = document.createElement('div');
       wrapperPic = document.createElement('div');
