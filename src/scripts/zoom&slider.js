@@ -1,5 +1,5 @@
 // slide function
-const slide = () => {
+let slide = () => {
 
   //return new array from object
   Array.from( document.querySelectorAll('div.example__pic'), ( pic, index ) => {
@@ -34,7 +34,7 @@ const slide = () => {
 };
 
 //zoom item
-const zoomIn = () => {
+let zoomIn = () => {
 
   //return new array from object
   Array.from( document.querySelectorAll('div.example__pic-wrap'), ( item ) => {
@@ -48,14 +48,3 @@ const zoomIn = () => {
   });
 };
 
- // wrap.style.transition = 1.5 + "s";
-    // wrap.style.position = "absolute";
-    // wrap.style.top = "20%";
-    // wrap.style.transform = "translate(-20%, -10%)";
-    // wrap.style.right = "10%";
-    // wrap.style.display = "flex";
-    // wrap.style.zIndex = "100";
-    // wrap.style.minWidth = "600px";
-    // wrap.style.minHeight = "400px";
-    // wrap.style.overflow = "hidden";
-    // wrap.style.boxShadow = "0px 50px 300px black";
