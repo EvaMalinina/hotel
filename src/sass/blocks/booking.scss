@@ -1,0 +1,34 @@
+.booking {
+
+  &__form {
+    background-color: $lightyellow;
+    width: 100%;
+    margin-bottom: rem(20px);
+  }
+
+  .form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: rem(10px) rem(60px);
+  }
+
+  .form__row {
+    margin-right: rem(50px);
+
+    &:last-child {
+      margin-right: rem(0px);
+    }
+  }
+
+  .form__row input {
+    color: $darkblue;
+    font-size: rem(18px);
+    cursor: pointer;
+  }
+
+  a.form__btn {
+    background-color: $darkblue;
+    border: none;
+  }
+}

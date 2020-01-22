@@ -79,11 +79,18 @@ input, select, button {
     margin-left: 0;
     min-width: 92%;
   }
+
+  &_small {
+    width: 65%;
+  }
+
+  &_center {
+    justify-content: center;
+  }
 }
 
 .wrapper {
   position: relative;
-  overflow: hidden;
   width: 100%;
 }
 

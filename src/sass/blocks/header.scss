@@ -4,6 +4,38 @@
   width: 100%;
   display: flex;
   z-index: 2;
+
+  &_bg-blue {
+    background-color: $darkblue;
+  }
+
+  &_unset {
+    position: unset;
+  }
+
+  &__contact {
+    display: flex;
+    align-items: center;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: rem(80px);
+    padding-bottom: rem(20px);
+    color: $white;
+    width: 100%;
+  }
+
+  &__small-title {
+    margin-bottom: rem(40px);
+  }
+
+  &__nav-book {
+    align-self: flex-end;
+  }
 }
 
 .nav {
@@ -50,11 +82,6 @@
   }
 }
 
-.header__contact {
-  display: flex;
-  align-items: center;
-}
-
 .contact {
   display: flex;
 
@@ -94,4 +121,19 @@
   }
 }
 
+.nav-book {
+  display: flex;
 
+  &__item {
+    margin-right: rem(15px);
+
+    &:last-child {
+      margin-right: rem(0px);
+    }
+  }
+
+  &__link {
+    text-transform: capitalize;
+    color: $gray;
+  }
+}

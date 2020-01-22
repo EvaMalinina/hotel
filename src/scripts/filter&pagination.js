@@ -11,7 +11,9 @@ const data = [
       "bedroomDesc": "bedroom"
     },
     "link": "book now",
-    "type": "room"
+    "type": "room",
+    "reserv": "no",
+    "price": "40$"
   },
   {
     "pic": " ",
@@ -25,7 +27,9 @@ const data = [
       "bedroomDesc": "bedroom"
     },
     "link": "book now",
-    "type": "room"
+    "type": "room",
+    "reserv": "no",
+    "price": "50$"
   },
   {
     "pic": " ",
@@ -39,7 +43,9 @@ const data = [
       "bedroomDesc": "bedroom"
     },
     "link": "book now",
-    "type": "room"
+    "type": "room",
+    "reserv": "no",
+    "price": "40$"
   },
   {
     "pic": " ",
@@ -53,7 +59,9 @@ const data = [
       "bedroomDesc": "bedroom"
     },
     "link": "book now",
-    "type": "suite"
+    "type": "suite",
+    "reserv": "no",
+    "price": "60$"
   },
   {
     "pic": " ",
@@ -67,7 +75,9 @@ const data = [
       "bedroomDesc": "bedroom"
     },
     "link": "book now",
-    "type": "suite"
+    "type": "suite",
+    "reserv": "no",
+    "price": "70$"
   },
   {
     "pic": " ",
@@ -81,9 +91,16 @@ const data = [
       "bedroomDesc": "bedroom"
     },
     "link": "book now",
-    "type": "suite"
+    "type": "suite",
+    "reserv": "no",
+    "price": "100$"
   }
 ]
+
+const serialData = JSON.stringify(data);
+localStorage.setItem("locData", serialData);
+
+const deserialData = JSON.parse(localStorage.getItem("locData"))
 
 window.addEventListener('load', () => {
   // const url = new URL(location);

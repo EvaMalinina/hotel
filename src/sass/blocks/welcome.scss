@@ -25,15 +25,11 @@
   }
 
   &__logo {
-    width: rem(50px);
-    height: rem(50px);
-    overflow: hidden;
-    align-self: center;
-    cursor: pointer;
+    margin-bottom: rem(5px);
   }
 
   &__logo-icon {
-    background-image: url(/build/sprite/sprite-icon.png);
+    background-image: url('/build/sprite/sprite-icon.png');
     background-size: cover;
     width: 100%;
     height: 100%;
@@ -42,7 +38,7 @@
   }
 
   &__title {
-    font-size: rem(30px);
+    margin-bottom: rem(5px);
   }
 
   &__small-title {
@@ -112,3 +108,11 @@
   width: 100%;
   border: 1px solid $white;
 }  
+
+.logo {
+  width: rem(50px);
+  height: rem(50px);
+  overflow: hidden;
+  align-self: center;
+  cursor: pointer;
+}

@@ -1,0 +1,32 @@
+.booking-nav {
+  background-color: $lightyellow;
+  margin-bottom: rem(25px);
+
+  &__list {
+    display: flex;
+    align-items: center;
+  }
+
+  &__item {
+    border-right: 1px solid $darkblue;
+    padding: rem(10px) rem(20px);
+    text-transform: capitalize;
+
+    &:last-child {
+      border-right: 0;
+    }
+
+    &:hover {
+      background-color: $darkblue;
+      transition: 0.7s ease;
+
+      .booking-nav__link {
+        color: $white;
+      }
+    }
+  }
+
+  &__link {
+    color: $darkblue;
+  }
+}

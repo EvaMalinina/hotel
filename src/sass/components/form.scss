@@ -23,15 +23,19 @@
       letter-spacing: 1.5px;
     }
 
-    input.form__btn {
+    a.form__btn {
       font-size: rem(14px);
       padding: rem(5px);
       border: 1px solid $white;
       text-transform: uppercase;
+      background-color: $transp;
+      color: $white;
+      text-align: center;
 
       &:hover {
         background-color: $white;
         color: $darkblue;
+        transition: 0.7s ease;
       }
     }
   }
