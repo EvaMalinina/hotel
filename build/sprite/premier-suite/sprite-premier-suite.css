@@ -1,0 +1,18 @@
+.icon-premier-suite1 {
+  background-image: url(sprite-premier-suite.jpg);
+  background-position: 0 0;
+  width: 640px;
+  height: 426px
+}
+.icon-premier-suite2 {
+  background-image: url(sprite-premier-suite.jpg);
+  background-position: -640px 0;
+  width: 640px;
+  height: 426px
+}
+.icon-premier-suite3 {
+  background-image: url(sprite-premier-suite.jpg);
+  background-position: -1280px 0;
+  width: 640px;
+  height: 425px
+}

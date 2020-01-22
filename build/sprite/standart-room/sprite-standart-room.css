@@ -6,13 +6,13 @@
 }
 .icon-standart-room2 {
   background-image: url(sprite-standart-room.jpg);
-  background-position: -660px 0;
+  background-position: -640px 0;
   width: 640px;
   height: 416px
 }
 .icon-standart-room3 {
   background-image: url(sprite-standart-room.jpg);
-  background-position: -1320px 0;
+  background-position: -1280px 0;
   width: 640px;
   height: 420px
 }

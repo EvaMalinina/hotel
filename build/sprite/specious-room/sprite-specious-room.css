@@ -1,0 +1,18 @@
+.icon-specious-room1 {
+  background-image: url(sprite-specious-room.jpg);
+  background-position: 0 0;
+  width: 640px;
+  height: 426px
+}
+.icon-specious-room2 {
+  background-image: url(sprite-specious-room.jpg);
+  background-position: -640px 0;
+  width: 640px;
+  height: 426px
+}
+.icon-specious-room3 {
+  background-image: url(sprite-specious-room.jpg);
+  background-position: -1280px 0;
+  width: 640px;
+  height: 426px
+}

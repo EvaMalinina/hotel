@@ -1,0 +1,113 @@
+.example {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: rem(40px);
+
+  &__pic-wrap {
+    width: rem(400px);
+    height: rem(300px);
+    min-width: 100%;
+    margin-bottom: rem(20px);
+    position: relative;
+    transition: 1.2s ease;
+  }
+
+  .wrap-active {
+    transition: 1.5s ease;
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    transform: translate(-20%, -10%);
+    display: flex;
+    z-index: 100;
+    min-width: 600px;
+    min-height: 400px;
+    overflow: hidden;
+    box-shadow: 0px 50px 300px black;
+  }
+
+  &__pic {
+    background-image: url('../../../build/sprite/junior-room/sprite-junior-room.jpg');
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__left,
+  &__right {
+    display: flex;
+    width: rem(30px);
+    height: rem(30px);
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: $lightyellow;
+    color: $gray;
+    opacity: 0.8;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  &__left {
+    left: 5%;
+    transform: translateY(-5%);
+  }
+
+  &__right {
+    right: 5%;
+    transform: translateY(-5%);
+  }
+
+  &__title {
+    color: $darkblue;
+    font-size: rem(20px);
+    margin-bottom: rem(20px);
+    text-transform: capitalize;
+    font-family: 'El Messiri',sans-serif;
+  }
+
+  &__features {
+    margin-bottom: rem(20px);
+    display: flex;
+    justify-content: center;
+  }
+
+  &__link {
+    color: $darkblue;
+    text-decoration: underline;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: rem(14px);
+    letter-spacing: rem(1.5px);
+  }
+}
+
+.features {
+  display: flex;
+  align-items: center;
+
+  &__item {
+    border-right: 1px solid $gray;
+    display: flex;
+    flex-direction: column;
+    color: $gray;
+    padding: rem(10px);
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  &__number {
+    font-size: rem(25px);
+    margin-bottom: rem(10px);
+  }
+
+  &__text {
+    font-size: rem(20px);
+  }
+}

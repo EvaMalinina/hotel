@@ -1,0 +1,18 @@
+.icon-junior-room1 {
+  background-image: url(sprite-junior-room.jpg);
+  background-position: 0 0;
+  width: 640px;
+  height: 426px
+}
+.icon-junior-room2 {
+  background-image: url(sprite-junior-room.jpg);
+  background-position: -640px 0;
+  width: 640px;
+  height: 426px
+}
+.icon-junior-room3 {
+  background-image: url(sprite-junior-room.jpg);
+  background-position: -1280px 0;
+  width: 640px;
+  height: 426px
+}

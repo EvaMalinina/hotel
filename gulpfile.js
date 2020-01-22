@@ -66,7 +66,26 @@ gulp.task('sprite-img', function () {
  
   const cssStream2 = spriteData2.css
     .pipe(cleanCSS({compatibility: 'ie11', format: 'beautify'}))
-    .pipe(gulp.dest('./build/sprite'));
+    .pipe(gulp.dest('./build/sprite/img'));
+ 
+  return merge(imgStream2, cssStream2);
+});
+
+gulp.task('sprite-junior-room', function () {
+  const spriteData2 = gulp.src('./src/images/junior-room/*').pipe(spritesmith({
+    imgName: 'sprite-junior-room.jpg',
+    cssName: 'sprite-junior-room.css',
+    algorithm: 'left-right'
+  }));
+ 
+  const imgStream2 = spriteData2.img
+    // .pipe(buffer())
+    // .pipe(imagemin())
+    .pipe(gulp.dest('./build/sprite/junior-room'));
+ 
+  const cssStream2 = spriteData2.css
+    .pipe(cleanCSS({compatibility: 'ie11', format: 'beautify'}))
+    .pipe(gulp.dest('./build/sprite/junior-room'));
  
   return merge(imgStream2, cssStream2);
 });
@@ -75,18 +94,93 @@ gulp.task('sprite-standart-room', function () {
   const spriteData2 = gulp.src('./src/images/standart-room/*').pipe(spritesmith({
     imgName: 'sprite-standart-room.jpg',
     cssName: 'sprite-standart-room.css',
-    padding: 20,
     algorithm: 'left-right'
   }));
  
   const imgStream2 = spriteData2.img
     // .pipe(buffer())
     // .pipe(imagemin())
-    .pipe(gulp.dest('./build/sprite'));
+    .pipe(gulp.dest('./build/sprite/standart-room'));
  
   const cssStream2 = spriteData2.css
     .pipe(cleanCSS({compatibility: 'ie11', format: 'beautify'}))
-    .pipe(gulp.dest('./build/sprite'));
+    .pipe(gulp.dest('./build/sprite/standart-room'));
+ 
+  return merge(imgStream2, cssStream2);
+});
+
+gulp.task('sprite-specious-room', function () {
+  const spriteData2 = gulp.src('./src/images/specious-room/*').pipe(spritesmith({
+    imgName: 'sprite-specious-room.jpg',
+    cssName: 'sprite-specious-room.css',
+    algorithm: 'left-right'
+  }));
+ 
+  const imgStream2 = spriteData2.img
+    // .pipe(buffer())
+    // .pipe(imagemin())
+    .pipe(gulp.dest('./build/sprite/specious-room'));
+ 
+  const cssStream2 = spriteData2.css
+    .pipe(cleanCSS({compatibility: 'ie11', format: 'beautify'}))
+    .pipe(gulp.dest('./build/sprite/specious-room'));
+ 
+  return merge(imgStream2, cssStream2);
+});
+
+gulp.task('sprite-junior-suite', function () {
+  const spriteData2 = gulp.src('./src/images/junior-suite/*').pipe(spritesmith({
+    imgName: 'sprite-junior-suite.jpg',
+    cssName: 'sprite-junior-suite.css',
+    algorithm: 'left-right'
+  }));
+ 
+  const imgStream2 = spriteData2.img
+    // .pipe(buffer())
+    // .pipe(imagemin())
+    .pipe(gulp.dest('./build/sprite/junior-suite'));
+ 
+  const cssStream2 = spriteData2.css
+    .pipe(cleanCSS({compatibility: 'ie11', format: 'beautify'}))
+    .pipe(gulp.dest('./build/sprite/junior-suite'));
+ 
+  return merge(imgStream2, cssStream2);
+});
+
+gulp.task('sprite-premier-suite', function () {
+  const spriteData2 = gulp.src('./src/images/premier-suite/*').pipe(spritesmith({
+    imgName: 'sprite-premier-suite.jpg',
+    cssName: 'sprite-premier-suite.css',
+    algorithm: 'left-right'
+  }));
+ 
+  const imgStream2 = spriteData2.img
+    // .pipe(buffer())
+    // .pipe(imagemin())
+    .pipe(gulp.dest('./build/sprite/premier-suite'));
+ 
+  const cssStream2 = spriteData2.css
+    .pipe(cleanCSS({compatibility: 'ie11', format: 'beautify'}))
+    .pipe(gulp.dest('./build/sprite/premier-suite'));
+ 
+  return merge(imgStream2, cssStream2);
+});
+
+gulp.task('sprite-president-suite', function () {
+  const spriteData2 = gulp.src('./src/images/president-suite/*').pipe(spritesmith({
+    imgName: 'sprite-president-suite.jpg',
+    cssName: 'sprite-president-suite.css',
+    algorithm: 'left-right'
+  }));
+ 
+  const imgStream2 = spriteData2.img
+    // .pipe(buffer())
+    // .pipe(imagemin())
+    .pipe(gulp.dest('./build/sprite/president-suite'));
+ 
+  const cssStream2 = spriteData2.css
+    .pipe(cleanCSS({compatibility: 'ie11', format: 'beautify'}))
+    .pipe(gulp.dest('./build/sprite/president-suite'));
  
   return merge(imgStream2, cssStream2);
 });
@@ -106,7 +200,12 @@ gulp.task('watch', function () {
   gulp.watch('./src/sass/**/*.scss', gulp.series('sass'));
   gulp.watch('./src/icons/**/*.png', gulp.series('sprite-icon'));
   gulp.watch('./src/images/general/**/*.jpg', gulp.series('sprite-img'));
+  gulp.watch('./src/images/junior-room/**/*.jpg', gulp.series('sprite-junior-room'));
   gulp.watch('./src/images/standart-room/**/*.jpg', gulp.series('sprite-standart-room'));
+  gulp.watch('./src/images/specious-room/**/*.jpg', gulp.series('sprite-specious-room'));
+  gulp.watch('./src/images/junior-suite/**/*.jpg', gulp.series('sprite-junior-suite'));
+  gulp.watch('./src/images/premier-suite/**/*.jpg', gulp.series('sprite-premier-suite'));
+  gulp.watch('./src/images/president-suite/**/*.jpg', gulp.series('sprite-president-suite'));
   gulp.watch('./src/scripts/**/*.js', gulp.series('script'));
 });
 

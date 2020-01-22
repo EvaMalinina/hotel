@@ -6,7 +6,7 @@
 }
 .icon-award-2 {
   background-image: url(sprite-icon.png);
-  background-position: 0 -4256px;
+  background-position: 0 -5320px;
   width: 512px;
   height: 512px
 }
@@ -28,69 +28,93 @@
   width: 512px;
   height: 512px
 }
-.icon-facebook {
+.icon-checkin {
   background-image: url(sprite-icon.png);
   background-position: 0 -2660px;
   width: 512px;
   height: 512px
 }
-.icon-instagram {
+.icon-checkout {
   background-image: url(sprite-icon.png);
   background-position: 0 -3192px;
   width: 512px;
   height: 512px
 }
-.icon-mail {
+.icon-comfort {
   background-image: url(sprite-icon.png);
   background-position: 0 -3724px;
   width: 512px;
   height: 512px
 }
-.icon-menu {
+.icon-equipment {
   background-image: url(sprite-icon.png);
-  background-position: 0 0;
+  background-position: 0 -4256px;
   width: 512px;
   height: 512px
 }
-.icon-pin {
+.icon-facebook {
   background-image: url(sprite-icon.png);
   background-position: 0 -4788px;
   width: 512px;
   height: 512px
 }
-.icon-royal-palace-2 {
+.icon-instagram {
   background-image: url(sprite-icon.png);
-  background-position: 0 -5320px;
+  background-position: 0 0;
   width: 512px;
   height: 512px
 }
-.icon-royal-palace {
+.icon-mail {
   background-image: url(sprite-icon.png);
   background-position: 0 -5852px;
   width: 512px;
   height: 512px
 }
-.icon-supermarket {
+.icon-menu {
   background-image: url(sprite-icon.png);
   background-position: 0 -6384px;
   width: 512px;
   height: 512px
 }
-.icon-telephone {
+.icon-pin {
   background-image: url(sprite-icon.png);
   background-position: 0 -6916px;
   width: 512px;
   height: 512px
 }
-.icon-user {
+.icon-royal-palace-2 {
   background-image: url(sprite-icon.png);
   background-position: 0 -7448px;
   width: 512px;
   height: 512px
 }
-.icon-whatsapp {
+.icon-royal-palace {
   background-image: url(sprite-icon.png);
   background-position: 0 -7980px;
+  width: 512px;
+  height: 512px
+}
+.icon-supermarket {
+  background-image: url(sprite-icon.png);
+  background-position: 0 -8512px;
+  width: 512px;
+  height: 512px
+}
+.icon-telephone {
+  background-image: url(sprite-icon.png);
+  background-position: 0 -9044px;
+  width: 512px;
+  height: 512px
+}
+.icon-user {
+  background-image: url(sprite-icon.png);
+  background-position: 0 -9576px;
+  width: 512px;
+  height: 512px
+}
+.icon-whatsapp {
+  background-image: url(sprite-icon.png);
+  background-position: 0 -10108px;
   width: 512px;
   height: 512px
 }

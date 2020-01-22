@@ -1,0 +1,18 @@
+.icon-junior-suite1 {
+  background-image: url(sprite-junior-suite.jpg);
+  background-position: 0 0;
+  width: 640px;
+  height: 426px
+}
+.icon-junior-suite2 {
+  background-image: url(sprite-junior-suite.jpg);
+  background-position: -640px 0;
+  width: 640px;
+  height: 426px
+}
+.icon-junior-suite3 {
+  background-image: url(sprite-junior-suite.jpg);
+  background-position: -1280px 0;
+  width: 640px;
+  height: 426px
+}

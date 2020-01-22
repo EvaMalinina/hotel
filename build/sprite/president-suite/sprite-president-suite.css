@@ -1,0 +1,18 @@
+.icon-president-suite1 {
+  background-image: url(sprite-president-suite.jpg);
+  background-position: 0 0;
+  width: 640px;
+  height: 426px
+}
+.icon-president-suite2 {
+  background-image: url(sprite-president-suite.jpg);
+  background-position: -640px 0;
+  width: 640px;
+  height: 427px
+}
+.icon-president-suite3 {
+  background-image: url(sprite-president-suite.jpg);
+  background-position: -1280px 0;
+  width: 640px;
+  height: 426px
+}
