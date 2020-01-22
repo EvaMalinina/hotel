@@ -6,7 +6,7 @@ window.addEventListener('load', () => {
   zoomIn();
   selectFilter();
   paginate();
-  
+
 });
 
 // Object filter

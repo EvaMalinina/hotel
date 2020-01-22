@@ -1,3 +1,10 @@
+.navigation-wrap {
+  border-bottom: 1px solid $gray;
+  padding-bottom: rem(20px);
+  margin-bottom: rem(40px);
+  cursor: pointer;
+}
+
 .navigation {
   display: flex;
   justify-content: center;

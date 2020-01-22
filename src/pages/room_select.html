@@ -47,36 +47,39 @@
         </ul>
       </div>
     </nav>
-    <section class="booking">
-      <div class="container container_column">
-        <div class="booking__form">
-          <form class="form">
-            <div class="form__row">
-              <label for="start-trip">arrival</label>
-              <input type="date" id="start-trip" name="start-date" max="2021-01-30">
-            </div>
-          
-            <div class="form__row">
-              <label for="end-trip">departure</label>
-              <input type="date" id="end-trip" name="end-date" max="2021-01-31">
-            </div>
-          
-            <div class="form__row">
-              <label for="adults-quantity">adults</label>
-              <input type="number" id="adults-quantity" name="adults-number" min="1" max="4" value="2">
-              
-              <label for="kids-quantity">kids</label>
-              <input type="number" id="kids-quantity" name="kids-number" min="0" max="2" value="0">
-            </div>
-          
-            <div class="form__row">
-              <a class="form__btn" href="./src/pages/select.html" id="send">check availability</a>
-            </div>
-          </form>
+
+    <main>
+      <section class="booking">
+        <div class="container container_column">
+          <div class="booking__form">
+            <form class="form">
+              <div class="form__row">
+                <label for="start-trip">arrival</label>
+                <input type="date" id="start-trip" name="start-date" max="2021-01-30">
+              </div>
+            
+              <div class="form__row">
+                <label for="end-trip">departure</label>
+                <input type="date" id="end-trip" name="end-date" max="2021-01-31">
+              </div>
+            
+              <div class="form__row">
+                <label for="adults-quantity">adults</label>
+                <input type="number" id="adults-quantity" name="adults-number" min="1" max="4" value="2">
+                
+                <label for="kids-quantity">kids</label>
+                <input type="number" id="kids-quantity" name="kids-number" min="0" max="2" value="0">
+              </div>
+            
+              <div class="form__row">
+                <a class="form__btn" href="./src/pages/select.html" id="send">check availability</a>
+              </div>
+            </form>
+          </div>
+          <ul class="overview__examples"></ul>
         </div>
-        <ul class="overview__examples"></ul>
-      </div>
-    </section>
+      </section>
+    </main>
   </div>
 
   <script src="../../build/scripts/main.js"></script>
