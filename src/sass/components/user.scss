@@ -1,0 +1,34 @@
+.user {
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-bottom: rem(5px);
+    }
+
+    input {
+      margin-bottom: rem(10px);
+    }
+  }
+
+  &__btn {
+    background-color: $white;
+    color: $darkblue;
+    border-radius: rem(0px);
+
+    &:hover {
+      background-color: $darkblue;
+      color: $white;
+    }
+  }
+}
+
+#registration.user__form {
+  display: none;
+}
+
+#login.user__form {
+  display: none;
+}

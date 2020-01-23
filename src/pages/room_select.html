@@ -21,12 +21,31 @@
           <div class="header__nav-book">
             <ul class="nav-book">
               <li class="nav-book__item">
-                <a href="#" class="nav-book__link">Home</a>
+                <a href="./room_select.html" class="nav-book__link">Home</a>
               </li>
               <li class="nav-book__item">
-                <a href="#" class="nav-book__link">My account</a>
+                <a href="#" class="nav-book__link" id="login-link">My account</a>
+              </li>
+              <li class="nav-book__item">
+                <a href="#" class="nav-book__link" id="register-link">Registration</a>
               </li>
             </ul>
+          </div>
+          <div class="user">
+            <form class="user__form" id="registration">
+              <label for="login">Create login</label>
+              <input type="text" name="login" placeholder="Login">
+              <label for="password">Create password</label>
+              <input type="password" name="password" placeholder="Password">
+              <button class="user__btn">Register</button>
+            </form>
+            <form class="user__form" id="login">
+              <label for="login">Login</label>
+              <input type="text" name="login" placeholder="Login">
+              <label for="password">Password</label>
+              <input type="password" name="password" placeholder="Password">
+              <button class="user__btn">Log in</button>
+            </form>
           </div>
        </div>
       </div>
@@ -77,6 +96,7 @@
             </form>
           </div>
           <ul class="overview__examples"></ul>
+         
         </div>
       </section>
     </main>
