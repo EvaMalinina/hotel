@@ -124,8 +124,8 @@
 
     <div class="navigation-wrap">
       <ul class="navigation">
-            <li class="navigation__item">
-              <a href="./overview.html" class="navigation__link">rooms&suited overview</a>
+            <li class="navigation__item rooms-suites">
+              <a href="#" class="navigation__link">rooms&suited overview</a>
             </li>
             <li class="navigation__item">
               <a href="#" class="navigation__link">packages</a>
@@ -165,6 +165,22 @@
           </div>
         </div>
       </section>
+      <div class="overview__rooms" id="overview-rooms">
+        <div class="overview__filter">
+          <h5 class="overview__filter-title">Filter rooms & suites</h5>
+          <select id="type" class="overview-select" name="overview-select">
+            <option value="all" selected>all suites&rooms</option> 
+            <option value="room">rooms</option>
+            <option value="suite">suites</option>
+          </select>
+        </div>
+        <div class="overview__variants">
+          <h3 class="overview__variants-title">Rooms&suites</h3>
+          
+          <ul class="overview__examples"></ul>
+          <ul class="pagination"></ul>
+        </div>
+      </div>
     </main>
 
     <footer class="footer">

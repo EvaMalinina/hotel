@@ -188,11 +188,11 @@ gulp.task('sprite-president-suite', function () {
 gulp.task('script', function () {
   return gulp.src('./src/scripts/**/*.js')
     .pipe(concat('main.js'))
-    .pipe(minify({
-      mangle: {
-        keepClassName: true
-      }
-    }))
+    // .pipe(minify({
+    //   mangle: {
+    //     keepClassName: true
+    //   }
+    // }))
     .pipe(gulp.dest('./build/scripts')) 
 });
  

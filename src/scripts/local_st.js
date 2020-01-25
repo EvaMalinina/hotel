@@ -1,7 +1,7 @@
-function loadData() {
+let loadData = () => {
   // send request to get json file
   const request = new XMLHttpRequest();
-  request.open('GET', '../data/flats.json', true);
+  request.open('GET', '/src/data/flats.json', true);
 
   request.onload = function() {
     

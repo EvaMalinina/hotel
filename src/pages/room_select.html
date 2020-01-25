@@ -34,17 +34,17 @@
           <div class="user">
             <form class="user__form" id="registration">
               <label for="login">Create login</label>
-              <input type="text" name="login" placeholder="Login">
+              <input type="text" name="login" placeholder="Login" id="reg-login">
               <label for="password">Create password</label>
-              <input type="password" name="password" placeholder="Password">
-              <button class="user__btn">Register</button>
+              <input type="password" name="password" placeholder="Password" id="reg-password">
+              <button class="user__btn" id="reg-btn" type="submit">Register</button>
             </form>
             <form class="user__form" id="login">
               <label for="login">Login</label>
-              <input type="text" name="login" placeholder="Login">
+              <input type="text" name="login" placeholder="Login" id="log-login">
               <label for="password">Password</label>
-              <input type="password" name="password" placeholder="Password">
-              <button class="user__btn">Log in</button>
+              <input type="password" name="password" placeholder="Password" id="log-password">
+              <button class="user__btn" id="log-btn" type="submit">Log in</button>
             </form>
           </div>
        </div>
@@ -91,15 +91,91 @@
               </div>
             
               <div class="form__row">
-                <a class="form__btn" href="./src/pages/select.html" id="send">check availability</a>
+                <a class="form__btn availability" href="#" id="availability">check availability</a>
               </div>
             </form>
           </div>
-          <ul class="overview__examples"></ul>
-         
+          <div class="booking__list">
+            <ul class="overview__examples"></ul>
+            <ul class="pagination"></ul>
+          </div>
+          
+        </div>
+      </section>
+      <section class="checkout">
+        <div class="container">
+          <form class="form">
+            <label for="name">
+              <div class="form__title">Full name of traveller</div>
+              <input type="text" class="form__input" name="name" value="">
+            </label>
+            <label for="email">
+              <div class="form__title">Email</div>
+              <input type="email" class="form__input" name="email" value="">
+            </label>
+            <label for="question">
+                <div class="form__title">Any special request</div>
+              <textarea name="question" id="question"></textarea>
+            </label>
+            <button class="form__btn form__last-confirm">
+              Confirm
+            </button>
+          </form>
+        </div>
+      </section>
+      <section class="confirmation">
+        <div class="container container_column container_small container_center">
+          <h2>Thanks for the reservation!</h2>
+          <p>We will contact you shortly.</p>
         </div>
       </section>
     </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__info">
+          <p>Audrey's Palace Hotel st. Nanda 389, 01300 St. Maria, England</p>
+          <p><a href="tel:+ 44 (0)845 88 99 10">Phone: + 44 (0)845 88 99 10</a></p>
+          <p><a href="mailto:reservations@audreyspalace.com">reservations@audreyspalace.com</a></p>
+        </div>
+        <div class="footer__awards">
+          <ul class="awards">
+            <li class="awards__item">
+              <a href="#" class="awards__link">
+                <div class="awards__icon-box">
+                  <div class="awards__icon awards__icon-one"></div>
+                </div>
+                <p>BS 2019</p>
+              </a>
+            </li>
+            <li class="awards__item">
+              <a href="#" class="awards__link">
+                <div class="awards__icon-box">
+                  <div class="awards__icon awards__icon-two"></div>
+                </div>
+                <p>hospitality award 2018</p>
+              </a>
+            </li>
+            <li class="awards__item">
+              <a href="#" class="awards__link">
+                <div class="awards__icon-box">
+                  <div class="awards__icon awards__icon-three"></div>
+                </div>
+                <p>Top 20 hotels</p>
+              </a>
+            </li>
+            <li class="awards__item">
+              <a href="#" class="awards__link">
+                <div class="awards__icon-box">
+                  <div class="awards__icon awards__icon-four"></div>
+                </div>
+                <p>professional award 2018</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
   </div>
 
   <script src="../../build/scripts/main.js"></script>

@@ -85,6 +85,10 @@
     font-size: rem(14px);
     letter-spacing: rem(1.5px);
   }
+
+  &__reserved {
+    filter: opacity(0.5);
+  }
 }
 
 .features {

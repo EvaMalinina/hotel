@@ -1,0 +1,27 @@
+.checkout {
+  display: none;
+  margin-bottom: rem(30px);
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    max-width: rem(300px);
+    width: 100%;
+    margin: 0 auto;
+
+    &__input,
+    textarea {
+      min-width: 100%;
+      resize: none;
+      outline: none;
+    }
+
+    &__btn {
+      background-color: $darkblue;
+      color: $white;
+      font-size: rem(16px);
+      letter-spacing: rem(1.5px);
+      border: none;
+    }
+  }
+}

@@ -33,4 +33,64 @@
     background-color: $darkblue;
     border: none;
   }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: rem(30px);
+  }
+
+  &__customer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $lightyellow;
+    padding: rem(20px);
+    text-align: center;
+    margin-bottom: rem(20px);
+    font-size: rem(18px);
+    font-family: 'El Messiri', sans-serif;
+    color: $darkblue;
+
+    p {
+      margin-bottom: rem(10px);
+      font-size: rem(16px);
+      font-family: 'Roboto', sans-serif;
+    }
+  }
+
+  &__rooms,
+  &__actions {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__rooms {
+    margin-right: rem(70px);
+  }
+
+  &__btn {
+    display: flex;
+    background-color: $darkblue;
+    padding: rem(5px) rem(10px);
+    color: $white;
+    font-size: rem(16px);
+    border: none;
+    transition: 0.5s ease;
+    margin-bottom: rem(25px);
+    text-transform: capitalize;
+    letter-spacing: rem(1.5px);
+    justify-content: center;
+
+    &:last-child {
+      margin-bottom: rem(0px);
+    }
+
+    &:hover {
+      color: $darkblue;
+      background-color: $white;
+      transition: 0.5s ease;
+    }
+  }
 }

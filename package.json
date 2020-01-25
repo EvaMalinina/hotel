@@ -4,7 +4,8 @@
   "description": "3 star hotel",
   "main": "gulpfile.js",
   "dependencies": {
-    "gulp": "^4.0.2"
+    "gulp": "^4.0.2",
+    "lite-server": "^2.5.4"
   },
   "devDependencies": {
     "autoprefixer": "^9.7.3",

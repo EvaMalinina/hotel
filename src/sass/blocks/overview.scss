@@ -15,6 +15,7 @@
     align-items: center;
     padding-top: rem(30px);
     margin-bottom: rem(20px);
+    position: relative;
   }
 
   &__filter-title {
@@ -64,5 +65,8 @@
   }
 }
 
+#overview-rooms {
+  display: none;
+}
 
 

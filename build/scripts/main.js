@@ -1,1 +1,665 @@
-Date.prototype.toDateInputValue=function(){const a=new Date(this);return a.setMinutes(this.getMinutes()-this.getTimezoneOffset()),a.toJSON().slice(0,10)};let startDate=document.getElementById("start-trip"),checkIn=startDate.value=new Date().toDateInputValue();startDate.setAttribute("min",checkIn);let nextDay=new Date;nextDay.setDate(nextDay.getDate()+1);let endDay=document.getElementById("end-trip"),checkOut=endDay.value=nextDay.toJSON().slice(0,10);endDay.setAttribute("min",checkOut),window.addEventListener("load",()=>{loadData(),generateAll(),slide(),zoomIn(),selectFilter(),paginate()});let customeFilter={type:"all",type:"room",type:"suite"},createFlat=(a,b)=>{let c=document.createElement("div");wrapperPic=document.createElement("div"),pic=document.createElement("div"),btnLeft=document.createElement("a"),btnRight=document.createElement("a"),title=document.createElement("h4"),exampleFeatures=document.createElement("div"),features=document.createElement("ul"),featuresItemSize=document.createElement("li"),featuresNumber=document.createElement("p"),featuresText=document.createElement("p"),featuresItemGuest=document.createElement("li"),featuresGuest=document.createElement("p"),featuresGuestDesc=document.createElement("p"),featuresItemBed=document.createElement("li"),featuresNumBed=document.createElement("p"),featuresBedDesc=document.createElement("p"),exampleLink=document.createElement("a"),c.className="example",b.className="overview__example",b.appendChild(c),wrapperPic.className="example__pic-wrap",pic.className="example__pic",btnLeft.className="example__left",btnRight.className="example__right",wrapperPic.append(pic,btnLeft,btnRight),pic.innerHTML=a.pic,btnLeft.innerHTML="<",btnRight.innerHTML=">",title.className="example__title",title.innerHTML=a.name,exampleFeatures.className="example__features",exampleFeatures.appendChild(features),features.className="features",features.append(featuresItemSize,featuresItemGuest,featuresItemBed),featuresItemSize.className="features__item",featuresItemGuest.className="features__item",featuresItemBed.className="features__item",featuresItemSize.append(featuresNumber,featuresText),featuresItemGuest.append(featuresGuest,featuresGuestDesc),featuresItemBed.append(featuresNumBed,featuresBedDesc),featuresNumber.className="features__number",featuresGuest.className="features__number",featuresNumBed.className="features__number",featuresNumber.innerHTML=a.features.msq,featuresGuest.innerHTML=a.features.guestNumber,featuresNumBed.innerHTML=a.features.bedroom,featuresText.className="features__text",featuresGuestDesc.className="features__text",featuresBedDesc.className="features__text",featuresText.innerHTML=a.features.msqDesc,featuresGuestDesc.innerHTML=a.features.guestNumberDesc,featuresBedDesc.innerHTML=a.features.bedroomDesc,exampleLink.className="example__link",exampleLink.innerHTML=a.link,c.append(wrapperPic,title,exampleFeatures,exampleLink)},generateAll=()=>{let a=JSON.parse(localStorage.getItem("locData")),b=document.querySelector(".overview__examples");for(let c of a){let a=document.createElement("li");a.className="overview__example",b.appendChild(a),createFlat(c,a)}},filterRooms=()=>{let a=JSON.parse(localStorage.getItem("locData"));const b=document.getElementById("type").value,c="all"===b?a:a.filter(a=>a.type===b);return c},paginate=()=>{let a=document.querySelector(".pagination");a.innerHTML="";let b=filterRooms(),c=2,d=Math.ceil(b.length/c),e=function(){let a;return function(d){a&&a.classList.remove("active"),a=d,d.classList.add("active");let e=+d.innerHTML,f=(e-1)*c,g=b.slice(f,f+c),h=document.querySelector(".overview__examples");h.innerHTML="";for(let a of g){let b=document.createElement("li");b.className="overview__example",h.appendChild(b),createFlat(a,b)}slide(),zoomIn()}}(),f=[];for(let b,c=1;c<=d;c++)b=document.createElement("li"),b.innerHTML=c,a.appendChild(b),f.push(b);e(f[0]);for(let a of f)a.addEventListener("click",function(){e(this)})},selectFilter=()=>{let a=document.getElementById("type");a.addEventListener("change",()=>{customeFilter.type=a.value,filterRooms(),paginate()})};function loadData(){const a=new XMLHttpRequest;a.open("GET","../data/flats.json",!0),a.onload=function(){if(200<=a.status&&400>a.status){const b=JSON.parse(a.responseText),c=JSON.stringify(b);localStorage.setItem("locData",c)}else console.log("There is a problem in .json file")},a.onerror=function(){console.log("connection error")},a.send()}window.addEventListener("load",()=>{const a=document.querySelector(".hero");let b=()=>{window.scrollTo(0,0)};(()=>{document.getElementById("menu-open").addEventListener("click",function(){"hero"==a.className?(a.classList.add("hero_fullmenu"),window.addEventListener("scroll",b)):"hero hero_fullmenu"==a.className&&(a.classList.remove("hero_fullmenu"),window.removeEventListener("scroll",b))})})(),(()=>{document.getElementById("booking-open").addEventListener("click",function(){"hero"==a.className?(a.classList.add("hero_fullbook"),window.addEventListener("scroll",b)):"hero hero_fullbook"==a.className&&(a.classList.remove("hero_fullbook"),window.removeEventListener("scroll",b))})})()});let registration=()=>{let a=document.getElementById("register-link");a.addEventListener("click",()=>{let a=document.getElementById("registration");a.style.display="flex"})};registration();let login=()=>{let a=document.getElementById("login-link");a.addEventListener("click",()=>{let a=document.getElementById("login");a.style.display="flex"})};login();let search=()=>{let inpt=document.getElementById("search-this"),main=document.querySelector(".main").innerHTML,cancel=document.querySelector(".search__cancel"),doSearch=document.querySelector(".search__go");cancel.addEventListener("click",a=>{a.preventDefault(),inpt.value="",document.querySelector(".main").innerHTML=main,window.location=""}),doSearch.addEventListener("click",e=>{if(e.preventDefault(),searchOnPage="/"+inpt.value+"/g",content=document.querySelector("main").innerHTML,result=content.match(/>(.*?)</gi),result_arr=[],2>=inpt.value.length)alert("You need to write more then 2 characters to search!"),document.querySelector(".main").innerHTML=main,window.location="";else if(3<=inpt.value.length){for(let i=0;i<result.length;i++)result_arr[i]=result[i].replace(eval(searchOnPage),"<span style=\"background-color:yellow;\">"+inpt.value+"</span>");for(let a=0;a<result.length;a++)content=content.replace(result[a],result_arr[a]);document.querySelector("main").innerHTML=content,window.location="#"+inpt.value}})};search();let slide=()=>{Array.from(document.querySelectorAll("div.example__pic"),a=>{const b=a.parentNode.querySelector(".example__left"),c=a.parentNode.querySelector(".example__right");b&&b.addEventListener("click",()=>{let b=a.style.backgroundPositionX;b=/-?\d+/.exec(b);a.style.backgroundPositionX=`${b- -230}`+"px",a.style.transition="0.8s"}),c&&c.addEventListener("click",b=>{b.preventDefault();let c=a.style.backgroundPositionX;c=/-?\d+/.exec(c);a.style.backgroundPositionX=`${c-230}`+"px",a.style.transition="0.6s"})})},zoomIn=()=>{Array.from(document.querySelectorAll("div.example__pic-wrap"),a=>{const b=a.querySelector(".example__pic");b.addEventListener("click",b=>{b.preventDefault(),a.classList.toggle("wrap-active")})})};
+//determine timezone
+Date.prototype.toDateInputValue = (function() {
+  const local = new Date(this);
+  local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+  return local.toJSON().slice(0,10);
+});
+
+let startDate = document.getElementById('start-trip');
+let checkIn = startDate.value = new Date().toDateInputValue();
+startDate.setAttribute("min", checkIn);
+
+
+let nextDay = new Date();
+nextDay.setDate(nextDay.getDate() + 1);
+
+let endDay = document.getElementById('end-trip');
+let checkOut = endDay.value = nextDay.toJSON().slice(0,10);
+endDay.setAttribute("min", checkOut);
+
+//cancel booking
+let cancelBooking = () => {
+
+  document.querySelector('.booking__cancel').addEventListener('click', (e) => {
+    e.preventDefault();
+
+    //clean localStorage
+    JSON.parse(localStorage.getItem('arrResData'));
+    itemsCanceled = [];
+    localStorage.setItem("arrResData", itemsCanceled);
+
+    //clean FE
+    document.querySelector('.booking__rooms').innerHTML = `<p>You have no reservation.</p>`;
+  })
+};
+//confirm booking
+let confirmBooking = () => {
+
+  document.querySelector('.booking__confirm').addEventListener('click', (e) => {
+    e.preventDefault();
+
+    document.querySelector('.booking').style.display = 'none';
+    document.querySelector('.checkout').style.display = 'flex';
+    document.querySelector('.confirmation').style.display = 'none';
+  })
+};
+// create list item
+let createFlat = (flat, li) => { 
+
+  let example = document.createElement('div');
+      wrapperPic = document.createElement('div');
+      pic = document.createElement('div');
+      btnLeft = document.createElement('a');
+      btnRight = document.createElement('a');
+  
+      title = document.createElement('h4');
+  
+      exampleFeatures = document.createElement('div');
+      features = document.createElement('ul');
+
+      featuresItemSize = document.createElement('li');
+      featuresNumber = document.createElement('p');
+      featuresText = document.createElement('p');
+
+      featuresItemGuest = document.createElement('li');
+      featuresGuest = document.createElement('p');
+      featuresGuestDesc = document.createElement('p');
+
+      featuresItemBed = document.createElement('li');
+      featuresNumBed = document.createElement('p');
+      featuresBedDesc = document.createElement('p');
+  
+      exampleLink = document.createElement('a');
+  
+  example.className = 'example';
+  li.className = 'overview__example';
+  li.appendChild( example );
+  
+  wrapperPic.className = 'example__pic-wrap';
+  pic.className = 'example__pic';
+  btnLeft.className = 'example__left';
+  btnRight.className = 'example__right';
+  wrapperPic.append( pic, btnLeft, btnRight );
+  pic.innerHTML = flat.pic;
+  btnLeft.innerHTML = '<';
+  btnRight.innerHTML = '>';
+  
+  title.className = 'example__title';
+  title.innerHTML= flat.name;
+  
+  exampleFeatures.className = 'example__features';
+  exampleFeatures.appendChild( features );
+  
+  features.className = 'features';
+  features.append( featuresItemSize, featuresItemGuest, featuresItemBed );
+  
+  featuresItemSize.className = 'features__item'; 
+  featuresItemGuest.className = 'features__item'; 
+  featuresItemBed.className = 'features__item';
+
+  featuresItemSize.append( featuresNumber, featuresText );
+  featuresItemGuest.append( featuresGuest, featuresGuestDesc );
+  featuresItemBed.append( featuresNumBed, featuresBedDesc );
+  
+  featuresNumber.className = 'features__number'; 
+  featuresGuest.className = 'features__number'; 
+  featuresNumBed.className = 'features__number';
+
+  featuresNumber.innerHTML= flat.features.msq;
+  featuresGuest.innerHTML= flat.features.guestNumber;
+  featuresNumBed.innerHTML = flat.features.bedroom;
+
+  featuresText.className = 'features__text'; 
+  featuresGuestDesc.className = 'features__text'; 
+  featuresBedDesc.className = 'features__text';
+
+  featuresText.innerHTML = flat.features.msqDesc;
+  featuresGuestDesc.innerHTML = flat.features.guestNumberDesc;
+  featuresBedDesc.innerHTML = flat.features.bedroomDesc;
+  
+  exampleLink.className = 'example__link';
+  exampleLink.innerHTML = flat.link;
+  
+  example.append(wrapperPic, title, exampleFeatures, exampleLink);
+};
+// generate all list items from json
+let generateAll = () => {
+
+  let deserialData = JSON.parse(localStorage.getItem('locData'));
+  // wrapper for generated list
+  let flatList = document.querySelector('.overview__examples');
+   
+  for (let flat of deserialData) {
+    
+    let li = document.createElement('li');
+    li.className = 'overview__example';
+    flatList.appendChild(li);
+
+    createFlat(flat, li);
+  }
+};
+
+// Object filter
+let customeFilter = {
+  "type": "all",
+  "type": "room",
+  "type": "suite"
+};
+
+// filtration by rooms
+let filterRooms = () => {
+  let deserialData = JSON.parse(localStorage.getItem('locData'));
+  const type = document.getElementById('type').value;
+  const result = type === 'all' ? deserialData : deserialData.filter( item => item.type === type );
+  return result;
+};
+
+let paginateFiltArr = () => {
+  //pagination 
+  let pagination = document.querySelector('.pagination');
+  pagination.innerHTML = '';
+
+  let filteredArr = filterRooms();
+  
+  let notesOnPage = 2;
+  let countOfItems = Math.ceil(filteredArr.length / notesOnPage);
+
+  // generate paginated page
+  let showPage = (function() {
+  let active;
+  
+    return function(item) {
+      if( active ) {
+        active.classList.remove('active');
+      }
+      active = item;
+      
+      item.classList.add('active');
+
+      let pageNum = +item.innerHTML;
+
+      let start = (pageNum - 1) * notesOnPage;
+      let end = start + notesOnPage;
+      let flats = filteredArr.slice(start, end);
+
+      let flatList = document.querySelector('.overview__examples');
+      flatList.innerHTML = '';
+      for (let flat of flats) {
+        let li = document.createElement('li');
+        li.className = 'overview__example';
+        flatList.appendChild(li);
+
+        createFlat(flat, li);
+        
+      }
+      slide();
+      zoomIn();
+    };
+  }()); 
+
+  // pagination links
+  let items = [];
+  for (let i = 1; i <= countOfItems; i++) {
+    let paginationLink = document.createElement('li');
+    paginationLink.innerHTML = i;
+    pagination.appendChild(paginationLink);
+    items.push(paginationLink);
+  }
+  
+  // first generated page
+  showPage(items[0]);
+
+  // change generated page on clink on pagination link
+  for (let item of items) {
+    item.addEventListener('click', function() {
+      showPage(this);
+    })
+  };
+  
+};
+
+// filter on select change event
+let selectFilter = () => {
+  let select = document.getElementById('type');
+  select.addEventListener('change', () => {
+    
+    customeFilter.type = select.value;
+    filterRooms();
+    paginateFiltArr();
+  })
+};
+
+let paginate = () => {
+  //pagination 
+  let pagination = document.querySelector('.pagination');
+  pagination.innerHTML = '';
+
+  let deserialData = JSON.parse(localStorage.getItem('locData'));
+  
+  let notesOnPage = 2;
+  let countOfItems = Math.ceil(deserialData.length / notesOnPage);
+
+  // generate paginated page
+  let showPage = (function() {
+  let active;
+  
+    return function(item) {
+      if( active ) {
+        active.classList.remove('active');
+      }
+      active = item;
+      
+      item.classList.add('active');
+
+      let pageNum = +item.innerHTML;
+
+      let start = (pageNum - 1) * notesOnPage;
+      let end = start + notesOnPage;
+      let flats = deserialData.slice(start, end);
+
+      let flatList = document.querySelector('.overview__examples');
+      flatList.innerHTML = '';
+      for (let flat of flats) {
+        let li = document.createElement('li');
+        li.className = 'overview__example';
+        flatList.appendChild(li);
+
+        createFlat(flat, li);
+        
+      }
+      slide();
+      zoomIn();
+    };
+  }()); 
+
+  // pagination links
+  let items = [];
+  for (let i = 1; i <= countOfItems; i++) {
+    let paginationLink = document.createElement('li');
+    paginationLink.innerHTML = i;
+    pagination.appendChild(paginationLink);
+    items.push(paginationLink);
+  }
+  
+  // first generated page
+  showPage(items[0]);
+
+  // change generated page on clink on pagination link
+  for (let item of items) {
+    item.addEventListener('click', function() {
+      showPage(this);
+    })
+  };
+  
+};
+
+
+
+
+window.addEventListener('load', () => {
+  
+  if ( document.querySelector('.hero') ) {
+    fullMenuBook();
+
+    if (document.querySelector('.rooms-suites')) {
+      document.querySelector('.rooms-suites').addEventListener('click', (e) => {
+        e.preventDefault();
+        hideMain();
+        loadData();
+        generateAll();
+        slide();
+        zoomIn();
+        selectFilter();
+        paginateFiltArr();
+      });
+    }
+  }
+  else if ( document.getElementById('availability') ) {
+
+    loadData();
+    generateAll();
+    slide();
+    zoomIn();
+    paginate();
+    showForm();
+  }
+
+});
+let loadData = () => {
+  // send request to get json file
+  const request = new XMLHttpRequest();
+  request.open('GET', '/src/data/flats.json', true);
+
+  request.onload = function() {
+    
+    if (request.status >= 200 && request.status < 400) {
+      // success 
+      const data = JSON.parse(request.responseText);
+      const serialData = JSON.stringify(data);
+      localStorage.setItem("locData", serialData);
+
+    } else {
+      // we reached our target server, but it returned an error
+      console.log('There is a problem in .json file');
+    }
+  };
+
+  request.onerror = function() {
+    // there was a connection error of some sort
+    console.log('connection error');
+  };
+  request.send();
+};
+// hide main sections
+let hideMain = () => {
+  document.getElementById('history').style.display = "none";
+  document.getElementById('overview-rooms').style.display = "flex";
+};
+let fullMenuBook = () => {
+  const hero = document.querySelector('.hero');
+
+  //to disable scroll
+  let noScroll = () => {
+    window.scrollTo(0, 0);
+  }
+
+  let openMenu = () => {
+    document.getElementById('menu-open').addEventListener('click', function() {
+    
+      if( hero.className == 'hero' ) {
+
+        hero.classList.add('hero_fullmenu');
+        window.addEventListener('scroll', noScroll);
+        
+      } else if ( hero.className == 'hero hero_fullmenu' ) {
+
+        hero.classList.remove('hero_fullmenu');
+        window.removeEventListener('scroll', noScroll); 
+      }
+    });
+  }
+
+
+  let openBooking = () => {
+    document.getElementById('booking-open').addEventListener('click', function() {
+    
+      if( hero.className == 'hero' ) {
+
+        hero.classList.add('hero_fullbook');
+        window.addEventListener('scroll', noScroll);
+        
+      } else if ( hero.className == 'hero hero_fullbook' ) {
+
+        hero.classList.remove('hero_fullbook');
+        window.removeEventListener('scroll', noScroll); 
+      } 
+    });
+  }
+
+  openMenu();
+  openBooking();
+};
+
+
+
+
+let showForm = () => {
+
+  openReg();
+  register();
+  openLogin();
+  login();
+}
+
+const regForm = document.getElementById('registration');
+const logForm = document.getElementById('login');
+
+let openReg = () => {
+
+  let regLink = document.getElementById('register-link');
+  regLink.addEventListener('click', () => {
+    regForm.style.display = 'flex';
+    logForm.style.display = 'none';
+  });
+};
+
+let register = () => {
+  let regBtn = document.getElementById('reg-btn');
+  let regUsersArr = [];
+
+  regBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    let regLog = document.getElementById('reg-login').value;
+    let regPas = document.getElementById('reg-password').value;
+    let regObj = { regLog, regPas };
+    regUsersArr.push(regObj);
+    const regUsersData = JSON.stringify(regUsersArr);
+    localStorage.setItem("registeredUsers", regUsersData);
+  })
+};
+
+let openLogin = () => {
+
+  let regLink = document.getElementById('login-link');
+  regLink.addEventListener('click', () => {
+    
+    logForm.style.display = 'flex';
+    regForm.style.display = 'none';
+  })
+};
+
+let login = () => {
+  let logBtn = document.getElementById('log-btn');
+
+  logBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    let logLog = document.getElementById('log-login').value;
+    let logPas = document.getElementById('log-password').value;
+    let logObj = { logLog, logPas };
+    // localStorage.getItem("registeredUsers", regUsersData);
+    let regUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+    const user = regUsers.some(user => user.regLog === logObj.logLog && user.regPas === logObj.logPas)
+  
+    if (user) {
+      document.getElementById('login-link').innerHTML = 'Log out';
+      logForm.style.display = 'none';
+      
+      reserveRoom();
+      if (localStorage.getItem('arrResData') !== null) {
+        showBooking();
+        cancelBooking();
+        confirmBooking();
+        toLastConfirm();
+      }
+     
+    } else {
+      alert('There is no such user. Maybe you did a mistake in login or password.');
+    }
+    console.log(logObj, regUsers);
+  })
+};
+
+
+
+
+let reserveRoom = () => {
+
+  document.querySelector('.example__link').addEventListener('click', (e) => {
+    e.preventDefault();
+  
+    let links = document.querySelectorAll('.example__link');
+
+    const arrReserved = [];
+    for (i = 0; i < links.length; i++) {
+
+      links[i].onclick = function() {
+        this.innerHTML = 'Reserved';
+        let example = this.parentNode;
+        
+        let name = example.querySelector('.example__title').innerHTML;
+        let status = example.querySelector('.example__link').innerHTML;
+        const itemReserved = { name, status };
+       
+        arrReserved.push(itemReserved);
+        
+        const arrResData = JSON.stringify(arrReserved);
+        localStorage.setItem("arrResData", arrResData);
+      }
+    };
+    
+  })
+}
+
+// let search = () => {
+ 
+//   let inpt = document.getElementById('search-this');
+//   let main = document.querySelector('.main').innerHTML;
+
+//   let cancel = document.querySelector( '.search__cancel' );
+//   let doSearch = document.querySelector( '.search__go' );
+
+//   cancel.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     inpt.value = '';
+//     document.querySelector('.main').innerHTML = main;
+//     window.location = '';
+//   });
+
+//   doSearch.addEventListener('click', (e) => {
+//     e.preventDefault();
+
+//     // convert input value to RegExp
+//     searchOnPage = '/'+inpt.value+'/g';
+//     content = document.querySelector('main').innerHTML;
+
+//     // cut all tags name and braces
+//     result = content.match(/>(.*?)</gi); 
+
+//     // save arr what was found on the page
+//     result_arr = [];
+   
+//     if ( inpt.value.length <= 2 ) {
+//       alert('You need to write more then 2 characters to search!');
+//       document.querySelector('.main').innerHTML = main;
+//       window.location = '';
+
+//     } else if ( inpt.value.length >= 3) {
+
+//       //highlight text what was found
+//       for(let i = 0; i < result.length; i++ ) {
+//         result_arr[i] = result[i].replace(
+//           eval(searchOnPage), 
+//           '<span style="background-color:yellow;">'+inpt.value+'</span>'
+//         )
+//       }; 
+
+//       // change found text with previous from old arr
+//       for(let i = 0; i < result.length; i++ ) {
+//         content = content.replace(result[i],result_arr[i]);  
+//       }
+
+//       // change html code
+//       document.querySelector('main').innerHTML = content; 
+//       window.location = '#' + inpt.value;
+//     }
+//   });
+// };
+
+// search();
+
+// generate reservation of user
+let showBooking = () => {
+  let reservation = JSON.parse(localStorage.getItem('arrResData'));
+
+  let list = document.querySelector('.booking__list');
+
+  let customBooking = document.createElement('div');
+  let customRooms = document.createElement('div');
+  let customActions = document.createElement('div');
+
+  document.querySelector('.container_column').style.flexDirection = "column-reverse";
+  list.parentNode.appendChild(customBooking).className = 'booking__customer';
+
+  customRooms.className = "booking__rooms";
+  customRooms.innerHTML = `<h4>Your booking:</h4>`;
+
+  customActions.className = "booking__actions";
+  let bookConfirm = document.createElement('a');
+  let bookCancel = document.createElement('a');
+  bookConfirm.className = "booking__btn booking__confirm";
+  bookCancel.className = "booking__btn booking__cancel";
+
+  bookConfirm.innerHTML = 'Confirm';
+  bookCancel.innerHTML = 'Cancel';
+
+  customActions.append(bookConfirm, bookCancel)
+
+  customBooking.append(customRooms, customActions);
+   
+  for (item of reservation) {
+    let roomName = document.createElement('h4');
+    roomName.innerHTML = item.name;
+    let p = document.createElement('p');
+    p.innerHTML = item.status + ' ✔︎';
+    customRooms.append(roomName, p);
+  }
+};
+// slide function
+let slide = () => {
+
+  //return new array from object
+  Array.from( document.querySelectorAll('div.example__pic'), ( pic, index ) => {
+    const leftBtn = pic.parentNode.querySelector( '.example__left' );
+    const rightBtn = pic.parentNode.querySelector( '.example__right' );
+
+    // slide left
+    if (leftBtn) {
+      leftBtn.addEventListener( 'click', () => {
+        let currentPosX = pic.style.backgroundPositionX; 
+        currentPosX = /-?\d+/.exec( currentPosX );
+      
+        let stepLeft = -230;
+        pic.style.backgroundPositionX = `${ currentPosX - stepLeft }` + "px";
+        pic.style.transition = 0.8 +"s";    
+      } );  
+    }
+
+    // slide right
+    if (rightBtn) {
+      rightBtn.addEventListener( 'click', ( event ) => {
+        event.preventDefault();
+        let currentPosX = pic.style.backgroundPositionX; 
+        currentPosX = /-?\d+/.exec( currentPosX );
+      
+        let stepRight = 230;
+        pic.style.backgroundPositionX = `${ currentPosX - stepRight }` + "px";
+        pic.style.transition = 0.6 +"s";
+      } );   
+    }
+  });
+};
+
+//zoom item
+let zoomIn = () => {
+
+  //return new array from object
+  Array.from( document.querySelectorAll('div.example__pic-wrap'), ( item ) => {
+    const pic = item.querySelector('.example__pic');
+
+    //zoom in and zoom out
+    pic.addEventListener('click', (e) => {
+      e.preventDefault();
+      item.classList.toggle('wrap-active');
+    });
+  });
+};
+
+
+let toLastConfirm = () => {
+  document.querySelector('.form__last-confirm').addEventListener('click', (e) => {
+    e.preventDefault();
+
+    document.querySelector('.checkout').style.display = 'none';
+    document.querySelector('.confirmation').style.display = 'flex';
+  })
+}
