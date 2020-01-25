@@ -20,8 +20,14 @@ let reserveRoom = () => {
         
         const arrResData = JSON.stringify(arrReserved);
         localStorage.setItem("arrResData", arrResData);
+
+        let oldList = document.querySelector('.booking__customer');
+        oldList.parentNode.removeChild(oldList);
+        showBooking();
+        cancelBooking();
+        confirmBooking();
+        toLastConfirm();
       }
     };
-    
   })
 }

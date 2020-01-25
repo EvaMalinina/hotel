@@ -350,6 +350,25 @@ let loadData = () => {
   };
   request.send();
 };
+let logOutUser = () => {
+  let logOut = document.getElementById('login-link');
+
+  let logLog = document.getElementById('log-login').value;
+  let logPas = document.getElementById('log-password').value;
+  let logObj = { logLog, logPas };
+  //identifier
+  let userCoockie = logObj.logLog;
+
+  logOut.addEventListener('click', () => {
+    logOut.innerHTML = 'My Account';
+    //remove coockie
+    document.cookie = 'cookie'+ userCoockie + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
+    logForm.style.display = 'none';
+    let oldList = document.querySelector('.booking__customer');
+    oldList.parentNode.removeChild(oldList);
+  });
+};
+
 // hide main sections
 let hideMain = () => {
   document.getElementById('history').style.display = "none";
@@ -409,6 +428,7 @@ let showForm = () => {
   register();
   openLogin();
   login();
+  setAdmin();
 }
 
 const regForm = document.getElementById('registration');
@@ -417,7 +437,8 @@ const logForm = document.getElementById('login');
 let openReg = () => {
 
   let regLink = document.getElementById('register-link');
-  regLink.addEventListener('click', () => {
+  regLink.addEventListener('click', (e) => {
+    e.preventDefault();
     regForm.style.display = 'flex';
     logForm.style.display = 'none';
   });
@@ -425,16 +446,19 @@ let openReg = () => {
 
 let register = () => {
   let regBtn = document.getElementById('reg-btn');
-  let regUsersArr = [];
+  let regUsersArr = [{ 'regLog': 'admin' }, { 'regPas': '12345' }];
 
   regBtn.addEventListener('click', (e) => {
     e.preventDefault();
     let regLog = document.getElementById('reg-login').value;
     let regPas = document.getElementById('reg-password').value;
     let regObj = { regLog, regPas };
+
     regUsersArr.push(regObj);
     const regUsersData = JSON.stringify(regUsersArr);
     localStorage.setItem("registeredUsers", regUsersData);
+
+    hideRegForm();
   })
 };
 
@@ -448,37 +472,86 @@ let openLogin = () => {
   })
 };
 
+let setAdmin = () => {
+  //push admin to registered users arr
+  let regUsersArr = [{ regLog: "admin", regPas: "12345" }];
+  const regUsersData = JSON.stringify(regUsersArr);
+  localStorage.setItem("registeredUsers", regUsersData);
+}
+
 let login = () => {
   let logBtn = document.getElementById('log-btn');
 
   logBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    
     let logLog = document.getElementById('log-login').value;
     let logPas = document.getElementById('log-password').value;
     let logObj = { logLog, logPas };
-    // localStorage.getItem("registeredUsers", regUsersData);
-    let regUsers = JSON.parse(localStorage.getItem('registeredUsers'));
-    const user = regUsers.some(user => user.regLog === logObj.logLog && user.regPas === logObj.logPas)
-  
-    if (user) {
-      document.getElementById('login-link').innerHTML = 'Log out';
-      logForm.style.display = 'none';
+    
+    const regUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+
+    if (regUsers) {
+      const user = regUsers.find(user => user.regLog === logObj.logLog && user.regPas === logObj.logPas);
       
-      reserveRoom();
-      if (localStorage.getItem('arrResData') !== null) {
-        showBooking();
-        cancelBooking();
-        confirmBooking();
-        toLastConfirm();
+      if (user) {
+        hideLogForm();
+        startSession();
+        logOutUser();
+       
+        if (getCookie('cookieadmin')) {
+          showAdminPanel();
+        }
+      } else {
+        alert('There is no such user. Maybe you did a mistake in login or password.');
       }
-     
     } else {
-      alert('There is no such user. Maybe you did a mistake in login or password.');
+      alert('There is no such registered user.')
     }
-    console.log(logObj, regUsers);
   })
 };
 
+let hideLogForm = () => {
+  logForm.style.display = 'none';
+  let logOut = document.getElementById('login-link');
+  logOut.innerHTML = 'Log out';
+};
+
+let hideRegForm = () => {
+  let regBtn = document.getElementById('reg-btn');
+
+  regBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    regForm.style.display = 'none';
+  });
+};
+
+let showAdminPanel = () => {
+  document.querySelector('.booking').innerHTML = '';
+
+  let reservationList = JSON.parse(localStorage.getItem('arrResData'));
+
+  let list = document.querySelector('.booking');
+  list.className = 'booking booking__admin'
+
+  let customerList = document.createElement('div');
+  list.appendChild(customerList);
+
+  for (item of reservationList) {
+    let roomName = document.createElement('h4');
+    roomName.innerHTML = item.name;
+    let p = document.createElement('p');
+    p.innerHTML = item.status;
+    customerList.append(roomName, p);
+  }
+}
+
+// let alertLogin = () => {
+//   let reserveBtn = document.querySelector('.example__link');
+//   reserveBtn.addEventListener('click', () => {
+//     alert('Please log in or register if you are still not with us. Thanks :)');
+//   });
+// }
 
 
 
@@ -504,9 +577,15 @@ let reserveRoom = () => {
         
         const arrResData = JSON.stringify(arrReserved);
         localStorage.setItem("arrResData", arrResData);
+
+        let oldList = document.querySelector('.booking__customer');
+        oldList.parentNode.removeChild(oldList);
+        showBooking();
+        cancelBooking();
+        confirmBooking();
+        toLastConfirm();
       }
     };
-    
   })
 }
 
@@ -655,6 +734,33 @@ let zoomIn = () => {
 };
 
 
+let startSession = () => {
+  let logLog = document.getElementById('log-login').value;
+  let logPas = document.getElementById('log-password').value;
+  let logObj = { logLog, logPas };
+  //identifier
+  let userCoockie = logObj.logLog;
+  // document.cookie = 'cookie'+`${userCoockie}` + '=' + `${userCoockie}`+'; expires=Fri, 19 Jun 2020 20:47:11 UTC; path=/'+`${userCoockie}`+'/';
+  let setCoockie = document.cookie = 'cookie'+ userCoockie + '=' + userCoockie +'; expires=Fri, 19 Jun 2020 20:47:11 UTC; path=/';
+  
+  let cookieYes = getCookie('cookie'+ userCoockie);
+  if (cookieYes) {
+    reserveRoom();
+
+    if (localStorage.getItem('arrResData')) {
+      showBooking();
+      cancelBooking();
+      confirmBooking();
+      toLastConfirm();
+    }
+  }
+};
+
+let getCookie = (name) => {
+  let value = "; " + document.cookie;
+  let parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
+}
 let toLastConfirm = () => {
   document.querySelector('.form__last-confirm').addEventListener('click', (e) => {
     e.preventDefault();
