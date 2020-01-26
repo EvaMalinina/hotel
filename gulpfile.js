@@ -55,7 +55,7 @@ gulp.task('sprite-img', function () {
   const spriteData2 = gulp.src('./src/images/general/*').pipe(spritesmith({
     imgName: 'sprite-img.jpg',
     cssName: 'sprite-img.css',
-    padding: 20,
+    padding: 5,
     algorithm: 'top-down'
   }));
  
@@ -66,7 +66,7 @@ gulp.task('sprite-img', function () {
  
   const cssStream2 = spriteData2.css
     .pipe(cleanCSS({compatibility: 'ie11', format: 'beautify'}))
-    .pipe(gulp.dest('./build/sprite/img'));
+    .pipe(gulp.dest('./build/sprite'));
  
   return merge(imgStream2, cssStream2);
 });

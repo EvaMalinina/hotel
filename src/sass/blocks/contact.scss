@@ -49,11 +49,19 @@
       width: 100%;
       margin-bottom: rem(20px);
       border: 1px solid $darkblue;
+      resize: none;
+      outline: none;
     }
   
     &__btn {
       padding: rem(20px);
       border: 1px solid $darkblue;
+
+      &:hover {
+        background-color: $darkblue;
+        color: $white;
+        transition: 0.6s ease;
+      }
     }
   }
 }

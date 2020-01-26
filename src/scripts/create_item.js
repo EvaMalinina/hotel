@@ -77,3 +77,29 @@ let createFlat = (flat, li) => {
   
   example.append(wrapperPic, title, exampleFeatures, exampleLink);
 };
+
+let createPackage = (pac, li) => { 
+
+  let wrapperPic = document.createElement('div');
+      pic = document.createElement('div');
+  
+      title = document.createElement('h4');
+      desc = document.createElement('p');
+      price = document.createElement('p');
+  
+  li.className = 'packages__item';
+  li.append( wrapperPic, title, desc, price);
+  
+  wrapperPic.className = 'packages__pic-wrap';
+  pic.className = 'packages__pic';
+  wrapperPic.appendChild( pic );
+
+  title.className = 'packages__title';
+  title.innerHTML= pac.name;
+ 
+  desc.className = 'package__desc';
+  desc.innerHTML= pac.desc;
+  
+  price.className = 'packages__price';
+  price.innerHTML = pac.price;
+};

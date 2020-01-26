@@ -1,0 +1,26 @@
+[
+  {
+    "pic": " ",
+    "name": "Romantic day for 2",
+    "desc": "Gourmet diner, 2 hours spa, 1 night in the hotel Deluxe room.",
+    "price": "80$"
+  },
+  {
+    "pic": " ",
+    "name": "Spa weekend",
+    "desc": "3 hours spa, 1 hour oil massage",
+    "price": "150$"
+  },
+  {
+    "pic": " ",
+    "name": "Time for you",
+    "desc": "Gourmet diner, 1 hours spa, 1 night in the hotel Specious room.",
+    "price": "95$"
+  },
+  {
+    "pic": " ",
+    "name": "Refresh for two",
+    "desc": "1 hour cosmetology theatment skin and body, 1 hour Thai massage, 1 night in hotel Junior suite.",
+    "price": "108$"
+  }
+]

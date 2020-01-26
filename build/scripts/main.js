@@ -122,6 +122,32 @@ let createFlat = (flat, li) => {
   
   example.append(wrapperPic, title, exampleFeatures, exampleLink);
 };
+
+let createPackage = (pac, li) => { 
+
+  let wrapperPic = document.createElement('div');
+      pic = document.createElement('div');
+  
+      title = document.createElement('h4');
+      desc = document.createElement('p');
+      price = document.createElement('p');
+  
+  li.className = 'packages__item';
+  li.append( wrapperPic, title, desc, price);
+  
+  wrapperPic.className = 'packages__pic-wrap';
+  pic.className = 'packages__pic';
+  wrapperPic.appendChild( pic );
+
+  title.className = 'packages__title';
+  title.innerHTML= pac.name;
+ 
+  desc.className = 'package__desc';
+  desc.innerHTML= pac.desc;
+  
+  price.className = 'packages__price';
+  price.innerHTML = pac.price;
+};
 // generate all list items from json
 let generateAll = () => {
 
@@ -136,6 +162,22 @@ let generateAll = () => {
     flatList.appendChild(li);
 
     createFlat(flat, li);
+  }
+};
+
+let generateAllPackages = () => {
+
+  let deserialData = JSON.parse(localStorage.getItem('locPackages'));
+  // wrapper for generated list
+  let pacList = document.querySelector('.packages__list');
+   
+  for (let pac of deserialData) {
+    
+    let li = document.createElement('li');
+    li.className = 'packages__item';
+    pacList.appendChild( li );
+
+    createPackage( pac, li ); 
   }
 };
 
@@ -300,6 +342,9 @@ window.addEventListener('load', () => {
   
   if ( document.querySelector('.hero') ) {
     fullMenuBook();
+    showPackages();
+    loadPackages();
+    generateAllPackages();
 
     if (document.querySelector('.rooms-suites')) {
       document.querySelector('.rooms-suites').addEventListener('click', (e) => {
@@ -311,6 +356,7 @@ window.addEventListener('load', () => {
         zoomIn();
         selectFilter();
         paginateFiltArr();
+        
       });
     }
   }
@@ -340,7 +386,33 @@ let loadData = () => {
 
     } else {
       // we reached our target server, but it returned an error
-      console.log('There is a problem in .json file');
+      console.log('There is a problem in flats.json file');
+    }
+  };
+
+  request.onerror = function() {
+    // there was a connection error of some sort
+    console.log('connection error');
+  };
+  request.send();
+};
+
+let loadPackages = () => {
+  // send request to get json file
+  const request = new XMLHttpRequest();
+  request.open('GET', '/src/data/packages.json', true);
+
+  request.onload = function() {
+    
+    if (request.status >= 200 && request.status < 400) {
+      // success 
+      const data = JSON.parse(request.responseText);
+      const serialData = JSON.stringify(data);
+      localStorage.setItem("locPackages", serialData);
+
+    } else {
+      // we reached our target server, but it returned an error
+      console.log('There is a problem in package.json file');
     }
   };
 
@@ -422,6 +494,14 @@ let fullMenuBook = () => {
 
 
 
+let showPackages = () => {
+  document.querySelector('.navigation__packages').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('history').style.display = 'none';
+    document.getElementById('overview-rooms').style.display = 'none';
+    document.getElementById('packages').style.display = 'flex';
+  });
+};
 let showForm = () => {
 
   openReg();

@@ -39,6 +39,10 @@
     }
   }
 
+  &__search {
+    margin-bottom: rem(30px);
+  }
+
   &__variants {
     display: flex;
     flex-direction: column;

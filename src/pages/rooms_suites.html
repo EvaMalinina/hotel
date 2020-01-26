@@ -1,11 +1,11 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="../../build/css/main.css">
-  <title>Rooms&Suites Overview</title>
+  <title>Rooms&Suites</title>
 </head>
 <body>
   <div class="wrapper">
@@ -40,14 +40,14 @@
                 </a>
               </li>
               <li class="contact__item">
-                <a href="#" class="contact__link">
+                <a href="mailto:reservations-audrey-palace@gmail.com" class="contact__link">
                   <div class="contact__icon">
                     <div class="contact__icon-mail"></div>
                   </div>
                 </a>
               </li>
               <li class="contact__item">
-                <a href="#" class="contact__link">
+                <a href="/src/pages/contact.html" class="contact__link">
                   <div class="contact__icon">
                     <div class="contact__icon-map"></div>
                   </div>
@@ -57,12 +57,12 @@
           </div>
         </div>
       </header>
-    
+
       <div class="hero__menu">
         <nav class="menu">
           <ul class="menu__list">
             <li class="menu__item">
-              <a href="./rooms&suites.html" class="menu__link">rooms&suits</a>
+              <a href="./rooms_suites.html" class="menu__link">rooms&suits</a>
             </li>
             <li class="menu__item">
               <a href="./restaurant.html" class="menu__link">restaurant&bar</a>
@@ -76,19 +76,19 @@
           </ul>
         </nav>
       </div>
-    
+
       <div class="hero__book">
         <form class="form">
           <div class="form__row">
             <label for="start-trip">arrival</label>
             <input type="date" id="start-trip" name="start-date" max="2021-01-30">
           </div>
-    
+
           <div class="form__row">
             <label for="end-trip">departure</label>
             <input type="date" id="end-trip" name="end-date" max="2021-01-31">
           </div>
-    
+
           <div class="form__row">
             <label for="adults-quantity">adults</label>
             <input type="number" id="adults-quantity" name="adults-number" min="1" max="4" value="2">
@@ -96,64 +96,110 @@
             <label for="kids-quantity">kids</label>
             <input type="number" id="kids-quantity" name="kids-number" min="0" max="2" value="0">
           </div>
-    
+
           <div class="form__row">
-            <input class="form__btn" id="send" type="submit" value="check availability">
+            <a class="form__btn availability" href="/src/pages/room_select.html" id="availability">check availability</a>
           </div>
         </form>
       </div>
       
-      <section class="hero__welcome welcome welcome_overview">
+      <section class="hero__welcome welcome">
+        <video autoplay loop muted class="welcome__video">
+          <source src="/src/video/rooms.mp4" type="video/mp4">
+        </video>
         <div class="welcome__content">
           <div class="welcome__logo logo">
             <a href="../../index.html" class="welcome__logo-icon"></a>
           </div>
           <h3 class="welcome__title title">Audrey's Palace</h3>
           <p class="welcome__small-title small-title">St.Maria England</p>
-          <h2 class="welcome__text">Rooms&suites overview</h2>
+          <h2 class="welcome__text">rooms & suites</h2>
+          <p class="welcome__small-text">since 1989</p>
         </div>
         <div class="welcome__btn">
-          <a href="#overview" class="welcome__btn-arrow"></a>
+          <a href="#history" class="welcome__btn-arrow"></a>
         </div>
       </section>
     </div>
-    
+
+    <div class="navigation-wrap">
+      <ul class="navigation">
+            <li class="navigation__item rooms-suites">
+              <a href="#" class="navigation__link">rooms&suited overview</a>
+            </li>
+            <li class="navigation__item navigation__packages">
+              <a href="#" class="navigation__link">packages</a>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">gtc</a>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">information</a>
+            </li>
+      </ul>
+    </div>
+
     <main>
-      <section class="overview" id="overview">
+      <section class="history" id="history">
         <div class="container container_column">
-          <div class="overview__navigation">
-            <ul class="navigation">
-              <li class="navigation__item rooms-suites">
-                <a href="#" class="navigation__link">rooms&suited overview</a>
-              </li>
-              <li class="navigation__item">
-                <a href="#" class="navigation__link">packages</a>
-              </li>
-              <li class="navigation__item">
-                <a href="#" class="navigation__link">gtc</a>
-              </li>
-              <li class="navigation__item">
-                <a href="#" class="navigation__link">information</a>
-              </li>
-            </ul>
-          </div>
-      
-          <div class="overview__rooms">
-            <div class="overview__filter">
-              <h5 class="overview__filter-title">Filter rooms & suites</h5>
-              <select id="type" class="overview-select" name="overview-select">
-                <option value="all" selected>all suites&rooms</option> 
-                <option value="room">rooms</option>
-                <option value="suite">suites</option>
-              </select>
+           <div class="history__info">
+             <div class="history__info-text">
+               <h4 class="history__small-title small-title">#Audreysliving</h4>
+               <h2 class="history__title">sleep with a legend</h2>
+               <p>Upon your next visit at our Grand Hotel in St. Moritz you will find your reading glasses exactly at the spot where you usually put them. It is all about details. And at night, you'll find a hot-water bottle under your sheets saying »If nobody keeps you warm tonight, let it be me.« What a cosy feeling.If you picture your favourite hotel suites, the bed is usually the star of the room, placed smack bang in the middle. A sturdy frame and supportive mattress are key, while a plush bedhead adds an extra dose of luxury.</p>
             </div>
-            <div class="overview__variants">
-              <h3 class="overview__variants-title">Rooms&suites</h3>
-              
-              <ul class="overview__examples"></ul>
-              <ul class="pagination"></ul>
+            <div class="history__pic-wrap">
+              <div class="history__pic history__bedroom"></div>
+            </div>
+           </div>
+          
+           <div class="history__celebrity">
+            <div class="history__info-text">
+              <h4 class="history__small-title small-title">#Audreyscelebrity</h4>
+              <h2 class="history__title">Dial B for Audrey's Palace - DJ Solomun</h2>
+              <p>The brilliant DJ Solomun was a loyal guest of Audrey’s Palace Hotel and is said to have had some of his most wonderful brainwaves while holidaying in St. Maria!</p> 
+            </div>
+            <div class="history__photo-wrap">
+              <div class="history__photo history__guest"></div>
             </div>
           </div>
+        </div>
+      </section>
+      <section class="overview__rooms" id="overview-rooms">
+        <div class="overview__filter">
+          <h5 class="overview__filter-title">Filter rooms & suites</h5>
+          <select id="type" class="overview-select" name="overview-select">
+            <option value="all" selected>all suites&rooms</option> 
+            <option value="room">rooms</option>
+            <option value="suite">suites</option>
+          </select>
+        </div>
+        <div class="overview__search">
+          <form class="search">
+            <input type="text" class="search__inpt" id="search-this" placeholder="Search" autofocus> 
+            <button type="button" class="search__cancel">&#10008;</button>
+            <button type="submit" class="search__go">&#128269;</button>
+          </form>
+        </div>
+        <div class="overview__variants">
+          <h3 class="overview__variants-title">Rooms&suites</h3>
+          
+          <ul class="overview__examples"></ul>
+          <ul class="pagination"></ul>
+        </div>
+      </section>
+      <section class="packages" id="packages">
+        <div class="container container_column container_center ">
+          <h3 class="packages__title">Our packages</h3>
+          <div class="packages__search">
+            <form class="search">
+              <input type="text" class="search__inpt" id="search-this" placeholder="Search" autofocus> 
+              <button type="button" class="search__cancel">&#10008;</button>
+              <button type="submit" class="search__go">&#128269;</button>
+            </form>
+          </div>
+          <ul class="packages__list"></ul>
+          <ul class="pagination"></ul>
         </div>
       </section>
     </main>
@@ -168,7 +214,7 @@
         <div class="footer__awards">
           <ul class="awards">
             <li class="awards__item">
-              <a href="#" class="awards__link">
+              <a href="https://luxuryhotelawards.com/winners/" class="awards__link">
                 <div class="awards__icon-box">
                   <div class="awards__icon awards__icon-one"></div>
                 </div>
@@ -176,7 +222,7 @@
               </a>
             </li>
             <li class="awards__item">
-              <a href="#" class="awards__link">
+              <a href="https://hoteloftheyearawards.com/awards-categories/" class="awards__link">
                 <div class="awards__icon-box">
                   <div class="awards__icon awards__icon-two"></div>
                 </div>
@@ -184,7 +230,7 @@
               </a>
             </li>
             <li class="awards__item">
-              <a href="#" class="awards__link">
+              <a href="https://hoteloftheyearawards.com" class="awards__link">
                 <div class="awards__icon-box">
                   <div class="awards__icon awards__icon-three"></div>
                 </div>
@@ -192,7 +238,7 @@
               </a>
             </li>
             <li class="awards__item">
-              <a href="#" class="awards__link">
+              <a href="https://hospitalityawards.international" class="awards__link">
                 <div class="awards__icon-box">
                   <div class="awards__icon awards__icon-four"></div>
                 </div>
@@ -207,4 +253,4 @@
 
   <script src="../../build/scripts/main.js"></script>
 </body>
-</html> -->
+</html>

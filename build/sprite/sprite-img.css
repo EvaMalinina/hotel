@@ -1,3 +1,21 @@
+.icon-bedroom {
+  background-image: url(sprite-img.jpg);
+  background-position: 0 -9294px;
+  width: 640px;
+  height: 975px
+}
+.icon-celebrate1 {
+  background-image: url(sprite-img.jpg);
+  background-position: 0 -7358px;
+  width: 640px;
+  height: 960px
+}
+.icon-celebrate2 {
+  background-image: url(sprite-img.jpg);
+  background-position: 0 -3503px;
+  width: 640px;
+  height: 958px
+}
 .icon-dj {
   background-image: url(sprite-img.jpg);
   background-position: 0 0;
@@ -6,19 +24,49 @@
 }
 .icon-events-cocktail-party {
   background-image: url(sprite-img.jpg);
-  background-position: 0 -1302px;
-  width: 800px;
-  height: 1198px
+  background-position: 0 -2591px;
+  width: 640px;
+  height: 907px
 }
-.icon-history-hotel {
+.icon-hotelmain {
   background-image: url(sprite-img.jpg);
-  background-position: 0 -446px;
-  width: 800px;
-  height: 836px
+  background-position: 0 -905px;
+  width: 640px;
+  height: 823px
 }
-.icon-rooms {
+.icon-package1 {
   background-image: url(sprite-img.jpg);
-  background-position: 0 -2520px;
-  width: 1920px;
-  height: 1279px
+  background-position: 0 -5429px;
+  width: 640px;
+  height: 959px
+}
+.icon-package2 {
+  background-image: url(sprite-img.jpg);
+  background-position: 0 -8323px;
+  width: 640px;
+  height: 966px
+}
+.icon-package3 {
+  background-image: url(sprite-img.jpg);
+  background-position: 0 -6393px;
+  width: 640px;
+  height: 960px
+}
+.icon-package4 {
+  background-image: url(sprite-img.jpg);
+  background-position: 0 -4466px;
+  width: 640px;
+  height: 958px
+}
+.icon-restaurant {
+  background-image: url(sprite-img.jpg);
+  background-position: 0 -1733px;
+  width: 640px;
+  height: 853px
+}
+.icon-teaceremony {
+  background-image: url(sprite-img.jpg);
+  background-position: 0 -431px;
+  width: 640px;
+  height: 469px
 }

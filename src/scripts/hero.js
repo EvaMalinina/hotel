@@ -2,6 +2,9 @@ window.addEventListener('load', () => {
   
   if ( document.querySelector('.hero') ) {
     fullMenuBook();
+    showPackages();
+    loadPackages();
+    generateAllPackages();
 
     if (document.querySelector('.rooms-suites')) {
       document.querySelector('.rooms-suites').addEventListener('click', (e) => {
@@ -13,6 +16,7 @@ window.addEventListener('load', () => {
         zoomIn();
         selectFilter();
         paginateFiltArr();
+        
       });
     }
   }

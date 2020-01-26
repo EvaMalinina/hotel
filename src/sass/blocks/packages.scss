@@ -1,0 +1,59 @@
+.packages {
+  display: none;
+  text-align: center;
+
+  &__title {
+    font-size: rem(20px);
+    text-transform: uppercase;
+    font-family: 'El Messiri', sans-serif;
+    margin-bottom: rem(30px);
+  }
+
+  &__search {
+    margin-bottom: rem(20px);
+    display: flex;
+    align-self: center;
+    border-bottom: 1px solid $darkblue;
+  }
+
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-right: 5%;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__pic-wrap {
+    width: rem(300px);
+    height: rem(400px);
+    min-width: 100%;
+    margin-bottom: rem(20px);
+  }
+
+  &__pic {
+    background-image: url('/build/sprite/sprite-img.jpg');
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    background-position: 0 -20%;
+  }
+
+  &__desc {
+    letter-spacing: 1.5px;
+    font-size: rem(14px);
+  }
+
+  &__price {
+    color: $gray;
+    font-family: 'El Messiri', sans-serif;
+  }
+}
