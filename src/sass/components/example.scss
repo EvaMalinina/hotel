@@ -28,7 +28,6 @@
   }
 
   &__pic {
-    background-image: url('../../../build/sprite/premier-suite/sprite-premier-suite.jpg');
     background-size: cover;
     height: 100%;
     width: 100%;
@@ -66,8 +65,15 @@
   &__title {
     color: $darkblue;
     font-size: rem(20px);
-    margin-bottom: rem(20px);
+    margin-bottom: rem(5px);
     text-transform: capitalize;
+    font-family: 'El Messiri',sans-serif;
+  }
+
+  &__price {
+    margin-bottom: rem(15px);
+    color: $darkblue;
+    letter-spacing: rem(2px);
     font-family: 'El Messiri',sans-serif;
   }
 
@@ -77,7 +83,7 @@
     justify-content: center;
   }
 
-  &__link {
+  &__status {
     color: $darkblue;
     text-decoration: underline;
     cursor: pointer;
@@ -96,7 +102,7 @@
   align-items: center;
 
   &__item {
-    border-right: 1px solid $gray;
+    border-right: rem(1px) solid $gray;
     display: flex;
     flex-direction: column;
     color: $gray;

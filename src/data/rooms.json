@@ -1,6 +1,6 @@
 [
   {
-    "pic": " ",
+    "pic": "url(../../build/sprite/junior-room/sprite-junior-room.jpg)",
     "name": "Junior room",
     "features": {
       "msq": "35-40",
@@ -10,13 +10,12 @@
       "bedroom": "1",
       "bedroomDesc": "bedroom"
     },
-    "link": "book now",
+    "status": "book now",
     "type": "room",
-    "reserve": "no",
-    "price": "40$"
+    "price": "45"
   },
   {
-    "pic": " ",
+    "pic": "url(../../build/sprite/standart-room/sprite-standart-room.jpg)",
     "name": "Deluxe room",
     "features": {
       "msq": "45-55",
@@ -26,13 +25,12 @@
       "bedroom": "1",
       "bedroomDesc": "bedroom"
     },
-    "link": "book now",
+    "status": "book now",
     "type": "room",
-    "reserve": "no",
-    "price": "50$"
+    "price": "57"
   },
   {
-    "pic": " ",
+    "pic": "url(../../build/sprite/specious-room/sprite-specious-room.jpg)",
     "name": "Specious room",
     "features": {
       "msq": "55-75",
@@ -42,13 +40,12 @@
       "bedroom": "2",
       "bedroomDesc": "bedroom"
     },
-    "link": "book now",
+    "status": "book now",
     "type": "room",
-    "reserve": "no",
-    "price": "40$"
+    "price": "74"
   },
   {
-    "pic": " ",
+    "pic": "url(../../build/sprite/junior-suite/sprite-junior-suite.jpg)",
     "name": "Junior suite",
     "features": {
       "msq": "45-55",
@@ -58,13 +55,12 @@
       "bedroom": "1",
       "bedroomDesc": "bedroom"
     },
-    "link": "book now",
+    "status": "book now",
     "type": "suite",
-    "reserve": "no",
-    "price": "60$"
+    "price": "65"
   },
   {
-    "pic": " ",
+    "pic": "url(../../build/sprite/premier-suite/sprite-premier-suite.jpg)",
     "name": "Premier suite",
     "features": {
       "msq": "65-85",
@@ -74,13 +70,12 @@
       "bedroom": "1",
       "bedroomDesc": "bedroom"
     },
-    "link": "book now",
+    "status": "book now",
     "type": "suite",
-    "reserve": "no",
-    "price": "70$"
+    "price": "78"
   },
   {
-    "pic": " ",
+    "pic": "url(../../build/sprite/president-suite/sprite-president-suite.jpg)",
     "name": "President suite",
     "features": {
       "msq": "100-125",
@@ -90,9 +85,8 @@
       "bedroom": "2",
       "bedroomDesc": "bedroom"
     },
-    "link": "book now",
+    "status": "book now",
     "type": "suite",
-    "reserve": "no",
-    "price": "100$"
+    "price": "105"
   }
 ]

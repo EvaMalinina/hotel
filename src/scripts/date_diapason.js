@@ -1,4 +1,4 @@
-//determine timezone
+//determine day possible start and end
 Date.prototype.toDateInputValue = (function() {
   const local = new Date(this);
   local.setMinutes(this.getMinutes() - this.getTimezoneOffset());

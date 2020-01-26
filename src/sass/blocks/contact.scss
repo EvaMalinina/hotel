@@ -1,6 +1,6 @@
 .contactus {
-  padding-top: 55px;
-  padding-bottom: 50px;
+  padding-top: rem(55px);
+  padding-bottom: rem(50px);
 
   &__title {
     align-self: center;
@@ -23,7 +23,7 @@
   }
 
   label, input, button {
-    min-width: 450px;
+    min-width: rem(450px);
   }
 
   .form {
@@ -40,7 +40,7 @@
     }
 
     label input {
-      border: 1px solid $darkblue;
+      border: rem(1px) solid $darkblue;
       background-color: $transp;
     }
 
@@ -48,14 +48,14 @@
       background-color: $transp;
       width: 100%;
       margin-bottom: rem(20px);
-      border: 1px solid $darkblue;
+      border: rem(1px) solid $darkblue;
       resize: none;
       outline: none;
     }
   
     &__btn {
       padding: rem(20px);
-      border: 1px solid $darkblue;
+      border: rem(1px) solid $darkblue;
 
       &:hover {
         background-color: $darkblue;

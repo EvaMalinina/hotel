@@ -13,7 +13,7 @@
     margin-bottom: rem(20px);
     display: flex;
     align-self: center;
-    border-bottom: 1px solid $darkblue;
+    border-bottom: rem(1px) solid $darkblue;
   }
 
   &__list {
@@ -26,6 +26,27 @@
     align-items: center;
     text-align: center;
     margin-right: 5%;
+
+    &:nth-child(2) {
+
+      .packages__pic {
+        background-position: 0 58%;
+      } 
+    }
+
+    &:nth-child(3) {
+
+      .packages__pic {
+        background-position: 0 48%;
+      } 
+    }
+
+    &:nth-child(4) {
+
+      .packages__pic {
+        background-position: 0 68%;
+      } 
+    }
 
     &:last-child {
       margin-right: 0;
@@ -40,7 +61,7 @@
   }
 
   &__pic {
-    background-image: url('/build/sprite/sprite-img.jpg');
+    background-image: url('../../../build/sprite/sprite-img.jpg');
     background-size: cover;
     height: 100%;
     width: 100%;
@@ -48,8 +69,9 @@
   }
 
   &__desc {
-    letter-spacing: 1.5px;
+    letter-spacing: rem(1.5px);
     font-size: rem(14px);
+    margin-bottom: rem(10px);
   }
 
   &__price {

@@ -1,5 +1,5 @@
 // create list item
-let createFlat = (flat, li) => { 
+let createRoom = (room, li) => { 
 
   let example = document.createElement('div');
       wrapperPic = document.createElement('div');
@@ -23,7 +23,8 @@ let createFlat = (flat, li) => {
       featuresItemBed = document.createElement('li');
       featuresNumBed = document.createElement('p');
       featuresBedDesc = document.createElement('p');
-  
+
+      examplePrice = document.createElement('p');
       exampleLink = document.createElement('a');
   
   example.className = 'example';
@@ -35,12 +36,12 @@ let createFlat = (flat, li) => {
   btnLeft.className = 'example__left';
   btnRight.className = 'example__right';
   wrapperPic.append( pic, btnLeft, btnRight );
-  pic.innerHTML = flat.pic;
+  pic.style.backgroundImage = room.pic;
   btnLeft.innerHTML = '<';
   btnRight.innerHTML = '>';
   
   title.className = 'example__title';
-  title.innerHTML= flat.name;
+  title.innerHTML= room.name;
   
   exampleFeatures.className = 'example__features';
   exampleFeatures.appendChild( features );
@@ -60,22 +61,25 @@ let createFlat = (flat, li) => {
   featuresGuest.className = 'features__number'; 
   featuresNumBed.className = 'features__number';
 
-  featuresNumber.innerHTML= flat.features.msq;
-  featuresGuest.innerHTML= flat.features.guestNumber;
-  featuresNumBed.innerHTML = flat.features.bedroom;
+  featuresNumber.innerHTML= room.features.msq;
+  featuresGuest.innerHTML= room.features.guestNumber;
+  featuresNumBed.innerHTML = room.features.bedroom;
 
   featuresText.className = 'features__text'; 
   featuresGuestDesc.className = 'features__text'; 
   featuresBedDesc.className = 'features__text';
 
-  featuresText.innerHTML = flat.features.msqDesc;
-  featuresGuestDesc.innerHTML = flat.features.guestNumberDesc;
-  featuresBedDesc.innerHTML = flat.features.bedroomDesc;
+  featuresText.innerHTML = room.features.msqDesc;
+  featuresGuestDesc.innerHTML = room.features.guestNumberDesc;
+  featuresBedDesc.innerHTML = room.features.bedroomDesc;
   
-  exampleLink.className = 'example__link';
-  exampleLink.innerHTML = flat.link;
+  examplePrice.className = 'example__price';
+  examplePrice.innerHTML = room.price + '$';
+
+  exampleLink.className = 'example__status';
+  exampleLink.innerHTML = room.status;
   
-  example.append(wrapperPic, title, exampleFeatures, exampleLink);
+  example.append(wrapperPic, title, examplePrice, exampleFeatures, exampleLink);
 };
 
 let createPackage = (pac, li) => { 
@@ -101,5 +105,5 @@ let createPackage = (pac, li) => {
   desc.innerHTML= pac.desc;
   
   price.className = 'packages__price';
-  price.innerHTML = pac.price;
+  price.innerHTML = pac.price + "$";
 };

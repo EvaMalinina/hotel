@@ -39,16 +39,16 @@ let paginateFiltArr = () => {
 
       let start = (pageNum - 1) * notesOnPage;
       let end = start + notesOnPage;
-      let flats = filteredArr.slice(start, end);
+      let rooms = filteredArr.slice(start, end);
 
-      let flatList = document.querySelector('.overview__examples');
-      flatList.innerHTML = '';
-      for (let flat of flats) {
+      let roomList = document.querySelector('.overview__examples');
+      roomList.innerHTML = '';
+      for (let room of rooms) {
         let li = document.createElement('li');
         li.className = 'overview__example';
-        flatList.appendChild(li);
+        roomList.appendChild(li);
 
-        createFlat(flat, li);
+        createRoom(room, li);
         
       }
       slide();
@@ -114,16 +114,16 @@ let paginate = () => {
 
       let start = (pageNum - 1) * notesOnPage;
       let end = start + notesOnPage;
-      let flats = deserialData.slice(start, end);
+      let rooms = deserialData.slice(start, end);
 
-      let flatList = document.querySelector('.overview__examples');
-      flatList.innerHTML = '';
-      for (let flat of flats) {
+      let roomList = document.querySelector('.overview__examples');
+      roomList.innerHTML = '';
+      for (let room of rooms) {
         let li = document.createElement('li');
         li.className = 'overview__example';
-        flatList.appendChild(li);
+        roomList.appendChild(li);
 
-        createFlat(flat, li);
+        createRoom(room, li);
         
       }
       slide();

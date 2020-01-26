@@ -3,7 +3,7 @@
   &__navigation {
     display: flex;
     margin: 0 auto;
-    border-bottom: 1px solid $gray;
+    border-bottom: rem(1px) solid $gray;
     padding-bottom: rem(30px);
     margin-bottom: rem(30px);
   }
@@ -35,12 +35,12 @@
       font-size: rem(20px);
       color: $darkblue;
       text-transform: capitalize;
-      border: 1px solid $darkblue;
+      border: rem(1px) solid $darkblue;
     }
   }
 
   &__search {
-    margin-bottom: rem(30px);
+    margin-bottom: rem(60px);
   }
 
   &__variants {
@@ -49,11 +49,6 @@
     text-align: center;
     margin-bottom: rem(20px);
     align-items: center;
-  }
-
-  &__variants-title {
-    text-transform: capitalize;
-    margin-bottom: rem(25px);
   }
 
   &__examples {

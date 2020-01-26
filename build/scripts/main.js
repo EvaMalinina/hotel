@@ -1,22 +1,3 @@
-//determine timezone
-Date.prototype.toDateInputValue = (function() {
-  const local = new Date(this);
-  local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-  return local.toJSON().slice(0,10);
-});
-
-let startDate = document.getElementById('start-trip');
-let checkIn = startDate.value = new Date().toDateInputValue();
-startDate.setAttribute("min", checkIn);
-
-
-let nextDay = new Date();
-nextDay.setDate(nextDay.getDate() + 1);
-
-let endDay = document.getElementById('end-trip');
-let checkOut = endDay.value = nextDay.toJSON().slice(0,10);
-endDay.setAttribute("min", checkOut);
-
 //cancel booking
 let cancelBooking = () => {
 
@@ -32,6 +13,33 @@ let cancelBooking = () => {
     document.querySelector('.booking__rooms').innerHTML = `<p>You have no reservation.</p>`;
   })
 };
+// hide main sections
+let showOverview = () => {
+  document.getElementById('history').style.display = "none";
+  document.getElementById('overview-rooms').style.display = "flex";
+  document.getElementById('packages').style.display = 'none';
+  document.getElementById('info').style.display = 'none';
+};
+
+let showPackages = () => {
+  document.querySelector('.navigation__packages').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('history').style.display = 'none';
+    document.getElementById('overview-rooms').style.display = 'none';
+    document.getElementById('packages').style.display = 'flex';
+    document.getElementById('info').style.display = 'none';
+  });
+};
+
+let showInfo = () => {
+  document.querySelector('.navigation__info').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('history').style.display = 'none';
+    document.getElementById('overview-rooms').style.display = 'none';
+    document.getElementById('packages').style.display = 'none';
+    document.getElementById('info').style.display = 'flex';
+  });
+};
 //confirm booking
 let confirmBooking = () => {
 
@@ -41,10 +49,39 @@ let confirmBooking = () => {
     document.querySelector('.booking').style.display = 'none';
     document.querySelector('.checkout').style.display = 'flex';
     document.querySelector('.confirmation').style.display = 'none';
+
+    linkCheckoutBg();
   })
 };
+
+let linkSelectBg = () => {
+  let link = document.querySelector('.link-select');
+  link.style.backgroundColor = 'darkgray';
+};
+
+let linkCheckoutBg = () => {
+  let link = document.querySelector('.link-checkout');
+  link.style.backgroundColor = 'darkgray';
+};
+
+//go to last confirm page
+let toLastConfirm = () => {
+  document.querySelector('.form__last-confirm').addEventListener('click', (e) => {
+    e.preventDefault();
+
+    document.querySelector('.checkout').style.display = 'none';
+    document.querySelector('.confirmation').style.display = 'flex';
+
+    linkConfirmBg();
+  })
+}
+
+let linkConfirmBg = () => {
+  let link = document.querySelector('.link-confirm');
+  link.style.backgroundColor = 'darkgray';
+};
 // create list item
-let createFlat = (flat, li) => { 
+let createRoom = (room, li) => { 
 
   let example = document.createElement('div');
       wrapperPic = document.createElement('div');
@@ -68,7 +105,8 @@ let createFlat = (flat, li) => {
       featuresItemBed = document.createElement('li');
       featuresNumBed = document.createElement('p');
       featuresBedDesc = document.createElement('p');
-  
+
+      examplePrice = document.createElement('p');
       exampleLink = document.createElement('a');
   
   example.className = 'example';
@@ -80,12 +118,12 @@ let createFlat = (flat, li) => {
   btnLeft.className = 'example__left';
   btnRight.className = 'example__right';
   wrapperPic.append( pic, btnLeft, btnRight );
-  pic.innerHTML = flat.pic;
+  pic.style.backgroundImage = room.pic;
   btnLeft.innerHTML = '<';
   btnRight.innerHTML = '>';
   
   title.className = 'example__title';
-  title.innerHTML= flat.name;
+  title.innerHTML= room.name;
   
   exampleFeatures.className = 'example__features';
   exampleFeatures.appendChild( features );
@@ -105,22 +143,25 @@ let createFlat = (flat, li) => {
   featuresGuest.className = 'features__number'; 
   featuresNumBed.className = 'features__number';
 
-  featuresNumber.innerHTML= flat.features.msq;
-  featuresGuest.innerHTML= flat.features.guestNumber;
-  featuresNumBed.innerHTML = flat.features.bedroom;
+  featuresNumber.innerHTML= room.features.msq;
+  featuresGuest.innerHTML= room.features.guestNumber;
+  featuresNumBed.innerHTML = room.features.bedroom;
 
   featuresText.className = 'features__text'; 
   featuresGuestDesc.className = 'features__text'; 
   featuresBedDesc.className = 'features__text';
 
-  featuresText.innerHTML = flat.features.msqDesc;
-  featuresGuestDesc.innerHTML = flat.features.guestNumberDesc;
-  featuresBedDesc.innerHTML = flat.features.bedroomDesc;
+  featuresText.innerHTML = room.features.msqDesc;
+  featuresGuestDesc.innerHTML = room.features.guestNumberDesc;
+  featuresBedDesc.innerHTML = room.features.bedroomDesc;
   
-  exampleLink.className = 'example__link';
-  exampleLink.innerHTML = flat.link;
+  examplePrice.className = 'example__price';
+  examplePrice.innerHTML = room.price + '$';
+
+  exampleLink.className = 'example__status';
+  exampleLink.innerHTML = room.status;
   
-  example.append(wrapperPic, title, exampleFeatures, exampleLink);
+  example.append(wrapperPic, title, examplePrice, exampleFeatures, exampleLink);
 };
 
 let createPackage = (pac, li) => { 
@@ -146,22 +187,22 @@ let createPackage = (pac, li) => {
   desc.innerHTML= pac.desc;
   
   price.className = 'packages__price';
-  price.innerHTML = pac.price;
+  price.innerHTML = pac.price + "$";
 };
 // generate all list items from json
 let generateAll = () => {
 
   let deserialData = JSON.parse(localStorage.getItem('locData'));
   // wrapper for generated list
-  let flatList = document.querySelector('.overview__examples');
+  let roomList = document.querySelector('.overview__examples');
    
-  for (let flat of deserialData) {
+  for (let room of deserialData) {
     
     let li = document.createElement('li');
     li.className = 'overview__example';
-    flatList.appendChild(li);
+    roomList.appendChild(li);
 
-    createFlat(flat, li);
+    createRoom(room, li);
   }
 };
 
@@ -180,6 +221,25 @@ let generateAllPackages = () => {
     createPackage( pac, li ); 
   }
 };
+
+//determine day possible start and end
+Date.prototype.toDateInputValue = (function() {
+  const local = new Date(this);
+  local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+  return local.toJSON().slice(0,10);
+});
+
+let startDate = document.getElementById('start-trip');
+let checkIn = startDate.value = new Date().toDateInputValue();
+startDate.setAttribute("min", checkIn);
+
+
+let nextDay = new Date();
+nextDay.setDate(nextDay.getDate() + 1);
+
+let endDay = document.getElementById('end-trip');
+let checkOut = endDay.value = nextDay.toJSON().slice(0,10);
+endDay.setAttribute("min", checkOut);
 
 // Object filter
 let customeFilter = {
@@ -222,16 +282,16 @@ let paginateFiltArr = () => {
 
       let start = (pageNum - 1) * notesOnPage;
       let end = start + notesOnPage;
-      let flats = filteredArr.slice(start, end);
+      let rooms = filteredArr.slice(start, end);
 
-      let flatList = document.querySelector('.overview__examples');
-      flatList.innerHTML = '';
-      for (let flat of flats) {
+      let roomList = document.querySelector('.overview__examples');
+      roomList.innerHTML = '';
+      for (let room of rooms) {
         let li = document.createElement('li');
         li.className = 'overview__example';
-        flatList.appendChild(li);
+        roomList.appendChild(li);
 
-        createFlat(flat, li);
+        createRoom(room, li);
         
       }
       slide();
@@ -297,16 +357,16 @@ let paginate = () => {
 
       let start = (pageNum - 1) * notesOnPage;
       let end = start + notesOnPage;
-      let flats = deserialData.slice(start, end);
+      let rooms = deserialData.slice(start, end);
 
-      let flatList = document.querySelector('.overview__examples');
-      flatList.innerHTML = '';
-      for (let flat of flats) {
+      let roomList = document.querySelector('.overview__examples');
+      roomList.innerHTML = '';
+      for (let room of rooms) {
         let li = document.createElement('li');
         li.className = 'overview__example';
-        flatList.appendChild(li);
+        roomList.appendChild(li);
 
-        createFlat(flat, li);
+        createRoom(room, li);
         
       }
       slide();
@@ -345,11 +405,12 @@ window.addEventListener('load', () => {
     showPackages();
     loadPackages();
     generateAllPackages();
+    showInfo();
 
     if (document.querySelector('.rooms-suites')) {
       document.querySelector('.rooms-suites').addEventListener('click', (e) => {
         e.preventDefault();
-        hideMain();
+        showOverview();
         loadData();
         generateAll();
         slide();
@@ -374,7 +435,7 @@ window.addEventListener('load', () => {
 let loadData = () => {
   // send request to get json file
   const request = new XMLHttpRequest();
-  request.open('GET', '/src/data/flats.json', true);
+  request.open('GET', '../data/rooms.json', true);
 
   request.onload = function() {
     
@@ -386,7 +447,7 @@ let loadData = () => {
 
     } else {
       // we reached our target server, but it returned an error
-      console.log('There is a problem in flats.json file');
+      console.log('There is a problem in rooms.json file');
     }
   };
 
@@ -400,7 +461,7 @@ let loadData = () => {
 let loadPackages = () => {
   // send request to get json file
   const request = new XMLHttpRequest();
-  request.open('GET', '/src/data/packages.json', true);
+  request.open('GET', '../data/packages.json', true);
 
   request.onload = function() {
     
@@ -441,11 +502,6 @@ let logOutUser = () => {
   });
 };
 
-// hide main sections
-let hideMain = () => {
-  document.getElementById('history').style.display = "none";
-  document.getElementById('overview-rooms').style.display = "flex";
-};
 let fullMenuBook = () => {
   const hero = document.querySelector('.hero');
 
@@ -494,14 +550,6 @@ let fullMenuBook = () => {
 
 
 
-let showPackages = () => {
-  document.querySelector('.navigation__packages').addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('history').style.display = 'none';
-    document.getElementById('overview-rooms').style.display = 'none';
-    document.getElementById('packages').style.display = 'flex';
-  });
-};
 let showForm = () => {
 
   openReg();
@@ -575,6 +623,7 @@ let login = () => {
       const user = regUsers.find(user => user.regLog === logObj.logLog && user.regPas === logObj.logPas);
       
       if (user) {
+        linkSelectBg();
         hideLogForm();
         startSession();
         logOutUser();
@@ -637,10 +686,10 @@ let showAdminPanel = () => {
 
 let reserveRoom = () => {
 
-  document.querySelector('.example__link').addEventListener('click', (e) => {
+  document.querySelector('.example__status').addEventListener('click', (e) => {
     e.preventDefault();
   
-    let links = document.querySelectorAll('.example__link');
+    let links = document.querySelectorAll('.example__status');
 
     const arrReserved = [];
     for (i = 0; i < links.length; i++) {
@@ -650,7 +699,7 @@ let reserveRoom = () => {
         let example = this.parentNode;
         
         let name = example.querySelector('.example__title').innerHTML;
-        let status = example.querySelector('.example__link').innerHTML;
+        let status = example.querySelector('.example__status').innerHTML;
         const itemReserved = { name, status };
        
         arrReserved.push(itemReserved);
@@ -840,12 +889,4 @@ let getCookie = (name) => {
   let value = "; " + document.cookie;
   let parts = value.split("; " + name + "=");
   if (parts.length == 2) return parts.pop().split(";").shift();
-}
-let toLastConfirm = () => {
-  document.querySelector('.form__last-confirm').addEventListener('click', (e) => {
-    e.preventDefault();
-
-    document.querySelector('.checkout').style.display = 'none';
-    document.querySelector('.confirmation').style.display = 'flex';
-  })
 }

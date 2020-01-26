@@ -1,0 +1,48 @@
+.info {
+  display: none;
+  margin-bottom: rem(40px);
+
+  &__time {
+    margin-bottom: rem(50px);
+  }
+
+  &__list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: $darkblue;
+  }
+
+  &__icon {
+    font-size: rem(90px);
+    margin-bottom: rem(30px);
+  }
+
+  &__text {
+    letter-spacing: rem(1.5px);
+  }
+
+  &__desc {
+    text-align: center;
+    letter-spacing: rem(1.5px);
+    color: $darkblue;
+  }
+
+  &__desc h3 {
+    font-size: rem(20px);
+    margin-bottom: rem(30px);
+  }
+
+  &__desc p {
+    font-size: rem(16px);
+    letter-spacing: rem(0px);
+    text-align: left;
+    margin-bottom: rem(20px);
+  }
+}

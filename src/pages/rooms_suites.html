@@ -47,7 +47,7 @@
                 </a>
               </li>
               <li class="contact__item">
-                <a href="/src/pages/contact.html" class="contact__link">
+                <a href="./contact.html" class="contact__link">
                   <div class="contact__icon">
                     <div class="contact__icon-map"></div>
                   </div>
@@ -98,14 +98,14 @@
           </div>
 
           <div class="form__row">
-            <a class="form__btn availability" href="/src/pages/room_select.html" id="availability">check availability</a>
+            <a class="form__btn availability" href="./room_select.html" id="availability">check availability</a>
           </div>
         </form>
       </div>
       
       <section class="hero__welcome welcome">
         <video autoplay loop muted class="welcome__video">
-          <source src="/src/video/rooms.mp4" type="video/mp4">
+          <source src="../video/rooms.mp4" type="video/mp4">
         </video>
         <div class="welcome__content">
           <div class="welcome__logo logo">
@@ -130,10 +130,7 @@
             <li class="navigation__item navigation__packages">
               <a href="#" class="navigation__link">packages</a>
             </li>
-            <li class="navigation__item">
-              <a href="#" class="navigation__link">gtc</a>
-            </li>
-            <li class="navigation__item">
+            <li class="navigation__item navigation__info">
               <a href="#" class="navigation__link">information</a>
             </li>
       </ul>
@@ -148,6 +145,7 @@
                <h2 class="history__title">sleep with a legend</h2>
                <p>Upon your next visit at our Grand Hotel in St. Moritz you will find your reading glasses exactly at the spot where you usually put them. It is all about details. And at night, you'll find a hot-water bottle under your sheets saying »If nobody keeps you warm tonight, let it be me.« What a cosy feeling.If you picture your favourite hotel suites, the bed is usually the star of the room, placed smack bang in the middle. A sturdy frame and supportive mattress are key, while a plush bedhead adds an extra dose of luxury.</p>
             </div>
+            
             <div class="history__pic-wrap">
               <div class="history__pic history__bedroom"></div>
             </div>
@@ -165,6 +163,7 @@
           </div>
         </div>
       </section>
+
       <section class="overview__rooms" id="overview-rooms">
         <div class="overview__filter">
           <h5 class="overview__filter-title">Filter rooms & suites</h5>
@@ -174,32 +173,58 @@
             <option value="suite">suites</option>
           </select>
         </div>
+
         <div class="overview__search">
           <form class="search">
-            <input type="text" class="search__inpt" id="search-this" placeholder="Search" autofocus> 
+            <input type="text" class="search__inpt" id="search-room" placeholder="Search" autofocus> 
             <button type="button" class="search__cancel">&#10008;</button>
             <button type="submit" class="search__go">&#128269;</button>
           </form>
         </div>
+
         <div class="overview__variants">
-          <h3 class="overview__variants-title">Rooms&suites</h3>
-          
           <ul class="overview__examples"></ul>
           <ul class="pagination"></ul>
         </div>
       </section>
+
       <section class="packages" id="packages">
         <div class="container container_column container_center ">
           <h3 class="packages__title">Our packages</h3>
+
           <div class="packages__search">
             <form class="search">
-              <input type="text" class="search__inpt" id="search-this" placeholder="Search" autofocus> 
+              <input type="text" class="search__inpt" id="search-pack" placeholder="Search" autofocus> 
               <button type="button" class="search__cancel">&#10008;</button>
               <button type="submit" class="search__go">&#128269;</button>
             </form>
           </div>
+
           <ul class="packages__list"></ul>
           <ul class="pagination"></ul>
+        </div>
+      </section>
+
+      <section class="info" id="info">
+        <div class="container container_column">
+          <div class="info__time">
+            <ul class="info__list">
+              <li class="info__item">
+                <p class="info__icon">&#9745;</p>
+                <p class="info__text">Check-in time <time>after 12:00</time></p>
+              </li>
+              <li class="info__item">
+                <p class="info__icon">&#9746;<p/>
+                <p class="info__text">Check-out time <time>before 11:00</time></p>
+              </li>
+            </ul>
+          </div>
+          <div class="info__desc">
+            <h3 class="title">Terms and Conditions for Individual Reservations at Audrey’s Palace Hotel</h3>
+            <p>Rates are per room, per night, vary by arrival date and/or length of stay and are subject to change. Early departure fees may apply. All offers are subject to availability at the time of reservation. Offers are not valid in conjunction with any other offer or contract and do not apply to groups.</p> 
+            <p>Set of more than 4 rooms are considered as group or block reservations and different terms and conditions apply. Group or block bookings have to be made directly with the Hotel. Combination bookings that attempt to circumvent this rule may result in the cancellation of the bookings. You shall make only legitimate reservations in good faith for use only by you and/or your invited guests and/or others on whose behalf you are authorized to act, and not for other purposes, including without limitation, reselling, impermissibly assigning or posting on third party websites, or making speculative and false reservations.</p>  
+            <p>To contest the cancellation of a booking, please contact our Reservations Department. For more details regarding cancellation policies, payment terms and conditions, please see General Terms & Conditions below.</p>
+          </div>
         </div>
       </section>
     </main>

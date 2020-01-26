@@ -1,6 +1,6 @@
 .menu {
 
-  border-bottom: 3px solid $darkblue;
+  border-bottom: rem(3px) solid $darkblue;
 
   &__list {
     display: flex;

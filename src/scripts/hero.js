@@ -5,11 +5,12 @@ window.addEventListener('load', () => {
     showPackages();
     loadPackages();
     generateAllPackages();
+    showInfo();
 
     if (document.querySelector('.rooms-suites')) {
       document.querySelector('.rooms-suites').addEventListener('click', (e) => {
         e.preventDefault();
-        hideMain();
+        showOverview();
         loadData();
         generateAll();
         slide();

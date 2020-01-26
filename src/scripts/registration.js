@@ -71,6 +71,7 @@ let login = () => {
       const user = regUsers.find(user => user.regLog === logObj.logLog && user.regPas === logObj.logPas);
       
       if (user) {
+        linkSelectBg();
         hideLogForm();
         startSession();
         logOutUser();

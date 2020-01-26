@@ -1,7 +1,7 @@
 let loadData = () => {
   // send request to get json file
   const request = new XMLHttpRequest();
-  request.open('GET', '/src/data/flats.json', true);
+  request.open('GET', '../data/rooms.json', true);
 
   request.onload = function() {
     
@@ -13,7 +13,7 @@ let loadData = () => {
 
     } else {
       // we reached our target server, but it returned an error
-      console.log('There is a problem in flats.json file');
+      console.log('There is a problem in rooms.json file');
     }
   };
 
@@ -27,7 +27,7 @@ let loadData = () => {
 let loadPackages = () => {
   // send request to get json file
   const request = new XMLHttpRequest();
-  request.open('GET', '/src/data/packages.json', true);
+  request.open('GET', '../data/packages.json', true);
 
   request.onload = function() {
     

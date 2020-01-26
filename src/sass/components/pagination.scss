@@ -5,12 +5,12 @@
   li {
     margin-right: rem(5px);
     padding: rem(10px);
-    border: 1px solid $gray;
+    border: rem(1px) solid $gray;
   }
 
   li:hover, li.active {
     cursor: pointer;
     color: $darkblue;
-    border: 1px solid $darkblue;
+    border: rem(1px) solid $darkblue;
   }
 }

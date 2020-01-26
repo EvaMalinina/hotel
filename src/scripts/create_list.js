@@ -3,15 +3,15 @@ let generateAll = () => {
 
   let deserialData = JSON.parse(localStorage.getItem('locData'));
   // wrapper for generated list
-  let flatList = document.querySelector('.overview__examples');
+  let roomList = document.querySelector('.overview__examples');
    
-  for (let flat of deserialData) {
+  for (let room of deserialData) {
     
     let li = document.createElement('li');
     li.className = 'overview__example';
-    flatList.appendChild(li);
+    roomList.appendChild(li);
 
-    createFlat(flat, li);
+    createRoom(room, li);
   }
 };
 

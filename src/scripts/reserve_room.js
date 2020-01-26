@@ -1,9 +1,9 @@
 let reserveRoom = () => {
 
-  document.querySelector('.example__link').addEventListener('click', (e) => {
+  document.querySelector('.example__status').addEventListener('click', (e) => {
     e.preventDefault();
   
-    let links = document.querySelectorAll('.example__link');
+    let links = document.querySelectorAll('.example__status');
 
     const arrReserved = [];
     for (i = 0; i < links.length; i++) {
@@ -13,7 +13,7 @@ let reserveRoom = () => {
         let example = this.parentNode;
         
         let name = example.querySelector('.example__title').innerHTML;
-        let status = example.querySelector('.example__link').innerHTML;
+        let status = example.querySelector('.example__status').innerHTML;
         const itemReserved = { name, status };
        
         arrReserved.push(itemReserved);
