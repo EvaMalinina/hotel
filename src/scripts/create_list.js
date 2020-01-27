@@ -4,7 +4,7 @@ let generateAll = () => {
   let deserialData = JSON.parse(localStorage.getItem('locData'));
   // wrapper for generated list
   let roomList = document.querySelector('.overview__examples');
-   
+  
   for (let room of deserialData) {
     
     let li = document.createElement('li');
