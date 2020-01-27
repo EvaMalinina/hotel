@@ -29,6 +29,7 @@ window.addEventListener('load', () => {
     zoomIn();
     paginate();
     showForm();
+    datepplFilter();
   }
 
 });

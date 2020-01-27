@@ -22,7 +22,7 @@ let openReg = () => {
 
 let register = () => {
   let regBtn = document.getElementById('reg-btn');
-  let regUsersArr = [{ 'regLog': 'admin' }, { 'regPas': '12345' }];
+  let regUsersArr = [{ 'regLog': 'admin', 'regPas': '12345' }];
 
   regBtn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -32,9 +32,15 @@ let register = () => {
 
     regUsersArr.push(regObj);
     const regUsersData = JSON.stringify(regUsersArr);
-    localStorage.setItem("registeredUsers", regUsersData);
 
-    hideRegForm();
+    Promise.all([
+      hideRegForm(),
+      localStorage.setItem("registeredUsers", regUsersData),
+    
+    ]).then(
+      result => alert("Thank you for reservation! Now login please."),
+      error => alert("Sorry you can not be registered. Please contact us by mail."),
+    );
   })
 };
 
@@ -99,6 +105,7 @@ let hideRegForm = () => {
 
   regBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    console.log(regForm);
     regForm.style.display = 'none';
   });
 };

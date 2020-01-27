@@ -241,6 +241,61 @@ let endDay = document.getElementById('end-trip');
 let checkOut = endDay.value = nextDay.toJSON().slice(0,10);
 endDay.setAttribute("min", checkOut);
 
+let datepplFilter = () => {
+  document.getElementById('availability').addEventListener('click', (e) => {
+    e.preventDefault();
+
+    // get all values choosed in form by user
+    let startDate = document.getElementById('start-trip').value;
+    let endDate = document.getElementById('end-trip').value;
+
+    let adultsQuantity = document.getElementById('adults-quantity').value;
+    adultsQuantity = parseInt(adultsQuantity);
+    let kidsQuantity = document.getElementById('kids-quantity').value;
+    kidsQuantity = parseInt(kidsQuantity);
+
+   
+    if(isNaN(adultsQuantity) || isNaN(kidsQuantity)) {
+      alert( 'Adults and kids quantity have to be a numeric value.' );
+    }
+
+    startDate = new Date(startDate);
+    endDate = new Date(endDate);
+
+    let reservationList = JSON.parse(localStorage.getItem('arrResData'));
+    let deserialData = JSON.parse(localStorage.getItem('locData'));
+
+    for(let room in deserialData) {
+
+      let currentItem = deserialData[room];
+      let allGuests = adultsQuantity + kidsQuantity;
+
+      // sort out items with less ppl quantity
+      if(currentItem.maxGuests < allGuests ) {
+        continue
+      };
+
+      for ( let reservedRoom in reservationList ) {
+        let currentRoom = reservationList[reservedRoom];
+
+        if( currentRoom.maxGuests === allGuests ) {
+
+          if ( 
+            (currentRoom.startDate >= startDate && currentRoom.startDate <= endDate)
+            ||
+            (currentRoom.endDate >= startDate && currentRoom.endDate <= endDate)
+                   
+          ) {
+            continue
+          } else {
+            ///
+          }
+        }
+      }
+      console.log('start build html');
+    }
+  })
+};
 // Object filter
 let customeFilter = {
   "type": "all",
@@ -429,6 +484,7 @@ window.addEventListener('load', () => {
     zoomIn();
     paginate();
     showForm();
+    datepplFilter();
   }
 
 });
@@ -574,7 +630,7 @@ let openReg = () => {
 
 let register = () => {
   let regBtn = document.getElementById('reg-btn');
-  let regUsersArr = [{ 'regLog': 'admin' }, { 'regPas': '12345' }];
+  let regUsersArr = [{ 'regLog': 'admin', 'regPas': '12345' }];
 
   regBtn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -584,9 +640,15 @@ let register = () => {
 
     regUsersArr.push(regObj);
     const regUsersData = JSON.stringify(regUsersArr);
-    localStorage.setItem("registeredUsers", regUsersData);
 
-    hideRegForm();
+    Promise.all([
+      hideRegForm(),
+      localStorage.setItem("registeredUsers", regUsersData),
+    
+    ]).then(
+      result => alert("Thank you for reservation! Now login please."),
+      error => alert("Sorry you can not be registered. Please contact us by mail."),
+    );
   })
 };
 
@@ -651,6 +713,7 @@ let hideRegForm = () => {
 
   regBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    console.log(regForm);
     regForm.style.display = 'none';
   });
 };
