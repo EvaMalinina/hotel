@@ -1,27 +1,33 @@
 window.addEventListener('load', () => {
-  let deserialData = JSON.parse(localStorage.getItem('locData'));
 
   if ( document.querySelector('.hero') ) {
     fullMenuBook();
+   
     showPackages();
-    loadPackages();
-    generateAllPackages();
+    loadData('../data/packages.json', 'locPackages');
+    let deserialData = JSON.parse(localStorage.getItem('locPackages'));
+    generateAllPackages(deserialData);
     sortItems();
     showInfo();
 
-    if (document.querySelector('.rooms-suites')) {
+    if ( document.querySelector('.rooms-suites') ) {
       document.querySelector('.rooms-suites').addEventListener('click', (e) => {
+
         e.preventDefault();
         showOverview();
-        loadData();
-        generateAll(deserialData);
-        slide();
-        zoomIn();
-        selectFilter();
-        paginateFiltArr();
-        
+        loadData('../data/rooms.json', 'locData');
+
+        let deserialData = JSON.parse(localStorage.getItem('locData'));
+        if (deserialData) {
+          generateAll(deserialData);
+          slide();
+          zoomIn();
+          selectFilter();
+          paginate(filterRooms());
+          search();
+        }
       });
-    }
+    } 
   }
   else if ( document.getElementById('availability') ) {
 
@@ -29,7 +35,7 @@ window.addEventListener('load', () => {
     generateAll(deserialData);
     slide();
     zoomIn();
-    paginate();
+    paginate(deserialData);
     showForm();
     datepplFilter();
   }

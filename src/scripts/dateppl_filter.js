@@ -21,7 +21,7 @@ let datepplFilter = () => {
 
     let reservationList = JSON.parse(localStorage.getItem('arrResData'));
     let deserialData = JSON.parse(localStorage.getItem('locData'));
-    let finallyArray = [];
+    let finalArray = [];
 
     for ( let room in deserialData ) {
 
@@ -57,9 +57,10 @@ let datepplFilter = () => {
       }
       console.log('isR', isReserve);
       if(!isReserve){
-        finallyArray.push(currentItem);
+        finalArray.push(currentItem);
       } 
     }
-    generateAll(finallyArray);
+    generateAll(finalArray);
+    paginate(finalArray);
   })
 };

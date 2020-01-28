@@ -4,37 +4,24 @@ let customeSort = {
   "pac-rice": "mostexpansive"
 };
 
-// filtration by rooms
+// sort by price
 let sortItems = () => {
 
   document.getElementById('pac-price').addEventListener('change', () => {
 
     let list = JSON.parse(localStorage.getItem('locPackages'));
-    const pricesList = list.map( item => item.price);
-    console.log(pricesList);
 
     const sortType = document.getElementById('pac-price').value;
 
     if ( sortType == 'cheapest') {
-      console.log('yes');
-      let flag = true;
-    
-      while(flag){
-
-        flag = false;
-        for ( let i = 0; i < pricesList.length - 1; i++ ) {
-
-          if ( pricesList[i] > pricesList[ i + 1 ] ) {
-            let tmp = pricesList[i];
-            pricesList[i] = pricesList[ i + 1 ];
-            pricesList[ i + 1 ] = tmp;
-            flag = true;
-          }
-        }
-      }
-      console.log(pricesList);
-    } else {
-      ///
+     
+      list.sort(function(a, b) { return a.price - b.price }); 
+      
+      generateAllPackages(list);
+    } else if ( sortType == 'mostexpansive') {
+      list.sort(function(a, b) { return b.price - a.price }); 
+      
+      generateAllPackages(list);
     }
   });
   

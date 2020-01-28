@@ -13,13 +13,13 @@ let generateAll = (arr) => {
   }
 };
 
-let generateAllPackages = () => {
+let generateAllPackages = (arr) => {
 
-  let deserialData = JSON.parse(localStorage.getItem('locPackages'));
+  // let deserialData = JSON.parse(localStorage.getItem('locPackages'));
   // wrapper for generated list
   let pacList = document.querySelector('.packages__list');
    
-  for (let pac of deserialData) {
+  for (let pac of arr) {
     
     let li = document.createElement('li');
     li.className = 'packages__item';

@@ -208,13 +208,13 @@ let generateAll = (arr) => {
   }
 };
 
-let generateAllPackages = () => {
+let generateAllPackages = (arr) => {
 
-  let deserialData = JSON.parse(localStorage.getItem('locPackages'));
+  // let deserialData = JSON.parse(localStorage.getItem('locPackages'));
   // wrapper for generated list
   let pacList = document.querySelector('.packages__list');
    
-  for (let pac of deserialData) {
+  for (let pac of arr) {
     
     let li = document.createElement('li');
     li.className = 'packages__item';
@@ -266,7 +266,7 @@ let datepplFilter = () => {
 
     let reservationList = JSON.parse(localStorage.getItem('arrResData'));
     let deserialData = JSON.parse(localStorage.getItem('locData'));
-    let finallyArray = [];
+    let finalArray = [];
 
     for ( let room in deserialData ) {
 
@@ -302,10 +302,11 @@ let datepplFilter = () => {
       }
       console.log('isR', isReserve);
       if(!isReserve){
-        finallyArray.push(currentItem);
+        finalArray.push(currentItem);
       } 
     }
-    generateAll(finallyArray);
+    generateAll(finalArray);
+    paginate(finalArray);
   })
 };
 // Object filter
@@ -323,70 +324,6 @@ let filterRooms = () => {
   return result;
 };
 
-let paginateFiltArr = () => {
-  //pagination 
-  let pagination = document.querySelector('.pagination');
-  pagination.innerHTML = '';
-
-  let filteredArr = filterRooms();
-  
-  let notesOnPage = 2;
-  let countOfItems = Math.ceil(filteredArr.length / notesOnPage);
-
-  // generate paginated page
-  let showPage = (function() {
-  let active;
-  
-    return function(item) {
-      if( active ) {
-        active.classList.remove('active');
-      }
-      active = item;
-      
-      item.classList.add('active');
-
-      let pageNum = +item.innerHTML;
-
-      let start = (pageNum - 1) * notesOnPage;
-      let end = start + notesOnPage;
-      let rooms = filteredArr.slice(start, end);
-
-      let roomList = document.querySelector('.overview__examples');
-      roomList.innerHTML = '';
-      for (let room of rooms) {
-        let li = document.createElement('li');
-        li.className = 'overview__example';
-        roomList.appendChild(li);
-
-        createRoom(room, li);
-        
-      }
-      slide();
-      zoomIn();
-    };
-  }()); 
-
-  // pagination links
-  let items = [];
-  for (let i = 1; i <= countOfItems; i++) {
-    let paginationLink = document.createElement('li');
-    paginationLink.innerHTML = i;
-    pagination.appendChild(paginationLink);
-    items.push(paginationLink);
-  }
-  
-  // first generated page
-  showPage(items[0]);
-
-  // change generated page on clink on pagination link
-  for (let item of items) {
-    item.addEventListener('click', function() {
-      showPage(this);
-    })
-  };
-  
-};
-
 // filter on select change event
 let selectFilter = () => {
   let select = document.getElementById('type');
@@ -394,19 +331,17 @@ let selectFilter = () => {
     
     customeFilter.type = select.value;
     filterRooms();
-    paginateFiltArr();
+    paginate(filterRooms());
   })
 };
 
-let paginate = () => {
+let paginate = (arr) => {
   //pagination 
   let pagination = document.querySelector('.pagination');
   pagination.innerHTML = '';
-
-  let deserialData = JSON.parse(localStorage.getItem('locData'));
   
   let notesOnPage = 2;
-  let countOfItems = Math.ceil(deserialData.length / notesOnPage);
+  let countOfItems = Math.ceil(arr.length / notesOnPage);
 
   // generate paginated page
   let showPage = (function() {
@@ -424,7 +359,7 @@ let paginate = () => {
 
       let start = (pageNum - 1) * notesOnPage;
       let end = start + notesOnPage;
-      let rooms = deserialData.slice(start, end);
+      let rooms = arr.slice(start, end);
 
       let roomList = document.querySelector('.overview__examples');
       roomList.innerHTML = '';
@@ -466,29 +401,35 @@ let paginate = () => {
 
 
 window.addEventListener('load', () => {
-  let deserialData = JSON.parse(localStorage.getItem('locData'));
 
   if ( document.querySelector('.hero') ) {
     fullMenuBook();
+   
     showPackages();
-    loadPackages();
-    generateAllPackages();
+    loadData('../data/packages.json', 'locPackages');
+    let deserialData = JSON.parse(localStorage.getItem('locPackages'));
+    generateAllPackages(deserialData);
     sortItems();
     showInfo();
 
-    if (document.querySelector('.rooms-suites')) {
+    if ( document.querySelector('.rooms-suites') ) {
       document.querySelector('.rooms-suites').addEventListener('click', (e) => {
+
         e.preventDefault();
         showOverview();
-        loadData();
-        generateAll(deserialData);
-        slide();
-        zoomIn();
-        selectFilter();
-        paginateFiltArr();
-        
+        loadData('../data/rooms.json', 'locData');
+
+        let deserialData = JSON.parse(localStorage.getItem('locData'));
+        if (deserialData) {
+          generateAll(deserialData);
+          slide();
+          zoomIn();
+          selectFilter();
+          paginate(filterRooms());
+          search();
+        }
       });
-    }
+    } 
   }
   else if ( document.getElementById('availability') ) {
 
@@ -496,28 +437,28 @@ window.addEventListener('load', () => {
     generateAll(deserialData);
     slide();
     zoomIn();
-    paginate();
+    paginate(deserialData);
     showForm();
     datepplFilter();
   }
 
 });
-let loadData = () => {
+let loadData = (url, locStorName) => {
   // send request to get json file
   const request = new XMLHttpRequest();
-  request.open('GET', '../data/rooms.json', true);
+  request.open('GET', url, true);
 
   request.onload = function() {
     
     if (request.status >= 200 && request.status < 400) {
       // success 
       const data = JSON.parse(request.responseText);
-      const serialData = JSON.stringify(data);
-      localStorage.setItem("locData", serialData);
-
+      serialData = JSON.stringify(data);
+      localStorage.setItem(`${locStorName}`, serialData);
+      
     } else {
       // we reached our target server, but it returned an error
-      console.log('There is a problem in rooms.json file');
+      console.log('There is a problem in ' + url + '');
     }
   };
 
@@ -528,31 +469,7 @@ let loadData = () => {
   request.send();
 };
 
-let loadPackages = () => {
-  // send request to get json file
-  const request = new XMLHttpRequest();
-  request.open('GET', '../data/packages.json', true);
 
-  request.onload = function() {
-    
-    if (request.status >= 200 && request.status < 400) {
-      // success 
-      const data = JSON.parse(request.responseText);
-      const serialData = JSON.stringify(data);
-      localStorage.setItem("locPackages", serialData);
-
-    } else {
-      // we reached our target server, but it returned an error
-      console.log('There is a problem in package.json file');
-    }
-  };
-
-  request.onerror = function() {
-    // there was a connection error of some sort
-    console.log('connection error');
-  };
-  request.send();
-};
 let logOutUser = () => {
   let logOut = document.getElementById('login-link');
 
@@ -846,62 +763,42 @@ let reserveRoom = () => {
   })
 }
 
-// let search = () => {
- 
-//   let inpt = document.getElementById('search-this');
-//   let main = document.querySelector('.main').innerHTML;
-
-//   let cancel = document.querySelector( '.search__cancel' );
-//   let doSearch = document.querySelector( '.search__go' );
-
-//   cancel.addEventListener('click', (e) => {
-//     e.preventDefault();
-//     inpt.value = '';
-//     document.querySelector('.main').innerHTML = main;
-//     window.location = '';
-//   });
-
-//   doSearch.addEventListener('click', (e) => {
-//     e.preventDefault();
-
-//     // convert input value to RegExp
-//     searchOnPage = '/'+inpt.value+'/g';
-//     content = document.querySelector('main').innerHTML;
-
-//     // cut all tags name and braces
-//     result = content.match(/>(.*?)</gi); 
-
-//     // save arr what was found on the page
-//     result_arr = [];
+let search = () => {
+  let searchArr = [];
+  let inpt = document.getElementById('search-room').oninput = function() {
    
-//     if ( inpt.value.length <= 2 ) {
-//       alert('You need to write more then 2 characters to search!');
-//       document.querySelector('.main').innerHTML = main;
-//       window.location = '';
+    let val = this.value.trim().toLowerCase();
+  
+    let deserialData = JSON.parse(localStorage.getItem('locData'));
+  
+    let cancel = document.querySelector( '.search__cancel' );
+    let doSearch = document.querySelector( '.search__go' );
 
-//     } else if ( inpt.value.length >= 3) {
+    cancel.addEventListener('click', (e) => {
+      e.preventDefault();
+      this.value = '';
+      searchArr = [];
+      generateAll(deserialData);
+      paginate(deserialData);
+    });
 
-//       //highlight text what was found
-//       for(let i = 0; i < result.length; i++ ) {
-//         result_arr[i] = result[i].replace(
-//           eval(searchOnPage), 
-//           '<span style="background-color:yellow;">'+inpt.value+'</span>'
-//         )
-//       }; 
+    doSearch.addEventListener('click', (e) => {
+      e.preventDefault();
+     
+      if ( val != '' ) {
+        deserialData.forEach( function(elem) {
+          
+          if (elem.name.toLowerCase().search(val) != -1) {
+            searchArr.push(elem);
+          }
+        }) 
+      }
+      generateAll(searchArr);
+      paginate(searchArr);
+    })
+  }
+};
 
-//       // change found text with previous from old arr
-//       for(let i = 0; i < result.length; i++ ) {
-//         content = content.replace(result[i],result_arr[i]);  
-//       }
-
-//       // change html code
-//       document.querySelector('main').innerHTML = content; 
-//       window.location = '#' + inpt.value;
-//     }
-//   });
-// };
-
-// search();
 
 // generate reservation of user
 let showBooking = () => {
@@ -1001,37 +898,24 @@ let customeSort = {
   "pac-rice": "mostexpansive"
 };
 
-// filtration by rooms
+// sort by price
 let sortItems = () => {
 
   document.getElementById('pac-price').addEventListener('change', () => {
 
     let list = JSON.parse(localStorage.getItem('locPackages'));
-    const pricesList = list.map( item => item.price);
-    console.log(pricesList);
 
     const sortType = document.getElementById('pac-price').value;
 
     if ( sortType == 'cheapest') {
-      console.log('yes');
-      let flag = true;
-    
-      while(flag){
-
-        flag = false;
-        for ( let i = 0; i < pricesList.length - 1; i++ ) {
-
-          if ( pricesList[i] > pricesList[ i + 1 ] ) {
-            let tmp = pricesList[i];
-            pricesList[i] = pricesList[ i + 1 ];
-            pricesList[ i + 1 ] = tmp;
-            flag = true;
-          }
-        }
-      }
-      console.log(pricesList);
-    } else {
-      ///
+     
+      list.sort(function(a, b) { return a.price - b.price }); 
+      
+      generateAllPackages(list);
+    } else if ( sortType == 'mostexpansive') {
+      list.sort(function(a, b) { return b.price - a.price }); 
+      
+      generateAllPackages(list);
     }
   });
   

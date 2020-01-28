@@ -13,70 +13,6 @@ let filterRooms = () => {
   return result;
 };
 
-let paginateFiltArr = () => {
-  //pagination 
-  let pagination = document.querySelector('.pagination');
-  pagination.innerHTML = '';
-
-  let filteredArr = filterRooms();
-  
-  let notesOnPage = 2;
-  let countOfItems = Math.ceil(filteredArr.length / notesOnPage);
-
-  // generate paginated page
-  let showPage = (function() {
-  let active;
-  
-    return function(item) {
-      if( active ) {
-        active.classList.remove('active');
-      }
-      active = item;
-      
-      item.classList.add('active');
-
-      let pageNum = +item.innerHTML;
-
-      let start = (pageNum - 1) * notesOnPage;
-      let end = start + notesOnPage;
-      let rooms = filteredArr.slice(start, end);
-
-      let roomList = document.querySelector('.overview__examples');
-      roomList.innerHTML = '';
-      for (let room of rooms) {
-        let li = document.createElement('li');
-        li.className = 'overview__example';
-        roomList.appendChild(li);
-
-        createRoom(room, li);
-        
-      }
-      slide();
-      zoomIn();
-    };
-  }()); 
-
-  // pagination links
-  let items = [];
-  for (let i = 1; i <= countOfItems; i++) {
-    let paginationLink = document.createElement('li');
-    paginationLink.innerHTML = i;
-    pagination.appendChild(paginationLink);
-    items.push(paginationLink);
-  }
-  
-  // first generated page
-  showPage(items[0]);
-
-  // change generated page on clink on pagination link
-  for (let item of items) {
-    item.addEventListener('click', function() {
-      showPage(this);
-    })
-  };
-  
-};
-
 // filter on select change event
 let selectFilter = () => {
   let select = document.getElementById('type');
@@ -84,19 +20,17 @@ let selectFilter = () => {
     
     customeFilter.type = select.value;
     filterRooms();
-    paginateFiltArr();
+    paginate(filterRooms());
   })
 };
 
-let paginate = () => {
+let paginate = (arr) => {
   //pagination 
   let pagination = document.querySelector('.pagination');
   pagination.innerHTML = '';
-
-  let deserialData = JSON.parse(localStorage.getItem('locData'));
   
   let notesOnPage = 2;
-  let countOfItems = Math.ceil(deserialData.length / notesOnPage);
+  let countOfItems = Math.ceil(arr.length / notesOnPage);
 
   // generate paginated page
   let showPage = (function() {
@@ -114,7 +48,7 @@ let paginate = () => {
 
       let start = (pageNum - 1) * notesOnPage;
       let end = start + notesOnPage;
-      let rooms = deserialData.slice(start, end);
+      let rooms = arr.slice(start, end);
 
       let roomList = document.querySelector('.overview__examples');
       roomList.innerHTML = '';
