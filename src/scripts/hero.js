@@ -1,10 +1,12 @@
 window.addEventListener('load', () => {
-  
+  let deserialData = JSON.parse(localStorage.getItem('locData'));
+
   if ( document.querySelector('.hero') ) {
     fullMenuBook();
     showPackages();
     loadPackages();
     generateAllPackages();
+    sortItems();
     showInfo();
 
     if (document.querySelector('.rooms-suites')) {
@@ -12,7 +14,7 @@ window.addEventListener('load', () => {
         e.preventDefault();
         showOverview();
         loadData();
-        generateAll();
+        generateAll(deserialData);
         slide();
         zoomIn();
         selectFilter();
@@ -24,7 +26,7 @@ window.addEventListener('load', () => {
   else if ( document.getElementById('availability') ) {
 
     loadData();
-    generateAll();
+    generateAll(deserialData);
     slide();
     zoomIn();
     paginate();

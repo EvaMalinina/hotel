@@ -13,6 +13,17 @@ let logOutUser = () => {
     document.cookie = 'cookie'+ userCoockie + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
     logForm.style.display = 'none';
     let oldList = document.querySelector('.booking__customer');
-    oldList.parentNode.removeChild(oldList);
+    if ( oldList ) {
+      oldList.parentNode.removeChild(oldList);
+    }
+    
+    if(typeof localStorage['currentUser'] !== 'undefined'){
+      delete localStorage['currentUser'];
+    }
+    openReg();
+    register();
+    openLogin();
+    login();
+    setAdmin();
   });
 };

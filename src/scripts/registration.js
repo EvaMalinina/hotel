@@ -1,10 +1,46 @@
+
+
 let showForm = () => {
 
-  openReg();
-  register();
-  openLogin();
-  login();
-  setAdmin();
+  let isRegister = false;
+  if (typeof localStorage['currentUser'] !== 'undefined') {
+    let currentUser = JSON.parse(localStorage['currentUser']);
+    const regUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+  
+      if (regUsers) {
+        const user = regUsers.find(user => user.regLog === currentUser.login && user.regPas === currentUser.password);
+        
+        if (user) {
+          linkSelectBg();
+          hideLogForm();
+          startSession();
+
+          // showBooking();
+          // cancelBooking();
+          // confirmBooking();
+          toLastConfirm();
+
+          reserveRoom();
+          logOutUser();
+         
+          if (getCookie('cookieadmin')) {
+            showAdminPanel();
+          }
+          isRegister = true;
+        } else {
+          alert('There is no such user. Maybe you did a mistake in login or password.');
+        }
+      } else {
+        alert('There is no such registered user.')
+      }
+  }
+  if(!isRegister){
+    openReg();
+    register();
+    openLogin();
+    login();
+    setAdmin();
+  }
 }
 
 const regForm = document.getElementById('registration');
@@ -77,9 +113,14 @@ let login = () => {
       const user = regUsers.find(user => user.regLog === logObj.logLog && user.regPas === logObj.logPas);
       
       if (user) {
+        localStorage.setItem('currentUser', JSON.stringify({login: logLog, password: logPas}));
         linkSelectBg();
         hideLogForm();
         startSession();
+
+        cancelBooking();
+        confirmBooking();
+        toLastConfirm();
         logOutUser();
        
         if (getCookie('cookieadmin')) {
@@ -97,17 +138,12 @@ let login = () => {
 let hideLogForm = () => {
   logForm.style.display = 'none';
   let logOut = document.getElementById('login-link');
+  logOut.className = 'nav-book__link logedin';
   logOut.innerHTML = 'Log out';
 };
 
 let hideRegForm = () => {
-  let regBtn = document.getElementById('reg-btn');
-
-  regBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    console.log(regForm);
-    regForm.style.display = 'none';
-  });
+  regForm.style.display = 'none';
 };
 
 let showAdminPanel = () => {
@@ -130,11 +166,5 @@ let showAdminPanel = () => {
   }
 }
 
-// let alertLogin = () => {
-//   let reserveBtn = document.querySelector('.example__link');
-//   reserveBtn.addEventListener('click', () => {
-//     alert('Please log in or register if you are still not with us. Thanks :)');
-//   });
-// }
 
 

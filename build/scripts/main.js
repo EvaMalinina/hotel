@@ -1,17 +1,20 @@
 //cancel booking
 let cancelBooking = () => {
 
-  document.querySelector('.booking__cancel').addEventListener('click', (e) => {
-    e.preventDefault();
+  let cancelBtn = document.querySelector('.booking__cancel');
+  if ( cancelBtn ) {
+    cancelBtn.addEventListener('click', (e) => {
+      e.preventDefault();
 
-    //clean localStorage
-    JSON.parse(localStorage.getItem('arrResData'));
-    itemsCanceled = [];
-    localStorage.setItem("arrResData", itemsCanceled);
+      //clean localStorage
+      JSON.parse(localStorage.getItem('arrResData'));
+      itemsCanceled = [];
+      localStorage.setItem("arrResData", itemsCanceled);
 
-    //clean FE
-    document.querySelector('.booking__rooms').innerHTML = `<p>You have no reservation.</p>`;
-  })
+      //clean FE
+      document.querySelector('.booking__rooms').innerHTML = `<p>You have no reservation.</p>`;
+    })
+  } 
 };
 // hide main sections
 let showOverview = () => {
@@ -160,6 +163,7 @@ let createRoom = (room, li) => {
 
   exampleLink.className = 'example__status';
   exampleLink.innerHTML = room.status;
+  exampleLink.setAttribute('itemId', room.id);
   
   example.append(wrapperPic, title, examplePrice, exampleFeatures, exampleLink);
 };
@@ -190,15 +194,13 @@ let createPackage = (pac, li) => {
   price.innerHTML = pac.price + "$";
 };
 // generate all list items from json
-let generateAll = () => {
-
-  let deserialData = JSON.parse(localStorage.getItem('locData'));
+let generateAll = (arr) => {
   // wrapper for generated list
   let roomList = document.querySelector('.overview__examples');
-  
-  for (let room of deserialData) {
+  roomList.innerHTML = '';
+  for (let room of arr) {
     
-    let li = document.createElement('li');
+    const li = document.createElement('li');
     li.className = 'overview__example';
     roomList.appendChild(li);
 
@@ -250,11 +252,11 @@ let datepplFilter = () => {
     let endDate = document.getElementById('end-trip').value;
 
     let adultsQuantity = document.getElementById('adults-quantity').value;
-    adultsQuantity = parseInt(adultsQuantity);
     let kidsQuantity = document.getElementById('kids-quantity').value;
+    adultsQuantity = parseInt(adultsQuantity);
     kidsQuantity = parseInt(kidsQuantity);
 
-   
+   // only numeric values for quantity inputs
     if(isNaN(adultsQuantity) || isNaN(kidsQuantity)) {
       alert( 'Adults and kids quantity have to be a numeric value.' );
     }
@@ -264,36 +266,46 @@ let datepplFilter = () => {
 
     let reservationList = JSON.parse(localStorage.getItem('arrResData'));
     let deserialData = JSON.parse(localStorage.getItem('locData'));
+    let finallyArray = [];
 
-    for(let room in deserialData) {
+    for ( let room in deserialData ) {
 
       let currentItem = deserialData[room];
       let allGuests = adultsQuantity + kidsQuantity;
-
+     
       // sort out items with less ppl quantity
-      if(currentItem.maxGuests < allGuests ) {
+      if(currentItem.features.guestNumber < allGuests ) {
         continue
       };
-
+      let isReserve = false;
       for ( let reservedRoom in reservationList ) {
+      
         let currentRoom = reservationList[reservedRoom];
-
-        if( currentRoom.maxGuests === allGuests ) {
-
+      
+        if( currentRoom.features.guestNumber <= allGuests ) {
+    
           if ( 
-            (currentRoom.startDate >= startDate && currentRoom.startDate <= endDate)
+            // if already reserved room start day after and before choosed start day by user
+            (new Date(currentRoom.startDate) >= startDate && new Date(currentRoom.startDate) <= endDate)
             ||
-            (currentRoom.endDate >= startDate && currentRoom.endDate <= endDate)
-                   
+            // if already reserved room end day after and before choosed end day by user
+            (new Date(currentRoom.endDate) >= startDate && new Date(currentRoom.endDate) <= endDate)
           ) {
-            continue
-          } else {
-            ///
+            if(currentRoom.id === currentItem.id){
+              isReserve = true;
+              continue;
+            }
           }
+        }else{
+          isReserve = true;
         }
       }
-      console.log('start build html');
+      console.log('isR', isReserve);
+      if(!isReserve){
+        finallyArray.push(currentItem);
+      } 
     }
+    generateAll(finallyArray);
   })
 };
 // Object filter
@@ -454,12 +466,14 @@ let paginate = () => {
 
 
 window.addEventListener('load', () => {
-  
+  let deserialData = JSON.parse(localStorage.getItem('locData'));
+
   if ( document.querySelector('.hero') ) {
     fullMenuBook();
     showPackages();
     loadPackages();
     generateAllPackages();
+    sortItems();
     showInfo();
 
     if (document.querySelector('.rooms-suites')) {
@@ -467,7 +481,7 @@ window.addEventListener('load', () => {
         e.preventDefault();
         showOverview();
         loadData();
-        generateAll();
+        generateAll(deserialData);
         slide();
         zoomIn();
         selectFilter();
@@ -479,7 +493,7 @@ window.addEventListener('load', () => {
   else if ( document.getElementById('availability') ) {
 
     loadData();
-    generateAll();
+    generateAll(deserialData);
     slide();
     zoomIn();
     paginate();
@@ -554,7 +568,18 @@ let logOutUser = () => {
     document.cookie = 'cookie'+ userCoockie + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
     logForm.style.display = 'none';
     let oldList = document.querySelector('.booking__customer');
-    oldList.parentNode.removeChild(oldList);
+    if ( oldList ) {
+      oldList.parentNode.removeChild(oldList);
+    }
+    
+    if(typeof localStorage['currentUser'] !== 'undefined'){
+      delete localStorage['currentUser'];
+    }
+    openReg();
+    register();
+    openLogin();
+    login();
+    setAdmin();
   });
 };
 
@@ -606,13 +631,49 @@ let fullMenuBook = () => {
 
 
 
+
+
 let showForm = () => {
 
-  openReg();
-  register();
-  openLogin();
-  login();
-  setAdmin();
+  let isRegister = false;
+  if (typeof localStorage['currentUser'] !== 'undefined') {
+    let currentUser = JSON.parse(localStorage['currentUser']);
+    const regUsers = JSON.parse(localStorage.getItem('registeredUsers'));
+  
+      if (regUsers) {
+        const user = regUsers.find(user => user.regLog === currentUser.login && user.regPas === currentUser.password);
+        
+        if (user) {
+          linkSelectBg();
+          hideLogForm();
+          startSession();
+
+          // showBooking();
+          // cancelBooking();
+          // confirmBooking();
+          toLastConfirm();
+
+          reserveRoom();
+          logOutUser();
+         
+          if (getCookie('cookieadmin')) {
+            showAdminPanel();
+          }
+          isRegister = true;
+        } else {
+          alert('There is no such user. Maybe you did a mistake in login or password.');
+        }
+      } else {
+        alert('There is no such registered user.')
+      }
+  }
+  if(!isRegister){
+    openReg();
+    register();
+    openLogin();
+    login();
+    setAdmin();
+  }
 }
 
 const regForm = document.getElementById('registration');
@@ -685,9 +746,14 @@ let login = () => {
       const user = regUsers.find(user => user.regLog === logObj.logLog && user.regPas === logObj.logPas);
       
       if (user) {
+        localStorage.setItem('currentUser', JSON.stringify({login: logLog, password: logPas}));
         linkSelectBg();
         hideLogForm();
         startSession();
+
+        cancelBooking();
+        confirmBooking();
+        toLastConfirm();
         logOutUser();
        
         if (getCookie('cookieadmin')) {
@@ -705,17 +771,12 @@ let login = () => {
 let hideLogForm = () => {
   logForm.style.display = 'none';
   let logOut = document.getElementById('login-link');
+  logOut.className = 'nav-book__link logedin';
   logOut.innerHTML = 'Log out';
 };
 
 let hideRegForm = () => {
-  let regBtn = document.getElementById('reg-btn');
-
-  regBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    console.log(regForm);
-    regForm.style.display = 'none';
-  });
+  regForm.style.display = 'none';
 };
 
 let showAdminPanel = () => {
@@ -738,40 +799,44 @@ let showAdminPanel = () => {
   }
 }
 
-// let alertLogin = () => {
-//   let reserveBtn = document.querySelector('.example__link');
-//   reserveBtn.addEventListener('click', () => {
-//     alert('Please log in or register if you are still not with us. Thanks :)');
-//   });
-// }
 
 
 
 let reserveRoom = () => {
 
-  document.querySelector('.example__status').addEventListener('click', (e) => {
-    e.preventDefault();
-  
+  document.querySelector('.example__status').addEventListener('click', () => {
+    
     let links = document.querySelectorAll('.example__status');
 
     const arrReserved = [];
     for (i = 0; i < links.length; i++) {
-
+     
       links[i].onclick = function() {
-        this.innerHTML = 'Reserved';
-        let example = this.parentNode;
-        
-        let name = example.querySelector('.example__title').innerHTML;
-        let status = example.querySelector('.example__status').innerHTML;
-        const itemReserved = { name, status };
-       
-        arrReserved.push(itemReserved);
+        let startDate = document.getElementById('start-trip').value;
+        let endDate = document.getElementById('end-trip').value;
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        let itemId = this.getAttribute('itemId');
+      
+        let rooms = JSON.parse(localStorage.getItem('locData'));
+        for(let key in rooms){
+          
+          if(rooms[key].id == itemId){
+            rooms[key].startDate = startDate;
+            rooms[key].endDate = endDate;
+            rooms[key].customer = currentUser.login;
+            arrReserved.push(rooms[key]);
+            this.innerHTML = 'Reserved';
+            break;
+          }
+        }
         
         const arrResData = JSON.stringify(arrReserved);
         localStorage.setItem("arrResData", arrResData);
 
         let oldList = document.querySelector('.booking__customer');
-        oldList.parentNode.removeChild(oldList);
+        if ( oldList ) {
+          oldList.parentNode.removeChild(oldList);
+        }
         showBooking();
         cancelBooking();
         confirmBooking();
@@ -840,40 +905,44 @@ let reserveRoom = () => {
 
 // generate reservation of user
 let showBooking = () => {
-  let reservation = JSON.parse(localStorage.getItem('arrResData'));
+  if ( JSON.parse(localStorage.getItem('arrResData')) !==undefined) {
+    
+    let reservation = JSON.parse(localStorage.getItem('arrResData'));
 
-  let list = document.querySelector('.booking__list');
+    let list = document.querySelector('.booking__list');
 
-  let customBooking = document.createElement('div');
-  let customRooms = document.createElement('div');
-  let customActions = document.createElement('div');
+    let customBooking = document.createElement('div');
+    let customRooms = document.createElement('div');
+    let customActions = document.createElement('div');
 
-  document.querySelector('.container_column').style.flexDirection = "column-reverse";
-  list.parentNode.appendChild(customBooking).className = 'booking__customer';
+    document.querySelector('.container_column').style.flexDirection = "column-reverse";
+    list.parentNode.appendChild(customBooking).className = 'booking__customer';
 
-  customRooms.className = "booking__rooms";
-  customRooms.innerHTML = `<h4>Your booking:</h4>`;
+    customRooms.className = "booking__rooms";
+    customRooms.innerHTML = `<h4>Your booking:</h4>`;
 
-  customActions.className = "booking__actions";
-  let bookConfirm = document.createElement('a');
-  let bookCancel = document.createElement('a');
-  bookConfirm.className = "booking__btn booking__confirm";
-  bookCancel.className = "booking__btn booking__cancel";
+    customActions.className = "booking__actions";
+    let bookConfirm = document.createElement('a');
+    let bookCancel = document.createElement('a');
+    bookConfirm.className = "booking__btn booking__confirm";
+    bookCancel.className = "booking__btn booking__cancel";
 
-  bookConfirm.innerHTML = 'Confirm';
-  bookCancel.innerHTML = 'Cancel';
+    bookConfirm.innerHTML = 'Confirm';
+    bookCancel.innerHTML = 'Cancel';
 
-  customActions.append(bookConfirm, bookCancel)
+    customActions.append(bookConfirm, bookCancel)
 
-  customBooking.append(customRooms, customActions);
-   
-  for (item of reservation) {
-    let roomName = document.createElement('h4');
-    roomName.innerHTML = item.name;
-    let p = document.createElement('p');
-    p.innerHTML = item.status + ' ✔︎';
-    customRooms.append(roomName, p);
+    customBooking.append(customRooms, customActions);
+    
+    for (item of reservation) {
+      let roomName = document.createElement('h4');
+      roomName.innerHTML = item.name;
+      let p = document.createElement('p');
+      p.innerHTML = item.status + ' ✔︎';
+      customRooms.append(roomName, p);
+    }
   }
+  
 };
 // slide function
 let slide = () => {
@@ -926,26 +995,57 @@ let zoomIn = () => {
 };
 
 
+// Object filter
+let customeSort = {
+  "pac-rice": "cheapest",
+  "pac-rice": "mostexpansive"
+};
+
+// filtration by rooms
+let sortItems = () => {
+
+  document.getElementById('pac-price').addEventListener('change', () => {
+
+    let list = JSON.parse(localStorage.getItem('locPackages'));
+    const pricesList = list.map( item => item.price);
+    console.log(pricesList);
+
+    const sortType = document.getElementById('pac-price').value;
+
+    if ( sortType == 'cheapest') {
+      console.log('yes');
+      let flag = true;
+    
+      while(flag){
+
+        flag = false;
+        for ( let i = 0; i < pricesList.length - 1; i++ ) {
+
+          if ( pricesList[i] > pricesList[ i + 1 ] ) {
+            let tmp = pricesList[i];
+            pricesList[i] = pricesList[ i + 1 ];
+            pricesList[ i + 1 ] = tmp;
+            flag = true;
+          }
+        }
+      }
+      console.log(pricesList);
+    } else {
+      ///
+    }
+  });
+  
+};
+
+
+  
 let startSession = () => {
   let logLog = document.getElementById('log-login').value;
-  let logPas = document.getElementById('log-password').value;
-  let logObj = { logLog, logPas };
+  let logObj = { logLog };
+
   //identifier
   let userCoockie = logObj.logLog;
-  // document.cookie = 'cookie'+`${userCoockie}` + '=' + `${userCoockie}`+'; expires=Fri, 19 Jun 2020 20:47:11 UTC; path=/'+`${userCoockie}`+'/';
-  let setCoockie = document.cookie = 'cookie'+ userCoockie + '=' + userCoockie +'; expires=Fri, 19 Jun 2020 20:47:11 UTC; path=/';
-  
-  let cookieYes = getCookie('cookie'+ userCoockie);
-  if (cookieYes) {
-    reserveRoom();
-
-    if (localStorage.getItem('arrResData')) {
-      showBooking();
-      cancelBooking();
-      confirmBooking();
-      toLastConfirm();
-    }
-  }
+  document.cookie = 'cookie'+ userCoockie + '=' + userCoockie +'; expires=Fri, 19 Jun 2020 20:47:11 UTC; path=/';
 };
 
 let getCookie = (name) => {

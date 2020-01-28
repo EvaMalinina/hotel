@@ -1,23 +1,10 @@
 let startSession = () => {
   let logLog = document.getElementById('log-login').value;
-  let logPas = document.getElementById('log-password').value;
-  let logObj = { logLog, logPas };
+  let logObj = { logLog };
+
   //identifier
   let userCoockie = logObj.logLog;
-  // document.cookie = 'cookie'+`${userCoockie}` + '=' + `${userCoockie}`+'; expires=Fri, 19 Jun 2020 20:47:11 UTC; path=/'+`${userCoockie}`+'/';
-  let setCoockie = document.cookie = 'cookie'+ userCoockie + '=' + userCoockie +'; expires=Fri, 19 Jun 2020 20:47:11 UTC; path=/';
-  
-  let cookieYes = getCookie('cookie'+ userCoockie);
-  if (cookieYes) {
-    reserveRoom();
-
-    if (localStorage.getItem('arrResData')) {
-      showBooking();
-      cancelBooking();
-      confirmBooking();
-      toLastConfirm();
-    }
-  }
+  document.cookie = 'cookie'+ userCoockie + '=' + userCoockie +'; expires=Fri, 19 Jun 2020 20:47:11 UTC; path=/';
 };
 
 let getCookie = (name) => {

@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "pic": "url(../../build/sprite/junior-room/sprite-junior-room.jpg)",
     "name": "Junior room",
     "features": {
@@ -15,6 +16,7 @@
     "price": "45"
   },
   {
+    "id": 2,
     "pic": "url(../../build/sprite/standart-room/sprite-standart-room.jpg)",
     "name": "Deluxe room",
     "features": {
@@ -30,6 +32,7 @@
     "price": "57"
   },
   {
+    "id": 3,
     "pic": "url(../../build/sprite/specious-room/sprite-specious-room.jpg)",
     "name": "Specious room",
     "features": {
@@ -45,6 +48,7 @@
     "price": "74"
   },
   {
+    "id": 4,
     "pic": "url(../../build/sprite/junior-suite/sprite-junior-suite.jpg)",
     "name": "Junior suite",
     "features": {
@@ -60,6 +64,7 @@
     "price": "65"
   },
   {
+    "id": 5,
     "pic": "url(../../build/sprite/premier-suite/sprite-premier-suite.jpg)",
     "name": "Premier suite",
     "features": {
@@ -75,6 +80,7 @@
     "price": "78"
   },
   {
+    "id": 6,
     "pic": "url(../../build/sprite/president-suite/sprite-president-suite.jpg)",
     "name": "President suite",
     "features": {

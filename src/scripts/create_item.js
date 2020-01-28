@@ -78,6 +78,7 @@ let createRoom = (room, li) => {
 
   exampleLink.className = 'example__status';
   exampleLink.innerHTML = room.status;
+  exampleLink.setAttribute('itemId', room.id);
   
   example.append(wrapperPic, title, examplePrice, exampleFeatures, exampleLink);
 };

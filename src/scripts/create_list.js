@@ -1,13 +1,11 @@
 // generate all list items from json
-let generateAll = () => {
-
-  let deserialData = JSON.parse(localStorage.getItem('locData'));
+let generateAll = (arr) => {
   // wrapper for generated list
   let roomList = document.querySelector('.overview__examples');
-  
-  for (let room of deserialData) {
+  roomList.innerHTML = '';
+  for (let room of arr) {
     
-    let li = document.createElement('li');
+    const li = document.createElement('li');
     li.className = 'overview__example';
     roomList.appendChild(li);
 

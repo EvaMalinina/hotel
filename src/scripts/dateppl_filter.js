@@ -7,11 +7,11 @@ let datepplFilter = () => {
     let endDate = document.getElementById('end-trip').value;
 
     let adultsQuantity = document.getElementById('adults-quantity').value;
-    adultsQuantity = parseInt(adultsQuantity);
     let kidsQuantity = document.getElementById('kids-quantity').value;
+    adultsQuantity = parseInt(adultsQuantity);
     kidsQuantity = parseInt(kidsQuantity);
 
-   
+   // only numeric values for quantity inputs
     if(isNaN(adultsQuantity) || isNaN(kidsQuantity)) {
       alert( 'Adults and kids quantity have to be a numeric value.' );
     }
@@ -21,35 +21,45 @@ let datepplFilter = () => {
 
     let reservationList = JSON.parse(localStorage.getItem('arrResData'));
     let deserialData = JSON.parse(localStorage.getItem('locData'));
+    let finallyArray = [];
 
-    for(let room in deserialData) {
+    for ( let room in deserialData ) {
 
       let currentItem = deserialData[room];
       let allGuests = adultsQuantity + kidsQuantity;
-
+     
       // sort out items with less ppl quantity
-      if(currentItem.maxGuests < allGuests ) {
+      if(currentItem.features.guestNumber < allGuests ) {
         continue
       };
-
+      let isReserve = false;
       for ( let reservedRoom in reservationList ) {
+      
         let currentRoom = reservationList[reservedRoom];
-
-        if( currentRoom.maxGuests === allGuests ) {
-
+      
+        if( currentRoom.features.guestNumber <= allGuests ) {
+    
           if ( 
-            (currentRoom.startDate >= startDate && currentRoom.startDate <= endDate)
+            // if already reserved room start day after and before choosed start day by user
+            (new Date(currentRoom.startDate) >= startDate && new Date(currentRoom.startDate) <= endDate)
             ||
-            (currentRoom.endDate >= startDate && currentRoom.endDate <= endDate)
-                   
+            // if already reserved room end day after and before choosed end day by user
+            (new Date(currentRoom.endDate) >= startDate && new Date(currentRoom.endDate) <= endDate)
           ) {
-            continue
-          } else {
-            ///
+            if(currentRoom.id === currentItem.id){
+              isReserve = true;
+              continue;
+            }
           }
+        }else{
+          isReserve = true;
         }
       }
-      console.log('start build html');
+      console.log('isR', isReserve);
+      if(!isReserve){
+        finallyArray.push(currentItem);
+      } 
     }
+    generateAll(finallyArray);
   })
 };

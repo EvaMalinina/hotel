@@ -9,6 +9,18 @@
     margin-bottom: rem(30px);
   }
 
+  &__sort {
+    margin-bottom: rem(25px);
+  }
+  
+  &__sort select {
+    padding: .625rem;
+    font-size: 1.25rem;
+    color: #0f172b;
+    text-transform: capitalize;
+    border: .0625rem solid #0f172b;
+  }
+
   &__search {
     margin-bottom: rem(20px);
     display: flex;
