@@ -15,10 +15,9 @@ let generateAll = (arr) => {
 
 let generateAllPackages = (arr) => {
 
-  // let deserialData = JSON.parse(localStorage.getItem('locPackages'));
   // wrapper for generated list
   let pacList = document.querySelector('.packages__list');
-   
+  pacList.innerHTML = '';
   for (let pac of arr) {
     
     let li = document.createElement('li');
