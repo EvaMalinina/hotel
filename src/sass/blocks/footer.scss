@@ -59,7 +59,7 @@
   }
 
   &__icon-one {
-    background-position: rem(0px) rem(-623px);
+    background-position: 0px -623px;
 
     @include tablets {
       background-position: 0 -581px;
@@ -71,7 +71,7 @@
   }
 
   &__icon-two {
-    background-position: rem(0px) rem(-748px);
+    background-position: 0px -748px;
 
     @include tablets {
       background-position: 0 -698px;
@@ -83,7 +83,7 @@
   }
 
   &__icon-three {
-    background-position: rem(0px) rem(-560px);
+    background-position: 0px -560px;
 
     @include tablets {
       background-position: 0 -542px;
@@ -95,7 +95,7 @@
   }
 
   &__icon-four {
-    background-position: rem(0px) rem(-591px);
+    background-position: 0px -591px;
 
     @include tablets {
       background-position: 0 -552px;

@@ -35,12 +35,8 @@
     background-size: cover;
     width: 100%;
     height: 100%;
-    background-position: rem(0px) rem(-570px);
+    background-position: 0px -570px;
     display: flex;
-
-    @include tablets {
-      background-position: 0px -570px;
-    }
   }
 
   &__title {
