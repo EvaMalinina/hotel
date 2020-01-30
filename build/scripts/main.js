@@ -387,7 +387,7 @@ let paginate = (arr) => {
         roomList.appendChild(li);
 
         createRoom(room, li);
-        
+        reserveRoom();
       }
       slide();
       zoomIn();
@@ -412,7 +412,6 @@ let paginate = (arr) => {
       showPage(this);
     })
   };
-  
 };
 
 
@@ -470,7 +469,6 @@ window.addEventListener('load', () => {
         showForm();
         datepplFilter();
       }
-    
     })    
   }
 });
@@ -599,9 +597,9 @@ let showForm = () => {
           reserveRoom();
           logOutUser();
 
-          // showBooking();
-          // cancelBooking();
-          // confirmBooking();
+          showBooking();
+          cancelBooking();
+          confirmBooking();
           toLastConfirm();
 
          
@@ -757,7 +755,14 @@ let reserveRoom = () => {
    
     let links = document.querySelectorAll('.example__status');
 
-    const arrReserved = [];
+
+    let alreadyResData = JSON.parse(localStorage.getItem('arrResData'));
+    if (alreadyResData) {
+      arrReserved = alreadyResData;
+    } else {
+      arrReserved = [];
+    }
+    
     for (i = 0; i < links.length; i++) {
     
       links[i].onclick = function() {

@@ -4,7 +4,14 @@ let reserveRoom = () => {
    
     let links = document.querySelectorAll('.example__status');
 
-    const arrReserved = [];
+
+    let alreadyResData = JSON.parse(localStorage.getItem('arrResData'));
+    if (alreadyResData) {
+      arrReserved = alreadyResData;
+    } else {
+      arrReserved = [];
+    }
+    
     for (i = 0; i < links.length; i++) {
     
       links[i].onclick = function() {

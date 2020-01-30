@@ -58,7 +58,7 @@ let paginate = (arr) => {
         roomList.appendChild(li);
 
         createRoom(room, li);
-        
+        reserveRoom();
       }
       slide();
       zoomIn();
@@ -83,7 +83,6 @@ let paginate = (arr) => {
       showPage(this);
     })
   };
-  
 };
 
 

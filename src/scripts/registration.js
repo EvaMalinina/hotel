@@ -18,9 +18,9 @@ let showForm = () => {
           reserveRoom();
           logOutUser();
 
-          // showBooking();
-          // cancelBooking();
-          // confirmBooking();
+          showBooking();
+          cancelBooking();
+          confirmBooking();
           toLastConfirm();
 
          
