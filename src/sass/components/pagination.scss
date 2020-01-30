@@ -6,11 +6,13 @@
     margin-right: rem(5px);
     padding: rem(10px);
     border: rem(1px) solid $gray;
+    transition: 0.7s ease;
   }
 
   li:hover, li.active {
     cursor: pointer;
     color: $darkblue;
     border: rem(1px) solid $darkblue;
+    transition: 0.7s ease;
   }
 }

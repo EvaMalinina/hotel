@@ -25,6 +25,11 @@
     font-size: rem(16px);
     position: absolute;
     top: 2%;
-    left: 70%;
+    left: 90%;
+  }
+
+  &__cancel:hover {
+    transition: all .5s ease-in-out;
+    transform: scale(1.5) rotate(180deg);
   }
 }

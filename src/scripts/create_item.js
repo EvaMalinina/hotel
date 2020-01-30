@@ -95,8 +95,9 @@ let createPackage = (pac, li) => {
   li.className = 'packages__item';
   li.append( wrapperPic, title, desc, price);
   
-  wrapperPic.className = 'packages__pic-wrap';
+  wrapperPic.className = 'packages__pic-wrap';  
   pic.className = 'packages__pic';
+  pic.style.backgroundImage = pac.pic;
   wrapperPic.appendChild( pic );
 
   title.className = 'packages__title';

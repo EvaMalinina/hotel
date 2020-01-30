@@ -17,6 +17,7 @@ let sortItems = () => {
      
       list.sort(function(a, b) { return a.price - b.price }); 
       
+      
       generateAllPackages(list);
     } else if ( sortType == 'mostexpansive') {
       list.sort(function(a, b) { return b.price - a.price }); 

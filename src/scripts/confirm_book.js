@@ -1,15 +1,17 @@
 //confirm booking
 let confirmBooking = () => {
+  
+  if (document.querySelector('.booking__confirm')) {
+    document.querySelector('.booking__confirm').addEventListener('click', (e) => {
+      e.preventDefault();
 
-  document.querySelector('.booking__confirm').addEventListener('click', (e) => {
-    e.preventDefault();
+      document.querySelector('.booking').style.display = 'none';
+      document.querySelector('.checkout').style.display = 'flex';
+      document.querySelector('.confirmation').style.display = 'none';
 
-    document.querySelector('.booking').style.display = 'none';
-    document.querySelector('.checkout').style.display = 'flex';
-    document.querySelector('.confirmation').style.display = 'none';
-
-    linkCheckoutBg();
-  })
+      linkCheckoutBg();
+    })
+  }
 };
 
 let linkSelectBg = () => {

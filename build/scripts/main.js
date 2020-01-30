@@ -25,13 +25,10 @@ let showOverview = () => {
 };
 
 let showPackages = () => {
-  document.querySelector('.navigation__packages').addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('history').style.display = 'none';
-    document.getElementById('overview-rooms').style.display = 'none';
-    document.getElementById('packages').style.display = 'flex';
-    document.getElementById('info').style.display = 'none';
-  });
+  document.getElementById('history').style.display = 'none';
+  document.getElementById('overview-rooms').style.display = 'none';
+  document.getElementById('packages').style.display = 'flex';
+  document.getElementById('info').style.display = 'none';
 };
 
 let showInfo = () => {
@@ -45,16 +42,18 @@ let showInfo = () => {
 };
 //confirm booking
 let confirmBooking = () => {
+  
+  if (document.querySelector('.booking__confirm')) {
+    document.querySelector('.booking__confirm').addEventListener('click', (e) => {
+      e.preventDefault();
 
-  document.querySelector('.booking__confirm').addEventListener('click', (e) => {
-    e.preventDefault();
+      document.querySelector('.booking').style.display = 'none';
+      document.querySelector('.checkout').style.display = 'flex';
+      document.querySelector('.confirmation').style.display = 'none';
 
-    document.querySelector('.booking').style.display = 'none';
-    document.querySelector('.checkout').style.display = 'flex';
-    document.querySelector('.confirmation').style.display = 'none';
-
-    linkCheckoutBg();
-  })
+      linkCheckoutBg();
+    })
+  }
 };
 
 let linkSelectBg = () => {
@@ -180,8 +179,9 @@ let createPackage = (pac, li) => {
   li.className = 'packages__item';
   li.append( wrapperPic, title, desc, price);
   
-  wrapperPic.className = 'packages__pic-wrap';
+  wrapperPic.className = 'packages__pic-wrap';  
   pic.className = 'packages__pic';
+  pic.style.backgroundImage = pac.pic;
   wrapperPic.appendChild( pic );
 
   title.className = 'packages__title';
@@ -195,6 +195,7 @@ let createPackage = (pac, li) => {
 };
 // generate all list items from json
 let generateAll = (arr) => {
+
   // wrapper for generated list
   let roomList = document.querySelector('.overview__examples');
   roomList.innerHTML = '';
@@ -213,21 +214,26 @@ let generateAllPackages = (arr) => {
   // wrapper for generated list
   let pacList = document.querySelector('.packages__list');
   pacList.innerHTML = '';
+  // let n = 0;
+ 
   for (let pac of arr) {
-    
+    // n++;
     let li = document.createElement('li');
     li.className = 'packages__item';
     pacList.appendChild( li );
-
-    createPackage( pac, li ); 
+    
+    createPackage( pac, li )   
+   
+    // pacList.querySelector('.packages__pic').className +=`-${n}`;
   }
+  
 };
 
 //determine day possible start and end
 Date.prototype.toDateInputValue = (function() {
-  const local = new Date(this);
-  local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-  return local.toJSON().slice(0,10);
+const local = new Date(this);
+local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+return local.toJSON().slice(0,10);
 });
 
 let startDate = document.getElementById('start-trip');
@@ -241,6 +247,8 @@ nextDay.setDate(nextDay.getDate() + 1);
 let endDay = document.getElementById('end-trip');
 let checkOut = endDay.value = nextDay.toJSON().slice(0,10);
 endDay.setAttribute("min", checkOut);
+
+
 
 let datepplFilter = () => {
   document.getElementById('availability').addEventListener('click', (e) => {
@@ -262,6 +270,10 @@ let datepplFilter = () => {
 
     startDate = new Date(startDate);
     endDate = new Date(endDate);
+
+    if (startDate > endDate) {
+      alert( 'Your start day of trip can not be after the end of trip.' )
+    }
 
     let reservationList = JSON.parse(localStorage.getItem('arrResData'));
     let deserialData = JSON.parse(localStorage.getItem('locData'));
@@ -398,26 +410,18 @@ let paginate = (arr) => {
 
 
 
-
 window.addEventListener('load', () => {
 
   if ( document.querySelector('.hero') ) {
     fullMenuBook();
-   
-    showPackages();
-    loadData('../data/packages.json', 'locPackages');
-    let deserialData = JSON.parse(localStorage.getItem('locPackages'));
-    generateAllPackages(deserialData);
-    sortItems();
-    showInfo();
 
     if ( document.querySelector('.rooms-suites') ) {
+      loadData('../data/rooms.json', 'locData');
       document.querySelector('.rooms-suites').addEventListener('click', (e) => {
 
         e.preventDefault();
         showOverview();
-        loadData('../data/rooms.json', 'locData');
-
+        
         let deserialData = JSON.parse(localStorage.getItem('locData'));
         if (deserialData) {
           generateAll(deserialData);
@@ -428,19 +432,36 @@ window.addEventListener('load', () => {
           search();
         }
       });
+
+      loadData('../data/packages.json', 'locPackages');
+
+      document.querySelector('.navigation__packages').addEventListener('click', (e) => {
+        e.preventDefault();
+        showPackages();
+      
+        let deserialData = JSON.parse(localStorage.getItem('locPackages'));
+        if (deserialData) {
+          generateAllPackages(deserialData);
+          sortItems();
+          
+        } 
+      });
+      showInfo();
     } 
   }
   else if ( document.getElementById('availability') ) {
 
-    loadData();
-    generateAll(deserialData);
-    slide();
-    zoomIn();
-    paginate(deserialData);
-    showForm();
-    datepplFilter();
+    // loadData('../data/packages.json', 'locPackages');
+    let deserialData = JSON.parse(localStorage.getItem('locData'));
+    if ( deserialData ) {
+      generateAll(deserialData);
+      slide();
+      zoomIn();
+      paginate(deserialData);
+      showForm();
+      datepplFilter();
+    }
   }
-
 });
 let loadData = (url, locStorName) => {
   // send request to get json file
@@ -726,8 +747,9 @@ let reserveRoom = () => {
 
     const arrReserved = [];
     for (i = 0; i < links.length; i++) {
-     
+    
       links[i].onclick = function() {
+       
         let startDate = document.getElementById('start-trip').value;
         let endDate = document.getElementById('end-trip').value;
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -764,14 +786,34 @@ let reserveRoom = () => {
 
 let search = () => {
   let searchArr = [];
-  let inpt = document.getElementById('search-room').oninput = function() {
-   
+  let inpt = document.getElementById('search-room').oninput = function(e) {
+    e.preventDefault();
+    let deserialData = JSON.parse(localStorage.getItem('locData'));
+    
     let val = this.value.trim().toLowerCase();
   
-    let deserialData = JSON.parse(localStorage.getItem('locData'));
+    if ( val != '' ) {
+
+      for (elem of deserialData) {
+        if ( elem.name.toLowerCase().search(val) != -1 ) {
+
+          searchArr.push(elem);
+        } 
+        // else if ( elem.name.toLowerCase().search(val) != 1 ){
+        //   throw console.error('error');
+        // }
+      }
+    
+      generateAll(searchArr);
+      paginate(searchArr);  
+      searchArr = []; 
+
+    } else {
+      generateAll(deserialData);
+      paginate(deserialData);
+    }
   
     let cancel = document.querySelector( '.search__cancel' );
-    let doSearch = document.querySelector( '.search__go' );
 
     cancel.addEventListener('click', (e) => {
       e.preventDefault();
@@ -780,21 +822,6 @@ let search = () => {
       generateAll(deserialData);
       paginate(deserialData);
     });
-
-    doSearch.addEventListener('click', (e) => {
-      e.preventDefault();
-     
-      if ( val != '' ) {
-        deserialData.forEach( function(elem) {
-          
-          if (elem.name.toLowerCase().search(val) != -1) {
-            searchArr.push(elem);
-          }
-        }) 
-      }
-      generateAll(searchArr);
-      paginate(searchArr);
-    })
   }
 };
 
@@ -909,6 +936,7 @@ let sortItems = () => {
     if ( sortType == 'cheapest') {
      
       list.sort(function(a, b) { return a.price - b.price }); 
+      
       
       generateAllPackages(list);
     } else if ( sortType == 'mostexpansive') {

@@ -10,12 +10,25 @@
     padding: rem(50px);
     background-color: $lightyellow;
     margin-bottom: rem(50px);
+
+    @include phones {
+      margin-top: rem(0px);
+    }
   }
 
   &__info-text {
     width: 50%;
     font-family: 'El Messiri', sans-serif;
     color: $darkblue;
+
+    @include tablets {
+      width: 40%;
+    }
+
+    @include phones {
+      width: 100%;
+      margin-top: rem(320px);
+    }
   }
 
   &__small-title {

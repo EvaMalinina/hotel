@@ -23,6 +23,7 @@
 
   &__list {
     display: flex;
+    margin-bottom: rem(40px);
   }
 
   &__item {
@@ -31,31 +32,6 @@
     align-items: center;
     text-align: center;
     margin-right: 5%;
-
-    &:nth-child(2) {
-
-      .packages__pic {
-        background-position: 0 58%;
-      } 
-    }
-
-    &:nth-child(3) {
-
-      .packages__pic {
-        background-position: 0 48%;
-      } 
-    }
-
-    &:nth-child(4) {
-
-      .packages__pic {
-        background-position: 0 68%;
-      } 
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
   }
 
   &__pic-wrap {
@@ -66,11 +42,9 @@
   }
 
   &__pic {
-    background-image: url('../../build/sprite/sprite-img.jpg');
     background-size: cover;
     height: 100%;
     width: 100%;
-    background-position: 0 -20%;
   }
 
   &__desc {
@@ -83,4 +57,29 @@
     color: $gray;
     font-family: 'El Messiri', sans-serif;
   }
+}
+
+@keyframes slidy {
+  0% { left: 0%; }
+  20% { left: 0%; }
+  25% { left: -34%; }
+  45% { left: -34%; }
+  50% { left: -65%; }
+  70% { left: -65%; }
+  75% { left: -80%; }
+  80% { left: -80%; }
+  90% { left: 0%; }
+  100% { left:0%; }
+}
+
+.packages { 
+  width: 75%; 
+  overflow: hidden; 
+  margin: 0 auto;
+}
+
+.packages__list { 
+  position: relative; 
+  width: 100%;
+  animation: 12s slidy infinite; 
 }

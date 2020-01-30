@@ -27,12 +27,24 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
+
+    @include phones {
+      padding-top: rem(296px);
+    }
   }
 
   &__info-text {
     font-family: 'El Messiri', sans-serif;
     color: $darkblue;
     width: 70%;
+
+    @include tablets {
+      width: 60%;
+    }
+
+    @include phones {
+      width: 100%;
+    }
   }
 
   &__title {

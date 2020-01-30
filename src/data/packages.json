@@ -1,20 +1,24 @@
 [
   {
+    "pic": "url(../images/general/package2.jpg)",
     "name": "Romantic day for 2",
     "desc": "Gourmet diner, 2 hours spa, 1 night in the hotel Deluxe room.",
     "price": "80"
   },
   {
+    "pic": "url(../images/general/package1.jpg)",
     "name": "Spa weekend",
     "desc": "3 hours spa, 1 hour oil massage",
     "price": "150"
   },
   {
+    "pic": "url(../images/general/package4.jpg)",
     "name": "Time for you",
     "desc": "Gourmet diner, 1 hours spa, 1 night in the hotel Specious room.",
     "price": "95"
   },
   {
+    "pic": "url(../images/general/package3.jpg)",
     "name": "Refresh for two",
     "desc": "1 hour cosmetology theatment skin and body, 1 hour Thai massage, 1 night in hotel Junior suite.",
     "price": "108"

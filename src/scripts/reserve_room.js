@@ -6,8 +6,9 @@ let reserveRoom = () => {
 
     const arrReserved = [];
     for (i = 0; i < links.length; i++) {
-     
+    
       links[i].onclick = function() {
+       
         let startDate = document.getElementById('start-trip').value;
         let endDate = document.getElementById('end-trip').value;
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));

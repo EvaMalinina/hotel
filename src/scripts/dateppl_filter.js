@@ -19,6 +19,10 @@ let datepplFilter = () => {
     startDate = new Date(startDate);
     endDate = new Date(endDate);
 
+    if (startDate > endDate) {
+      alert( 'Your start day of trip can not be after the end of trip.' )
+    }
+
     let reservationList = JSON.parse(localStorage.getItem('arrResData'));
     let deserialData = JSON.parse(localStorage.getItem('locData'));
     let finalArray = [];
