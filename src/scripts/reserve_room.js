@@ -1,7 +1,7 @@
 let reserveRoom = () => {
 
   document.querySelector('.example__status').addEventListener('click', () => {
-    
+   
     let links = document.querySelectorAll('.example__status');
 
     const arrReserved = [];

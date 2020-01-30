@@ -15,13 +15,14 @@ let showForm = () => {
           hideLogForm();
           startSession();
 
+          reserveRoom();
+          logOutUser();
+
           // showBooking();
           // cancelBooking();
           // confirmBooking();
           toLastConfirm();
 
-          reserveRoom();
-          logOutUser();
          
           if (getCookie('cookieadmin')) {
             showAdminPanel();

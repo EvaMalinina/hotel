@@ -214,17 +214,15 @@ let generateAllPackages = (arr) => {
   // wrapper for generated list
   let pacList = document.querySelector('.packages__list');
   pacList.innerHTML = '';
-  // let n = 0;
  
   for (let pac of arr) {
-    // n++;
+
     let li = document.createElement('li');
     li.className = 'packages__item';
     pacList.appendChild( li );
     
     createPackage( pac, li )   
    
-    // pacList.querySelector('.packages__pic').className +=`-${n}`;
   }
   
 };
@@ -420,10 +418,10 @@ let paginate = (arr) => {
 
 
 window.addEventListener('load', () => {
-
+  
   if ( document.querySelector('.hero') ) {
     fullMenuBook();
-
+   
     if ( document.querySelector('.rooms-suites') ) {
       loadData('../data/rooms.json', 'locData');
       document.querySelector('.rooms-suites').addEventListener('click', (e) => {
@@ -459,17 +457,21 @@ window.addEventListener('load', () => {
     } 
   }
   else if ( document.getElementById('availability') ) {
+    loadData('../data/rooms.json', 'locData');
 
-    // loadData('../data/packages.json', 'locPackages');
-    let deserialData = JSON.parse(localStorage.getItem('locData'));
-    if ( deserialData ) {
-      generateAll(deserialData);
-      slide();
-      zoomIn();
-      paginate(deserialData);
-      showForm();
-      datepplFilter();
-    }
+    document.getElementById('availability').addEventListener('click', () => {
+    
+      let deserialData = JSON.parse(localStorage.getItem('locData'));
+      if ( deserialData ) {
+        generateAll(deserialData);
+        slide();
+        zoomIn();
+        paginate(deserialData);
+        showForm();
+        datepplFilter();
+      }
+    
+    })    
   }
 });
 let loadData = (url, locStorName) => {
@@ -594,13 +596,14 @@ let showForm = () => {
           hideLogForm();
           startSession();
 
+          reserveRoom();
+          logOutUser();
+
           // showBooking();
           // cancelBooking();
           // confirmBooking();
           toLastConfirm();
 
-          reserveRoom();
-          logOutUser();
          
           if (getCookie('cookieadmin')) {
             showAdminPanel();
@@ -751,7 +754,7 @@ let showAdminPanel = () => {
 let reserveRoom = () => {
 
   document.querySelector('.example__status').addEventListener('click', () => {
-    
+   
     let links = document.querySelectorAll('.example__status');
 
     const arrReserved = [];
