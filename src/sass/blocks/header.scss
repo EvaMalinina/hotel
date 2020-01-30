@@ -108,8 +108,8 @@
     }
 
     @include tablets {
-      width: rem(40px);
-      height: rem(40px);
+      width: rem(35px);
+      height: rem(35px);
     }
   }
 
@@ -121,7 +121,7 @@
     background-position: rem(0px) rem(-270px);
 
     @include tablets {
-      background-position: rem(0px) rem(-378px);
+      background-position: 0 -446px;
     }
   }
 
@@ -132,11 +132,11 @@
     background-position: rem(0px) rem(-145px);
 
     @include tablets {
-      background-position: rem(0px) rem(-692px);
+      background-position: 0px -240px;
     }
 
     @include phones {
-      background-position: rem(0px) rem(-239px);
+      background-position: 0px -204px;
     }
   }
 
@@ -148,7 +148,7 @@
     background-position: rem(0px) rem(-187px);
 
     @include tablets {
-      background-position: rem(0px) rem(-261px);
+      background-position: 0px -308px;
     }
   }
 }

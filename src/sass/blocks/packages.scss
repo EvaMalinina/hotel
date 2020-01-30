@@ -1,6 +1,9 @@
 .packages {
   display: none;
   text-align: center;
+  width: 75%;
+  overflow: hidden;
+  margin: 0 auto;
 
   &__title {
     font-size: rem(20px);
@@ -24,6 +27,13 @@
   &__list {
     display: flex;
     margin-bottom: rem(40px);
+    position: relative; 
+    width: 100%;
+    animation: 12s slidy infinite; 
+
+    @include tablets {
+      animation: 12s slidy-tablets infinite; 
+    }
   }
 
   &__item {
@@ -66,20 +76,21 @@
   45% { left: -34%; }
   50% { left: -65%; }
   70% { left: -65%; }
-  75% { left: -80%; }
-  80% { left: -80%; }
+  75% { left: -80%;}
+  80% { left: -80%;}
   90% { left: 0%; }
   100% { left:0%; }
 }
 
-.packages { 
-  width: 75%; 
-  overflow: hidden; 
-  margin: 0 auto;
-}
-
-.packages__list { 
-  position: relative; 
-  width: 100%;
-  animation: 12s slidy infinite; 
+@keyframes slidy-tablets {
+  0% { left: 0%; }
+  20% { left: 0%; }
+  25% { left: -34%; }
+  45% { left: -34%; }
+  50% { left: -65%; }
+  70% { left: -65%; }
+  75% { left: -130%;}
+  80% { left: -130%;}
+  90% { left: 0%; }
+  100% { left:0%; }
 }

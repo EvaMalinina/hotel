@@ -55,12 +55,20 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+
+    @include phones {
+      flex-direction: column;
+    }
   }
 
   &__example {
     width: 45%;
     display: flex;
     justify-content: center;
+
+    @include phones {
+      width: 100%;
+    }
   }
 }
 

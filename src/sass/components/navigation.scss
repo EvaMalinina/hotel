@@ -12,6 +12,10 @@
 
   &__item {
     margin-right: 5%;
+
+    @include phones {
+      margin-right: rem(10px);
+    }
   }
 
   &__item:last-child {
@@ -23,5 +27,9 @@
     letter-spacing: rem(1.5px);
     color: $gray;
     white-space: nowrap;
+
+    @include phones {
+      font-size: rem(14px);
+    }
   }
 }

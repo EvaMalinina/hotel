@@ -5,6 +5,10 @@
 
   &__info {
     width: 50%;
+
+    @include phones {
+      font-size: rem(13px);
+    }
   }
 
   p, p a {
@@ -56,17 +60,49 @@
 
   &__icon-one {
     background-position: rem(0px) rem(-623px);
+
+    @include tablets {
+      background-position: 0 -581px;
+    }
+
+    @include phones {
+      background-position: 0 -519px;
+    }
   }
 
   &__icon-two {
     background-position: rem(0px) rem(-748px);
+
+    @include tablets {
+      background-position: 0 -698px;
+    }
+
+    @include phones {
+      background-position: 0 -200px;
+    }
   }
 
   &__icon-three {
     background-position: rem(0px) rem(-560px);
+
+    @include tablets {
+      background-position: 0 -542px;
+    }
+
+    @include phones {
+      background-position: 0 -448px;
+    }
   }
 
   &__icon-four {
-    background-position: rem(0px) rem(-592px);
+    background-position: rem(0px) rem(-591px);
+
+    @include tablets {
+      background-position: 0 -552px;
+    }
+
+    @include phones {
+      background-position: 0 -473px;
+    }
   }
 }

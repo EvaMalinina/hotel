@@ -5,6 +5,10 @@
   margin: 0 auto rem(100px);
   max-width: rem(1100px);
 
+  @include tablets{
+    margin: 0 auto rem(50px);
+  }
+
   &__info {
     width: 100%;
     padding: rem(50px);
@@ -28,6 +32,7 @@
     @include phones {
       width: 100%;
       margin-top: rem(320px);
+      padding-top: 65px;
     }
   }
 
@@ -88,13 +93,31 @@
     position: relative;
     margin: rem(50px) 0;
 
+    @include phones {
+      margin-bottom: 0;
+    }
+
     .history__info-text {
       margin: 0 0 0 auto;
+
+      @include phones {
+        padding-top: 230px;
+      }
+    }
+
+    .history__photo-wrap {
+      @include phones {
+        top: rem(35px);
+      }
     }
   }
 
   &__activity {
     margin-bottom: 0;
+
+    @include tablets {
+      padding-bottom: rem(20px);
+    }
   }
 
   &__photo-wrap {
@@ -105,6 +128,10 @@
     width: rem(400px);
     height: rem(265px);
     overflow: hidden;
+
+    @include tablets {
+      top: rem(110px);
+    }
   }
 
   &__photo {

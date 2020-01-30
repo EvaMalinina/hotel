@@ -25,6 +25,18 @@
     min-height: 400px;
     overflow: hidden;
     box-shadow: 0px 50px 300px black;
+
+    @include tablets {
+      right: 50%;
+      transform: translateX(50%);
+    }
+
+    @include phones {
+      right: 0.7%;
+      transform: translateX(0%);
+      min-width: 370px;
+      min-height: 300px;
+    }
   }
 
   &__pic {

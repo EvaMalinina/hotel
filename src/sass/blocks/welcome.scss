@@ -37,6 +37,14 @@
     height: 100%;
     background-position: rem(0px) rem(-570px);
     display: flex;
+
+    @include tablets {
+      background-position: 0px -523px;
+    }
+
+    @include phones {
+      background-position: 0px -465px;
+    }
   }
 
   &__title {
@@ -55,6 +63,10 @@
     text-transform: uppercase;
     font-size: rem(37px);
     white-space: nowrap;
+
+    @include phones {
+      font-size: rem(25px);
+    }
   }
 
   &__btn {

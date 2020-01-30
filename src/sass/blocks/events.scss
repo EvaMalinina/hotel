@@ -4,6 +4,14 @@
   margin: 0 auto rem(140px);
   position: relative;
 
+  @include tablets{
+    margin: 0 auto rem(100px);
+  }
+
+  @include phones {
+    margin: 0 auto rem(50px);
+  }
+
   &__pic-wrap {
     position: absolute;
     top: rem(-35px);
@@ -29,7 +37,7 @@
     justify-content: flex-end;
 
     @include phones {
-      padding-top: rem(296px);
+      padding-top: 296px;
     }
   }
 
