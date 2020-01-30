@@ -11,10 +11,18 @@
     flex-direction: row;
     align-items: center;
     padding: rem(10px) rem(60px);
+
+    @include phones {
+      flex-direction: column;
+    }
   }
 
   .form__row {
     margin-right: rem(50px);
+
+    @include phones {
+      margin-right: rem(0px);
+    }
 
     &:last-child {
       margin-right: rem(0px);

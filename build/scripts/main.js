@@ -268,6 +268,13 @@ let datepplFilter = () => {
       alert( 'Adults and kids quantity have to be a numeric value.' );
     }
 
+    // max number of guest 5
+    let maxPplReserve = 5;
+    if(adultsQuantity + kidsQuantity > maxPplReserve) {
+      alert( 'The maximum guests number per reservation is 5.' );
+      return false;
+    }
+
     startDate = new Date(startDate);
     endDate = new Date(endDate);
 
@@ -283,6 +290,7 @@ let datepplFilter = () => {
 
       let currentItem = deserialData[room];
       let allGuests = adultsQuantity + kidsQuantity;
+
      
       // sort out items with less ppl quantity
       if(currentItem.features.guestNumber < allGuests ) {
@@ -311,11 +319,12 @@ let datepplFilter = () => {
           isReserve = true;
         }
       }
-      console.log('isR', isReserve);
+      // console.log('isR', isReserve);
       if(!isReserve){
         finalArray.push(currentItem);
       } 
     }
+ 
     generateAll(finalArray);
     paginate(finalArray);
   })

@@ -82,6 +82,10 @@ input, select, button {
 
   &_small {
     width: 65%;
+
+    @include phones {
+      width: 95%;
+    }
   }
 
   &_center {

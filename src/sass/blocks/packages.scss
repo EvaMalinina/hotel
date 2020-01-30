@@ -32,7 +32,19 @@
     animation: 12s slidy infinite; 
 
     @include tablets {
-      animation: 12s slidy-tablets infinite; 
+      animation: 12s slidytablets infinite; 
+    }
+
+    @include phones {
+      animation: none; 
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;  
+      scroll-behavior: smooth;
+
+      &:target {
+        transform: scale(0.8);
+      }
     }
   }
 
@@ -42,6 +54,13 @@
     align-items: center;
     text-align: center;
     margin-right: 5%;
+
+    @include phones {
+      width: 100%;
+      flex-shrink: 0;
+      height: 100%;
+      scroll-snap-align: start;
+    }
   }
 
   &__pic-wrap {
@@ -82,7 +101,7 @@
   100% { left:0%; }
 }
 
-@keyframes slidy-tablets {
+@keyframes slidytablets {
   0% { left: 0%; }
   20% { left: 0%; }
   25% { left: -34%; }
@@ -91,6 +110,19 @@
   70% { left: -65%; }
   75% { left: -130%;}
   80% { left: -130%;}
-  90% { left: 0%; }
+  90% { left: -130%; }
+  100% { left:0%; }
+}
+
+@keyframes slidyphones {
+  0% { left: 0%; }
+  20% { left: 0%; }
+  25% { left: -64%; }
+  45% { left: -64%; }
+  50% { left: -105%; }
+  70% { left: -105%; }
+  75% { left: -130%;}
+  80% { left: -130%;}
+  90% { left: -130%; }
   100% { left:0%; }
 }
