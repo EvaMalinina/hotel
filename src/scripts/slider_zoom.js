@@ -43,8 +43,11 @@ let zoomIn = () => {
     //zoom in and zoom out
     pic.addEventListener('click', (e) => {
       e.preventDefault();
+
       item.classList.toggle('wrap-active');
+      
     });
   });
+
 };
 

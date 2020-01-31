@@ -854,7 +854,7 @@ let showBooking = () => {
     let customBooking = document.createElement('div');
     let customRooms = document.createElement('div');
     let customActions = document.createElement('div');
-
+ 
     document.querySelector('.container_column').style.flexDirection = "column-reverse";
     list.parentNode.appendChild(customBooking).className = 'booking__customer';
 
@@ -929,9 +929,12 @@ let zoomIn = () => {
     //zoom in and zoom out
     pic.addEventListener('click', (e) => {
       e.preventDefault();
+
       item.classList.toggle('wrap-active');
+      
     });
   });
+
 };
 
 

@@ -25,7 +25,7 @@
   justify-content: flex-end;
 
   &__item {
-    width: rem(30px);
+    width: 30px;
     margin-right: 7%;
   }
 
@@ -45,8 +45,8 @@
 
   &__icon-box {
     display: flex;
-    width: rem(30px);
-    height: rem(30px);
+    width: 30px;
+    height: 30px;
     overflow: hidden;
     margin-bottom: rem(10px);
   }
@@ -60,49 +60,17 @@
 
   &__icon-one {
     background-position: 0px -623px;
-
-    @include tablets {
-      background-position: 0 -581px;
-    }
-
-    @include phones {
-      background-position: 0 -519px;
-    }
   }
 
   &__icon-two {
     background-position: 0px -748px;
-
-    @include tablets {
-      background-position: 0 -698px;
-    }
-
-    @include phones {
-      background-position: 0 -200px;
-    }
   }
 
   &__icon-three {
     background-position: 0px -560px;
-
-    @include tablets {
-      background-position: 0 -542px;
-    }
-
-    @include phones {
-      background-position: 0 -448px;
-    }
   }
 
   &__icon-four {
     background-position: 0px -591px;
-
-    @include tablets {
-      background-position: 0 -552px;
-    }
-
-    @include phones {
-      background-position: 0 -473px;
-    }
   }
 }
