@@ -2,7 +2,13 @@ window.addEventListener('load', () => {
  
   if ( document.querySelector('.hero') ) {
     fullMenuBook();
-   
+    setDiapazonHero();
+
+    document.getElementById('availability-main').addEventListener('click', () => {
+      saveFormData();
+    });
+    
+
     if ( document.querySelector('.rooms-suites') ) {
       loadData('../data/rooms.json', 'locData');
       document.querySelector('.rooms-suites').addEventListener('click', (e) => {
@@ -39,8 +45,10 @@ window.addEventListener('load', () => {
   }
   else if ( document.getElementById('availability') ) {
     loadData('../data/rooms.json', 'locData');
-
-    document.getElementById('availability').addEventListener('click', () => {
+    setDiapazon();
+    setFormData();
+    
+    document.getElementById('availability').addEventListener('click', () => { 
     
       let deserialData = JSON.parse(localStorage.getItem('locData'));
       if ( deserialData ) {

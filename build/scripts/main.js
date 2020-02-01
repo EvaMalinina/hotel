@@ -238,25 +238,39 @@ let generateAllPackages = (arr) => {
 
 //determine day possible start and end
 Date.prototype.toDateInputValue = (function() {
-const local = new Date(this);
-local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-return local.toJSON().slice(0,10);
+  const local = new Date(this);
+  local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+  return local.toJSON().slice(0,10);
 });
-
-let startDate = document.getElementById('start-trip');
-let checkIn = startDate.value = new Date().toDateInputValue();
-startDate.setAttribute("min", checkIn);
-
 
 let nextDay = new Date();
 nextDay.setDate(nextDay.getDate() + 1);
 
-let endDay = document.getElementById('end-trip');
-let checkOut = endDay.value = nextDay.toJSON().slice(0,10);
-endDay.setAttribute("min", checkOut);
+let setDiapazonHero = () => {
 
+  //on main page
+  let startDateMain = document.getElementById('start-trip-main');
+  let checkInMain = startDateMain.value = new Date().toDateInputValue();
+  startDateMain.setAttribute("min", checkInMain);
 
+  //on main page
+  let endDayMain = document.getElementById('end-trip-main');
+  let checkOutMain = endDayMain.value = nextDay.toJSON().slice(0,10);
+  endDayMain.setAttribute("min", checkOutMain);
+};
 
+let setDiapazon = () => {
+
+  //on reservation page
+  let startDate = document.getElementById('start-trip');
+  let checkIn = startDate.value = new Date().toDateInputValue();
+  startDate.setAttribute("min", checkIn);
+
+  //on reservation page
+  let endDay = document.getElementById('end-trip');
+  let checkOut = endDay.value = nextDay.toJSON().slice(0,10);
+  endDay.setAttribute("min", checkOut);
+};
 let datepplFilter = () => {
   document.getElementById('availability').addEventListener('click', (e) => {
     e.preventDefault();
@@ -430,7 +444,13 @@ window.addEventListener('load', () => {
  
   if ( document.querySelector('.hero') ) {
     fullMenuBook();
-   
+    setDiapazonHero();
+
+    document.getElementById('availability-main').addEventListener('click', () => {
+      saveFormData();
+    });
+    
+
     if ( document.querySelector('.rooms-suites') ) {
       loadData('../data/rooms.json', 'locData');
       document.querySelector('.rooms-suites').addEventListener('click', (e) => {
@@ -467,8 +487,10 @@ window.addEventListener('load', () => {
   }
   else if ( document.getElementById('availability') ) {
     loadData('../data/rooms.json', 'locData');
-
-    document.getElementById('availability').addEventListener('click', () => {
+    setDiapazon();
+    setFormData();
+    
+    document.getElementById('availability').addEventListener('click', () => { 
     
       let deserialData = JSON.parse(localStorage.getItem('locData'));
       if ( deserialData ) {
@@ -818,7 +840,33 @@ let reserveRoom = () => {
   };
 
 }
+let saveFormData = () => {
+   // get all values choosed in form by user
+   let startDate = document.getElementById('start-trip-main').value;
+   let endDate = document.getElementById('end-trip-main').value;
 
+   let adultsQuantity = document.getElementById('adults-quantity-main').value;
+   let kidsQuantity = document.getElementById('kids-quantity-main').value;
+   adultsQuantity = parseInt(adultsQuantity);
+   kidsQuantity = parseInt(kidsQuantity);
+
+   let choosedDates = [];
+   choosedDates.push(startDate, endDate, adultsQuantity, kidsQuantity)
+
+   choosedDates = JSON.stringify(choosedDates);
+   localStorage.setItem("choosedDates", choosedDates)
+};
+
+let setFormData = () => {
+  // set all values choosed in form by user
+  let choosedDates = JSON.parse(localStorage.getItem('choosedDates'));
+
+  document.getElementById('start-trip').value = choosedDates[0];
+  document.getElementById('end-trip').value = choosedDates[1];
+
+  document.getElementById('adults-quantity').value = choosedDates[2];
+  document.getElementById('kids-quantity').value = choosedDates[3];
+};
 let search = () => {
   let searchArr = [];
   let inpt = document.getElementById('search-room').oninput = function(e) {
