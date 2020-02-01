@@ -444,12 +444,14 @@ window.addEventListener('load', () => {
  
   if ( document.querySelector('.hero') ) {
     fullMenuBook();
-    setDiapazonHero();
 
-    document.getElementById('availability-main').addEventListener('click', () => {
-      saveFormData();
-    });
-    
+    if ( document.getElementById('availability-main') ) {
+      setDiapazonHero();
+      document.getElementById('availability-main').addEventListener('click', () => {
+       
+        saveFormData();
+      });
+    }
 
     if ( document.querySelector('.rooms-suites') ) {
       loadData('../data/rooms.json', 'locData');
