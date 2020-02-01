@@ -104,10 +104,19 @@
 
   &__admin {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     padding-top: rem(30px);
     margin-bottom: rem(100px);
+  }
+
+  &__item {
+    border: 1px solid $darkblue;
+    margin: rem(20px);
+    padding: rem(10px);
+    color: $darkblue;
+    background-color: $lightyellow;
+    min-width: fit-content;
   }
 }

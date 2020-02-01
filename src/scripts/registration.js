@@ -1,15 +1,15 @@
 
 
 let showForm = () => {
-
+  
   let isRegister = false;
   if (typeof localStorage['currentUser'] !== 'undefined') {
-    let currentUser = JSON.parse(localStorage['currentUser']);
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const regUsers = JSON.parse(localStorage.getItem('registeredUsers'));
   
       if (regUsers) {
         const user = regUsers.find(user => user.regLog === currentUser.login && user.regPas === currentUser.password);
-        
+      
         if (user) {
           linkSelectBg();
           hideLogForm();
@@ -19,14 +19,10 @@ let showForm = () => {
           logOutUser();
 
           showBooking();
-          cancelBooking();
+          
           confirmBooking();
           toLastConfirm();
 
-         
-          if (getCookie('cookieadmin')) {
-            showAdminPanel();
-          }
           isRegister = true;
         } else {
           alert('There is no such user. Maybe you did a mistake in login or password.');
@@ -115,14 +111,9 @@ let login = () => {
       
       if (user) {
         localStorage.setItem('currentUser', JSON.stringify({login: logLog, password: logPas}));
-        linkSelectBg();
+       
         hideLogForm();
         startSession();
-
-        cancelBooking();
-        confirmBooking();
-        toLastConfirm();
-        logOutUser();
        
         if (getCookie('cookieadmin')) {
           showAdminPanel();
@@ -138,9 +129,10 @@ let login = () => {
 
 let hideLogForm = () => {
   logForm.style.display = 'none';
-  let logOut = document.getElementById('login-link');
-  logOut.className = 'nav-book__link logedin';
-  logOut.innerHTML = 'Log out';
+  let logOut = document.getElementById('logout-link');
+  logOut.style.display = 'flex';
+  let logIn = document.getElementById('login-link');
+  logIn.style.display = 'none';
 };
 
 let hideRegForm = () => {
@@ -155,15 +147,24 @@ let showAdminPanel = () => {
   let list = document.querySelector('.booking');
   list.className = 'booking booking__admin'
 
-  let customerList = document.createElement('div');
-  list.appendChild(customerList);
 
   for (item of reservationList) {
+    let customerList = document.createElement('div');
+    customerList.className = 'booking__item'
+    list.appendChild(customerList);
+
     let roomName = document.createElement('h4');
     roomName.innerHTML = item.name;
-    let p = document.createElement('p');
-    p.innerHTML = item.status;
-    customerList.append(roomName, p);
+
+    let startDate = document.createElement('p');
+    startDate.innerHTML = 'Start date: ' + item.startDate;
+    let endDate = document.createElement('p');
+    endDate.innerHTML = 'End date: ' + item.endDate;
+
+    let customer = document.createElement('p');
+    customer.innerHTML = 'Customer: ' + item.customer;
+
+    customerList.append(roomName, startDate, endDate, customer);
   }
 }
 

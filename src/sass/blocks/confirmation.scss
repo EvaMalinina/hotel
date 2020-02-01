@@ -3,4 +3,19 @@
   text-align: center;
   margin-bottom: rem(100px);
   padding-top: rem(50px);
+
+  &__link {
+    padding: rem(10px);
+    color: $darkblue;
+    border: 1px solid $darkblue;
+    transition: 0.7s ease;
+    width: fit-content;
+    align-self: center;
+
+    &:hover {
+      color: $white;
+      background-color: $darkblue;
+      transition: 0.7s ease;
+    }
+  }
 }

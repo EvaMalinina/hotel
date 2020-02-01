@@ -75,5 +75,6 @@ let datepplFilter = () => {
  
     generateAll(finalArray);
     paginate(finalArray);
+   
   })
 };

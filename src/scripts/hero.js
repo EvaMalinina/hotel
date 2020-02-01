@@ -1,5 +1,5 @@
 window.addEventListener('load', () => {
-  
+ 
   if ( document.querySelector('.hero') ) {
     fullMenuBook();
    

@@ -6,13 +6,22 @@ let cancelBooking = () => {
     cancelBtn.addEventListener('click', (e) => {
       e.preventDefault();
 
-      //clean localStorage
-      JSON.parse(localStorage.getItem('arrResData'));
-      itemsCanceled = [];
-      localStorage.setItem("arrResData", itemsCanceled);
+      // define current user
+      let currentUser =  JSON.parse(localStorage.getItem('currentUser')).login;
+     
+      let arrResData = JSON.parse(localStorage.getItem('arrResData'));
+     
+      // delete rooms current customer reserved before from all array of reserved rooms
+      let modifiedResData = arrResData.filter( room => room.customer !== currentUser);
+      modifiedResData = JSON.stringify(modifiedResData);
+      localStorage.setItem("arrResData", modifiedResData);
 
       //clean FE
       document.querySelector('.booking__rooms').innerHTML = `<p>You have no reservation.</p>`;
+
+      let rooms = JSON.parse(localStorage.getItem('locData'));
+      generateAll(rooms);
+      paginate(rooms);
     })
   } 
 };
@@ -325,6 +334,7 @@ let datepplFilter = () => {
  
     generateAll(finalArray);
     paginate(finalArray);
+   
   })
 };
 // Object filter
@@ -417,7 +427,7 @@ let paginate = (arr) => {
 
 
 window.addEventListener('load', () => {
-  
+ 
   if ( document.querySelector('.hero') ) {
     fullMenuBook();
    
@@ -500,16 +510,24 @@ let loadData = (url, locStorName) => {
 
 
 let logOutUser = () => {
-  let logOut = document.getElementById('login-link');
-
+  
+  let logOut = document.getElementById('logout-link');
+  
   let logLog = document.getElementById('log-login').value;
   let logPas = document.getElementById('log-password').value;
   let logObj = { logLog, logPas };
+
   //identifier
   let userCoockie = logObj.logLog;
 
   logOut.addEventListener('click', () => {
-    logOut.innerHTML = 'My Account';
+   
+    logOut.style.display = 'none';
+    let logIn = document.getElementById('login-link');
+    logIn.style.display = 'flex';
+
+    const logForm = document.getElementById('login');
+    logForm.style.display = 'none';
     //remove coockie
     document.cookie = 'cookie'+ userCoockie + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
     logForm.style.display = 'none';
@@ -521,6 +539,7 @@ let logOutUser = () => {
     if(typeof localStorage['currentUser'] !== 'undefined'){
       delete localStorage['currentUser'];
     }
+   
     openReg();
     register();
     openLogin();
@@ -580,15 +599,15 @@ let fullMenuBook = () => {
 
 
 let showForm = () => {
-
+  
   let isRegister = false;
   if (typeof localStorage['currentUser'] !== 'undefined') {
-    let currentUser = JSON.parse(localStorage['currentUser']);
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const regUsers = JSON.parse(localStorage.getItem('registeredUsers'));
   
       if (regUsers) {
         const user = regUsers.find(user => user.regLog === currentUser.login && user.regPas === currentUser.password);
-        
+      
         if (user) {
           linkSelectBg();
           hideLogForm();
@@ -598,14 +617,10 @@ let showForm = () => {
           logOutUser();
 
           showBooking();
-          cancelBooking();
+          
           confirmBooking();
           toLastConfirm();
 
-         
-          if (getCookie('cookieadmin')) {
-            showAdminPanel();
-          }
           isRegister = true;
         } else {
           alert('There is no such user. Maybe you did a mistake in login or password.');
@@ -694,14 +709,9 @@ let login = () => {
       
       if (user) {
         localStorage.setItem('currentUser', JSON.stringify({login: logLog, password: logPas}));
-        linkSelectBg();
+       
         hideLogForm();
         startSession();
-
-        cancelBooking();
-        confirmBooking();
-        toLastConfirm();
-        logOutUser();
        
         if (getCookie('cookieadmin')) {
           showAdminPanel();
@@ -717,9 +727,10 @@ let login = () => {
 
 let hideLogForm = () => {
   logForm.style.display = 'none';
-  let logOut = document.getElementById('login-link');
-  logOut.className = 'nav-book__link logedin';
-  logOut.innerHTML = 'Log out';
+  let logOut = document.getElementById('logout-link');
+  logOut.style.display = 'flex';
+  let logIn = document.getElementById('login-link');
+  logIn.style.display = 'none';
 };
 
 let hideRegForm = () => {
@@ -734,15 +745,24 @@ let showAdminPanel = () => {
   let list = document.querySelector('.booking');
   list.className = 'booking booking__admin'
 
-  let customerList = document.createElement('div');
-  list.appendChild(customerList);
 
   for (item of reservationList) {
+    let customerList = document.createElement('div');
+    customerList.className = 'booking__item'
+    list.appendChild(customerList);
+
     let roomName = document.createElement('h4');
     roomName.innerHTML = item.name;
-    let p = document.createElement('p');
-    p.innerHTML = item.status;
-    customerList.append(roomName, p);
+
+    let startDate = document.createElement('p');
+    startDate.innerHTML = 'Start date: ' + item.startDate;
+    let endDate = document.createElement('p');
+    endDate.innerHTML = 'End date: ' + item.endDate;
+
+    let customer = document.createElement('p');
+    customer.innerHTML = 'Customer: ' + item.customer;
+
+    customerList.append(roomName, startDate, endDate, customer);
   }
 }
 
@@ -750,55 +770,53 @@ let showAdminPanel = () => {
 
 
 let reserveRoom = () => {
+  
+  let links = document.querySelectorAll('.example__status');
 
-  document.querySelector('.example__status').addEventListener('click', () => {
+  let alreadyResData = JSON.parse(localStorage.getItem('arrResData'));
+
+  if (alreadyResData) {
+    arrReserved = alreadyResData;
+  } else {
+    arrReserved = [];
+  }
+ 
+  for (i = 0; i < links.length; i++) {
    
-    let links = document.querySelectorAll('.example__status');
-
-
-    let alreadyResData = JSON.parse(localStorage.getItem('arrResData'));
-    if (alreadyResData) {
-      arrReserved = alreadyResData;
-    } else {
-      arrReserved = [];
-    }
-    
-    for (i = 0; i < links.length; i++) {
-    
-      links[i].onclick = function() {
-       
-        let startDate = document.getElementById('start-trip').value;
-        let endDate = document.getElementById('end-trip').value;
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        let itemId = this.getAttribute('itemId');
+    links[i].onclick = function() {
       
-        let rooms = JSON.parse(localStorage.getItem('locData'));
-        for(let key in rooms){
-          
-          if(rooms[key].id == itemId){
-            rooms[key].startDate = startDate;
-            rooms[key].endDate = endDate;
-            rooms[key].customer = currentUser.login;
-            arrReserved.push(rooms[key]);
-            this.innerHTML = 'Reserved';
-            break;
-          }
+      let startDate = document.getElementById('start-trip').value;
+      let endDate = document.getElementById('end-trip').value;
+      let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      let itemId = this.getAttribute('itemId');
+     
+      let rooms = JSON.parse(localStorage.getItem('locData'));
+      for(let key in rooms){
+       
+        if(rooms[key].id == itemId){
+          rooms[key].startDate = startDate;
+          rooms[key].endDate = endDate;
+          rooms[key].customer = currentUser.login;
+          arrReserved.push(rooms[key]);
+          this.innerHTML = 'Reserved';
+          break;
         }
-        
-        const arrResData = JSON.stringify(arrReserved);
-        localStorage.setItem("arrResData", arrResData);
-
-        let oldList = document.querySelector('.booking__customer');
-        if ( oldList ) {
-          oldList.parentNode.removeChild(oldList);
-        }
-        showBooking();
-        cancelBooking();
-        confirmBooking();
-        toLastConfirm();
       }
-    };
-  })
+    
+      const arrResData = JSON.stringify(arrReserved);
+      localStorage.setItem("arrResData", arrResData);
+
+      let oldList = document.querySelector('.booking__customer');
+      if ( oldList ) {
+        oldList.parentNode.removeChild(oldList);
+      }
+      showBooking();
+      cancelBooking();
+      confirmBooking();
+      toLastConfirm();
+    }
+  };
+
 }
 
 let search = () => {
@@ -845,44 +863,55 @@ let search = () => {
 
 // generate reservation of user
 let showBooking = () => {
-  if ( JSON.parse(localStorage.getItem('arrResData')) !==undefined) {
+
+  if ( JSON.parse(localStorage.getItem('currentUser')) !== undefined) {
+
+    let currentUser =  JSON.parse(localStorage.getItem('currentUser')).login;
     
     let reservation = JSON.parse(localStorage.getItem('arrResData'));
 
-    let list = document.querySelector('.booking__list');
+    // filter only current cectomer booking
+    let userReserv = reservation.filter( room => room.customer === currentUser);
 
-    let customBooking = document.createElement('div');
-    let customRooms = document.createElement('div');
-    let customActions = document.createElement('div');
- 
-    document.querySelector('.container_column').style.flexDirection = "column-reverse";
-    list.parentNode.appendChild(customBooking).className = 'booking__customer';
+    if (userReserv) {
 
-    customRooms.className = "booking__rooms";
-    customRooms.innerHTML = `<h4>Your booking:</h4>`;
+      let list = document.querySelector('.booking__list');
 
-    customActions.className = "booking__actions";
-    let bookConfirm = document.createElement('a');
-    let bookCancel = document.createElement('a');
-    bookConfirm.className = "booking__btn booking__confirm";
-    bookCancel.className = "booking__btn booking__cancel";
-
-    bookConfirm.innerHTML = 'Confirm';
-    bookCancel.innerHTML = 'Cancel';
-
-    customActions.append(bookConfirm, bookCancel)
-
-    customBooking.append(customRooms, customActions);
-    
-    for (item of reservation) {
-      let roomName = document.createElement('h4');
-      roomName.innerHTML = item.name;
-      let p = document.createElement('p');
-      p.innerHTML = item.status + ' ✔︎';
-      customRooms.append(roomName, p);
-    }
-  }
+      let customBooking = document.createElement('div');
+      let customRooms = document.createElement('div');
+      let customActions = document.createElement('div');
   
+      document.querySelector('.container_column').style.flexDirection = "column-reverse";
+
+      if (!document.querySelector('.booking__customer')) {
+        list.parentNode.appendChild(customBooking).className = 'booking__customer';
+      }
+
+      customRooms.className = "booking__rooms";
+      customRooms.innerHTML = `<h4>Your booking:</h4>`;
+
+      customActions.className = "booking__actions";
+      let bookConfirm = document.createElement('a');
+      let bookCancel = document.createElement('a');
+      bookConfirm.className = "booking__btn booking__confirm";
+      bookCancel.className = "booking__btn booking__cancel";
+
+      bookConfirm.innerHTML = 'Confirm';
+      bookCancel.innerHTML = 'Cancel';
+
+      customActions.append(bookConfirm, bookCancel)
+
+      customBooking.append(customRooms, customActions);
+      
+      for ( item of userReserv ) {
+        let roomName = document.createElement('h4');
+        roomName.innerHTML = item.name;
+        let p = document.createElement('p');
+        p.innerHTML = item.status + ' ✔︎';
+        customRooms.append(roomName, p);
+      }
+    }
+  } 
 };
 // slide function
 let slide = () => {
