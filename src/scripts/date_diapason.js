@@ -1,17 +1,18 @@
-//determine day possible start and end
+// determine day possible start and end
 Date.prototype.toDateInputValue = (function() {
   const local = new Date(this);
   local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
   return local.toJSON().slice(0,10);
 });
 
-let nextDay = new Date();
+const nextDay = new Date();
 nextDay.setDate(nextDay.getDate() + 1);
 
 let setDiapazonHero = () => {
 
   //on main page
   let startDateMain = document.getElementById('start-trip-main');
+  console.log(startDateMain);
   let checkInMain = startDateMain.value = new Date().toDateInputValue();
   startDateMain.setAttribute("min", checkInMain);
 

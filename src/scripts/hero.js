@@ -1,12 +1,16 @@
 window.addEventListener('load', () => {
- 
+
   if ( document.querySelector('.hero') ) {
     fullMenuBook();
+    showContent();
+
+    document.getElementById('booking-open').addEventListener('click', () => {
+      setDiapazonHero();
+    });
 
     if ( document.getElementById('availability-main') ) {
-      setDiapazonHero();
+      
       document.getElementById('availability-main').addEventListener('click', () => {
-       
         saveFormData();
       });
     }

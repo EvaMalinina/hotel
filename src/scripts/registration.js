@@ -15,13 +15,17 @@ let showForm = () => {
           hideLogForm();
           startSession();
 
+          // let reservationList = JSON.parse(localStorage.getItem('arrResData'));
+          // if (reservationList) {
+          //   datepplFilter();
+          // }
+    
           reserveRoom();
-          logOutUser();
-
           showBooking();
           
           confirmBooking();
           toLastConfirm();
+          logOutUser();
 
           isRegister = true;
         } else {
@@ -114,6 +118,7 @@ let login = () => {
        
         hideLogForm();
         startSession();
+        logOutUser();
        
         if (getCookie('cookieadmin')) {
           showAdminPanel();

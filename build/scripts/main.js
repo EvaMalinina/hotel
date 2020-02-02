@@ -236,20 +236,21 @@ let generateAllPackages = (arr) => {
   
 };
 
-//determine day possible start and end
+// determine day possible start and end
 Date.prototype.toDateInputValue = (function() {
   const local = new Date(this);
   local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
   return local.toJSON().slice(0,10);
 });
 
-let nextDay = new Date();
+const nextDay = new Date();
 nextDay.setDate(nextDay.getDate() + 1);
 
 let setDiapazonHero = () => {
 
   //on main page
   let startDateMain = document.getElementById('start-trip-main');
+  console.log(startDateMain);
   let checkInMain = startDateMain.value = new Date().toDateInputValue();
   startDateMain.setAttribute("min", checkInMain);
 
@@ -345,10 +346,11 @@ let datepplFilter = () => {
         finalArray.push(currentItem);
       } 
     }
- 
-    generateAll(finalArray);
-    paginate(finalArray);
-   
+    ///
+    if (finalArray.length != 0) {
+      generateAll(finalArray);
+      paginate(finalArray);
+    }
   })
 };
 // Object filter
@@ -441,14 +443,18 @@ let paginate = (arr) => {
 
 
 window.addEventListener('load', () => {
- 
+
   if ( document.querySelector('.hero') ) {
     fullMenuBook();
+    showContent();
+
+    document.getElementById('booking-open').addEventListener('click', () => {
+      setDiapazonHero();
+    });
 
     if ( document.getElementById('availability-main') ) {
-      setDiapazonHero();
+      
       document.getElementById('availability-main').addEventListener('click', () => {
-       
         saveFormData();
       });
     }
@@ -637,13 +643,17 @@ let showForm = () => {
           hideLogForm();
           startSession();
 
+          // let reservationList = JSON.parse(localStorage.getItem('arrResData'));
+          // if (reservationList) {
+          //   datepplFilter();
+          // }
+    
           reserveRoom();
-          logOutUser();
-
           showBooking();
           
           confirmBooking();
           toLastConfirm();
+          logOutUser();
 
           isRegister = true;
         } else {
@@ -736,6 +746,7 @@ let login = () => {
        
         hideLogForm();
         startSession();
+        logOutUser();
        
         if (getCookie('cookieadmin')) {
           showAdminPanel();
@@ -962,6 +973,33 @@ let showBooking = () => {
       }
     }
   } 
+};
+let showContent = () => {
+  let logo = document.querySelector('.welcome__logo');
+  let title = document.querySelector('.welcome__title');
+  let smallTitle = document.querySelector('.welcome__small-title');
+  let text = document.querySelector('.welcome__text');
+  let smallText = document.querySelector('.welcome__small-text');
+
+  setTimeout(function(){
+    logo.style.opacity = '1';
+  }, 500);
+ 
+  setTimeout(function(){
+    title.style.opacity = '1';
+  }, 1000);
+  
+  setTimeout(function(){
+    smallTitle.style.opacity = '1';
+  }, 1500);
+
+  setTimeout(function(){
+    text.style.opacity = '1';
+  }, 2000);
+
+  setTimeout(function(){
+    smallText.style.opacity = '1';
+  }, 2500);
 };
 // slide function
 let slide = () => {

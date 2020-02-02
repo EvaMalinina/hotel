@@ -54,7 +54,7 @@
   &__examples {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
 
     @include phones {
       flex-direction: column;
@@ -62,9 +62,14 @@
   }
 
   &__example {
-    width: 45%;
+    min-width: 45%;
     display: flex;
     justify-content: center;
+    margin-right: rem(25px);
+
+    &:last-child {
+      margin-right: rem(0px);
+    }
 
     @include phones {
       width: 100%;

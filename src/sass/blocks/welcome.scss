@@ -28,6 +28,8 @@
 
   &__logo {
     margin-bottom: rem(5px);
+    opacity: 0;
+    transition: 0.5s ease;
   }
 
   &__logo-icon {
@@ -41,20 +43,28 @@
 
   &__title {
     margin-bottom: rem(5px);
+    opacity: 0;
+    transition: 0.5s ease;
   }
 
   &__small-title {
     margin-bottom: rem(110px);
+    opacity: 0;
+    transition: 0.5s ease;
   }
 
   &__small-text {
     font-size: rem(20px);
+    opacity: 0;
+    transition: 0.5s ease;
   }
   
   &__text {
     text-transform: uppercase;
     font-size: rem(37px);
     white-space: nowrap;
+    opacity: 0;
+    transition: 0.5s ease;
 
     @include phones {
       font-size: rem(25px);

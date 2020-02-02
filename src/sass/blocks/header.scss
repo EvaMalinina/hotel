@@ -64,6 +64,7 @@
     display: flex;
     align-items: flex-end;
     letter-spacing: rem(2px);
+    white-space: nowrap;
   }
 
   &__icon {

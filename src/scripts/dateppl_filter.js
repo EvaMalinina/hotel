@@ -72,9 +72,10 @@ let datepplFilter = () => {
         finalArray.push(currentItem);
       } 
     }
- 
-    generateAll(finalArray);
-    paginate(finalArray);
-   
+    ///
+    if (finalArray.length != 0) {
+      generateAll(finalArray);
+      paginate(finalArray);
+    }
   })
 };

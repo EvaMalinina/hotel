@@ -8,7 +8,7 @@
 
   .form {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     padding: rem(10px) rem(60px);
 
@@ -19,6 +19,8 @@
 
   .form__row {
     margin-right: rem(50px);
+    max-width: rem(170px);
+    width: 100%;
 
     @include phones {
       margin-right: rem(0px);

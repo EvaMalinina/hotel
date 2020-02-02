@@ -37,14 +37,15 @@
   }
 
   label, input, button {
-    min-width: rem(450px);
+    width: rem(450px);
+    max-width: 100%;
 
     @include tablets {
-      min-width: rem(300px);
+      width: rem(300px);
     }
 
     @include phones {
-      min-width: rem(280px);
+      width: rem(280px);
     }
   }
 
