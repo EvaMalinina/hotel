@@ -411,7 +411,7 @@ let paginate = (arr) => {
         roomList.appendChild(li);
 
         createRoom(room, li);
-        // reserveRoom();
+        reserveRoom();
       }
       slide();
       zoomIn();
@@ -495,9 +495,9 @@ window.addEventListener('load', () => {
     loadData('../data/rooms.json', 'locData');
     setDiapazon();
     setFormData();
-    
+
     document.getElementById('availability').addEventListener('click', () => { 
-    
+      
       let deserialData = JSON.parse(localStorage.getItem('locData'));
       if ( deserialData ) {
         generateAll(deserialData);
@@ -798,11 +798,6 @@ let showAdminPanel = () => {
 let reserveRoom = () => {
 
   let links = document.querySelectorAll('.example__status');
-
-  // // make reservation link active
-  // for (link of links) {
-  //   link.classList.add('example__status_active');
-  // }
 
   let alreadyResData = JSON.parse(localStorage.getItem('arrResData'));
 

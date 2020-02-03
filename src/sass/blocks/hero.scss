@@ -50,6 +50,7 @@
       opacity: 1; 
       transition: opacity 1.5s ease;
     }
+    
   }
 }
 
@@ -86,7 +87,38 @@
 }
 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  .hero__welcome {
-    transform: perspective(0px) translateZ(0px) translateX(320px) rotateY(0deg);
+  .hero_fullmenu {
+
+    .hero__welcome {
+      transform: none;
+      display: flex;
+      z-index: 1;
+    } 
+
+    .hero__menu {
+      display: flex;
+      z-index: 2;
+
+      .menu__list {
+        background-color: $white;
+      }
+    }
   }  
+
+  .hero__fullbook {
+    .hero__welcome {
+      transform: none;
+      display: flex;
+      z-index: 1;
+    } 
+
+    .hero__book {
+      display: flex;
+      z-index: 2;
+
+      .form {
+        background-color: $darkblue;
+      }
+    }
+  }
 }

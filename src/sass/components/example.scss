@@ -106,16 +106,8 @@
     text-transform: uppercase;
     font-size: rem(14px);
     letter-spacing: rem(1.5px);
-    // pointer-events: none;
-    // cursor: default;
-    // opacity: 0.5;
+    cursor: pointer;
   }
-
-  // &__status_active {
-  //   pointer-events: auto;
-  //   cursor: pointer;
-  //   opacity: 1;
-  // }
 
   &__reserved {
     filter: opacity(0.5);

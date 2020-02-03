@@ -53,9 +53,9 @@ window.addEventListener('load', () => {
     loadData('../data/rooms.json', 'locData');
     setDiapazon();
     setFormData();
-    
+
     document.getElementById('availability').addEventListener('click', () => { 
-    
+      
       let deserialData = JSON.parse(localStorage.getItem('locData'));
       if ( deserialData ) {
         generateAll(deserialData);

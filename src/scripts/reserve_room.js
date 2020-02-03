@@ -2,11 +2,6 @@ let reserveRoom = () => {
 
   let links = document.querySelectorAll('.example__status');
 
-  // // make reservation link active
-  // for (link of links) {
-  //   link.classList.add('example__status_active');
-  // }
-
   let alreadyResData = JSON.parse(localStorage.getItem('arrResData'));
 
   if (alreadyResData) {
