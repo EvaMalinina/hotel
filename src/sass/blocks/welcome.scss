@@ -11,6 +11,44 @@
     z-index: 1;
     min-height: min-content;
     overflow: hidden;
+
+    @include phones {
+      display: none;
+    }
+  }
+
+  &__mb {
+    display: none;
+    position: absolute; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    filter: brightness(0.7);
+
+    @include phones {
+      display: flex;
+    }
+  }
+
+  &__mb-hotel {
+    background-image: url("/src/images/mb-bg/hotel-mb.jpg");
+  }
+
+  &__mb-room{
+    background-image: url("/src/images/mb-bg/room-mb.jpg");
+  }
+
+  &__mb-restaurant {
+    background-image: url("/src/images/mb-bg/restaurant-mb.jpg");
+  }
+
+  &__mb-celebrate {
+    background-image: url("/src/images/mb-bg/celebrate-mb.jpg");
+  }
+
+  &__mb-contact {
+    background-image: url("/src/images/mb-bg/contact-mb.jpg");
   }
 
   &__content {

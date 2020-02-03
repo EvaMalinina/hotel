@@ -232,8 +232,7 @@ let generateAllPackages = (arr) => {
     
     createPackage( pac, li )   
    
-  }
-  
+  } 
 };
 
 // determine day possible start and end
@@ -250,7 +249,6 @@ let setDiapazonHero = () => {
 
   //on main page
   let startDateMain = document.getElementById('start-trip-main');
-  console.log(startDateMain);
   let checkInMain = startDateMain.value = new Date().toDateInputValue();
   startDateMain.setAttribute("min", checkInMain);
 
@@ -413,7 +411,7 @@ let paginate = (arr) => {
         roomList.appendChild(li);
 
         createRoom(room, li);
-        reserveRoom();
+        // reserveRoom();
       }
       slide();
       zoomIn();
@@ -626,8 +624,6 @@ let fullMenuBook = () => {
 
 
 
-
-
 let showForm = () => {
   
   let isRegister = false;
@@ -642,12 +638,7 @@ let showForm = () => {
           linkSelectBg();
           hideLogForm();
           startSession();
-
-          // let reservationList = JSON.parse(localStorage.getItem('arrResData'));
-          // if (reservationList) {
-          //   datepplFilter();
-          // }
-    
+          
           reserveRoom();
           showBooking();
           
@@ -805,8 +796,13 @@ let showAdminPanel = () => {
 
 
 let reserveRoom = () => {
-  
+
   let links = document.querySelectorAll('.example__status');
+
+  // // make reservation link active
+  // for (link of links) {
+  //   link.classList.add('example__status_active');
+  // }
 
   let alreadyResData = JSON.parse(localStorage.getItem('arrResData'));
 
@@ -817,7 +813,7 @@ let reserveRoom = () => {
   }
  
   for (i = 0; i < links.length; i++) {
-   
+  
     links[i].onclick = function() {
       
       let startDate = document.getElementById('start-trip').value;
@@ -853,6 +849,8 @@ let reserveRoom = () => {
   };
 
 }
+
+
 let saveFormData = () => {
    // get all values choosed in form by user
    let startDate = document.getElementById('start-trip-main').value;
@@ -931,47 +929,49 @@ let showBooking = () => {
     
     let reservation = JSON.parse(localStorage.getItem('arrResData'));
 
-    // filter only current cectomer booking
-    let userReserv = reservation.filter( room => room.customer === currentUser);
+    if (reservation) {
+        // filter only current cectomer booking
+      let userReserv = reservation.filter( room => room.customer === currentUser);
 
-    if (userReserv) {
+      if (userReserv) {
 
-      let list = document.querySelector('.booking__list');
+        let list = document.querySelector('.booking__list');
 
-      let customBooking = document.createElement('div');
-      let customRooms = document.createElement('div');
-      let customActions = document.createElement('div');
-  
-      document.querySelector('.container_column').style.flexDirection = "column-reverse";
+        let customBooking = document.createElement('div');
+        let customRooms = document.createElement('div');
+        let customActions = document.createElement('div');
+    
+        document.querySelector('.container_column').style.flexDirection = "column-reverse";
 
-      if (!document.querySelector('.booking__customer')) {
-        list.parentNode.appendChild(customBooking).className = 'booking__customer';
+        if (!document.querySelector('.booking__customer')) {
+          list.parentNode.appendChild(customBooking).className = 'booking__customer';
+        }
+
+        customRooms.className = "booking__rooms";
+        customRooms.innerHTML = `<h4>Your booking:</h4>`;
+
+        customActions.className = "booking__actions";
+        let bookConfirm = document.createElement('a');
+        let bookCancel = document.createElement('a');
+        bookConfirm.className = "booking__btn booking__confirm";
+        bookCancel.className = "booking__btn booking__cancel";
+
+        bookConfirm.innerHTML = 'Confirm';
+        bookCancel.innerHTML = 'Cancel';
+
+        customActions.append(bookConfirm, bookCancel)
+
+        customBooking.append(customRooms, customActions);
+        
+        for ( item of userReserv ) {
+          let roomName = document.createElement('h4');
+          roomName.innerHTML = item.name;
+          let p = document.createElement('p');
+          p.innerHTML = item.status + ' ✔︎';
+          customRooms.append(roomName, p);
+        }
       }
-
-      customRooms.className = "booking__rooms";
-      customRooms.innerHTML = `<h4>Your booking:</h4>`;
-
-      customActions.className = "booking__actions";
-      let bookConfirm = document.createElement('a');
-      let bookCancel = document.createElement('a');
-      bookConfirm.className = "booking__btn booking__confirm";
-      bookCancel.className = "booking__btn booking__cancel";
-
-      bookConfirm.innerHTML = 'Confirm';
-      bookCancel.innerHTML = 'Cancel';
-
-      customActions.append(bookConfirm, bookCancel)
-
-      customBooking.append(customRooms, customActions);
-      
-      for ( item of userReserv ) {
-        let roomName = document.createElement('h4');
-        roomName.innerHTML = item.name;
-        let p = document.createElement('p');
-        p.innerHTML = item.status + ' ✔︎';
-        customRooms.append(roomName, p);
-      }
-    }
+    }  
   } 
 };
 let showContent = () => {

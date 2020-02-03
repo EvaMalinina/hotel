@@ -1,5 +1,3 @@
-
-
 let showForm = () => {
   
   let isRegister = false;
@@ -14,12 +12,7 @@ let showForm = () => {
           linkSelectBg();
           hideLogForm();
           startSession();
-
-          // let reservationList = JSON.parse(localStorage.getItem('arrResData'));
-          // if (reservationList) {
-          //   datepplFilter();
-          // }
-    
+          
           reserveRoom();
           showBooking();
           

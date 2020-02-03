@@ -1,6 +1,11 @@
 let reserveRoom = () => {
-  
+
   let links = document.querySelectorAll('.example__status');
+
+  // // make reservation link active
+  // for (link of links) {
+  //   link.classList.add('example__status_active');
+  // }
 
   let alreadyResData = JSON.parse(localStorage.getItem('arrResData'));
 
@@ -11,7 +16,7 @@ let reserveRoom = () => {
   }
  
   for (i = 0; i < links.length; i++) {
-   
+  
     links[i].onclick = function() {
       
       let startDate = document.getElementById('start-trip').value;
@@ -47,3 +52,4 @@ let reserveRoom = () => {
   };
 
 }
+

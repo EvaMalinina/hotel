@@ -28,6 +28,5 @@ let generateAllPackages = (arr) => {
     
     createPackage( pac, li )   
    
-  }
-  
+  } 
 };

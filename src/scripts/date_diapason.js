@@ -12,7 +12,6 @@ let setDiapazonHero = () => {
 
   //on main page
   let startDateMain = document.getElementById('start-trip-main');
-  console.log(startDateMain);
   let checkInMain = startDateMain.value = new Date().toDateInputValue();
   startDateMain.setAttribute("min", checkInMain);
 
