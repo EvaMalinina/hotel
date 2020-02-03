@@ -84,3 +84,9 @@
     }
   }
 }
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .hero__welcome {
+    transform: perspective(0px) translateZ(0px) translateX(320px) rotateY(0deg);
+  }  
+}

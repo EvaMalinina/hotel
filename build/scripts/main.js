@@ -344,7 +344,7 @@ let datepplFilter = () => {
         finalArray.push(currentItem);
       } 
     }
-    ///
+    
     if (finalArray.length != 0) {
       generateAll(finalArray);
       paginate(finalArray);
