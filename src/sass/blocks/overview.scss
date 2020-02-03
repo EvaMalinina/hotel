@@ -55,6 +55,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    position: relative;
 
     @include phones {
       flex-direction: column;

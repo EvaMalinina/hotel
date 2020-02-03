@@ -7,10 +7,21 @@
   &__video {
     margin: 0;
     position: absolute;
-    bottom: 0;
     z-index: 1;
     min-height: min-content;
     overflow: hidden;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+
+    @include tablets {
+      top: unset;
+      left: unset;
+      right: unset;
+      width: unset;
+    }
 
     @include phones {
       display: none;

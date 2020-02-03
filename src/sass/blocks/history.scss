@@ -21,7 +21,7 @@
   }
 
   &__info-text {
-    width: 50%;
+    width: 40%;
     font-family: 'El Messiri', sans-serif;
     color: $darkblue;
 
@@ -31,7 +31,7 @@
 
     @include phones {
       width: 100%;
-      margin-top: rem(320px);
+      margin-top: 350px;
       padding-top: 65px;
     }
   }
@@ -48,12 +48,17 @@
 
   &__pic-wrap {
     display: flex;
-    width: rem(400px);
-    height: rem(440px);
+    width: 400px;
+    height: 440px;
+    max-width: 52%;
     overflow: hidden;
     position: absolute;
     top: rem(-20px);
     right: rem(22px);
+
+    @include phones {
+      max-width: 97%;
+    }
   }
 
   &__pic {
@@ -64,19 +69,39 @@
   }
 
   &__lobby {
-    background-position: 0% -97%;
+    background-position: 0 -600px;
+
+    @include tablets {
+      background-position: 0 -578px;
+    }
+
+    @include phones {
+      background-position: 0 -489px;
+    }
   }
 
   &__bedroom {
-    background-position: 0% -224%;
+    background-position: 0 455px;
   }
 
   &__restaurant {
-    background-position: 0% -196%;
+    background-position: 0 5240px;
+
+    @include tablets {
+      background-position: 0 4996px;
+    }
+
+    @include phones {
+      background-position: 0 4595px;
+    }
   }
 
   &__ceremony {
-    background-position: 0% rem(-285px);
+    background-position: 0 -305px;
+
+    @include tablets {
+      background-position: 0 -235px;
+    }
   }
 
   &__event {
@@ -125,12 +150,18 @@
     top: rem(36px);
     left: rem(20px);
     display: flex;
-    width: rem(400px);
-    height: rem(265px);
+    width: 400px;
+    height: 265px;
     overflow: hidden;
+    max-width: 45%;
+    max-height: 195px;
 
     @include tablets {
       top: rem(110px);
+    }
+
+    @include phones {
+      max-width: 95%;
     }
   }
 
