@@ -19,7 +19,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    padding: rem(80px) rem(40px) 0;
+    padding: rem(80px) rem(30px) 0;
     opacity: 0;
     transition: opacity 1.5s ease;
     display: none;
@@ -80,7 +80,7 @@
       display: flex;
       opacity: 1; 
       transition: opacity 1.5s ease;
-      max-width: rem(300px);
+      max-width: 300px;
       width: 100%;
     }
   }
